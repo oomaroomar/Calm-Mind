@@ -1,0 +1,5 @@
+.vscode/
+
+# Python
+.mypy_cache/
+.venv/

@@ -1,0 +1,50 @@
+[
+  {
+    "color": "default",
+    "type": "chikorita",
+    "size": "nano",
+    "name": "Winston",
+    "generation": "gen2",
+    "originalSpriteSize": 32
+  },
+  {
+    "color": "default",
+    "type": "cyndaquil",
+    "size": "nano",
+    "name": "Bonnie",
+    "generation": "gen2",
+    "originalSpriteSize": 32
+  },
+  {
+    "color": "default",
+    "type": "totodile",
+    "size": "nano",
+    "name": "Zoe",
+    "generation": "gen2",
+    "originalSpriteSize": 32
+  },
+  {
+    "color": "default",
+    "type": "togepi",
+    "size": "nano",
+    "name": "Banjo",
+    "generation": "gen2",
+    "originalSpriteSize": 32
+  },
+  {
+    "color": "default",
+    "type": "mareep",
+    "size": "nano",
+    "name": "Teddy",
+    "generation": "gen2",
+    "originalSpriteSize": 32
+  },
+  {
+    "color": "default",
+    "type": "eevee",
+    "size": "nano",
+    "name": "Lulu",
+    "generation": "gen1",
+    "originalSpriteSize": 32
+  }
+]
