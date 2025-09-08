@@ -1,6 +1,6 @@
 TEAMS = [
     """
-    Blaziken @ Life Orb  
+Blaziken @ Life Orb  
 Ability: Speed Boost  
 Tera Type: Fighting  
 EVs: 16 HP / 252 Atk / 240 Spe  
@@ -62,7 +62,6 @@ IVs: 0 Atk
 - Defog  
 - Strange Steam  
 - Pain Split  
-
     """,
     """
 Miraidon @ Choice Specs

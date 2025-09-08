@@ -1,9 +1,11 @@
 from numpy.typing import NDArray
 from poke_env.battle.pokemon import Pokemon
 import numpy as np
+from poke_env.battle.stat import STATS
 from poke_env.battle.pokemon_type import STANDARD_TYPES
 from poke_env.battle.status import STATUSES
-from encoder.encoder import Encoder
+from encoder.move_encoder import MoveEncoder, ENCODED_MOVE_DIM
+from encoder.utils import type_one_hot, type_effectiveness
 
 class PokemonEncoder:
     # Class variables
@@ -17,18 +19,34 @@ class PokemonEncoder:
     )
     ITEMS = ("lifeorb", "choiceband", "leftovers", "heavydutyboots")
     HP_FEATURES = ("CURRENT_HP_FRACTION", "FAINTED")
-    POKEMON_FEATURES_DIM = (
+    ENCODED_MOVES_DIM = ENCODED_MOVE_DIM * 4
+
+    OP_POKEMON_FEATURES_DIM = (
         len(STANDARD_TYPES) * 4 
+        + len(STATS)
         + len(STATUSES) 
         + len(ITEMS) 
         + len(ABILITIES) 
         + len(HP_FEATURES)
+    )
+    MY_POKEMON_FEATURES_DIM = (
+        OP_POKEMON_FEATURES_DIM
+        + ENCODED_MOVES_DIM 
     )
 
     def __init__(self):
         pass
     
 
+    @staticmethod
+    def _encode_base_stats(pkmn: Pokemon) -> NDArray[np.float32]:
+        """
+        Encodes the base stats of a pokemon.
+
+        :param pkmn: The pokemon to encode.
+        :return: A numpy array of shape (len(STATS),) containing the encoded features.
+        """
+        return np.array([pkmn.base_stats[stat.name.lower()] for stat in STATS], dtype=np.float32) / 255
 
     @staticmethod
     def _hp_encoder(pkmn: Pokemon) -> NDArray[np.float32]:
@@ -70,22 +88,55 @@ class PokemonEncoder:
         """
         return np.array([1 if pkmn.ability == ability else 0 for ability in cls.ABILITIES], dtype=np.int8)
 
-
-    @classmethod
-    def pokemon_encoder(cls, pkmn: Pokemon) -> NDArray[np.float32]:
+    @staticmethod
+    def moves_encoder(pkmn: Pokemon) -> NDArray[np.float32]:
         """
-        Encodes a pokemon.
+        Encodes the moves of a pokemon.
 
         :param pkmn: The pokemon to encode.
-        :return: A numpy array of shape (POKEMON_FEATURES_DIM,) containing the encoded features.
+        :return: A numpy array of shape (len(pkmn.moves) * ENCODED_MOVE_DIM) containing the encoded features.
         """
         return np.concatenate([
-            Encoder.type_one_hot(pkmn.original_types),
-            Encoder.type_effectiveness(pkmn.original_types),
-            Encoder.type_one_hot([pkmn.tera_type] if pkmn.tera_type else None),
-            Encoder.type_effectiveness([pkmn.tera_type] if pkmn.tera_type else None),
+            *[MoveEncoder.encode_move(move) for move in pkmn.moves.values()],
+        ])
+
+    @classmethod
+    def opponent_pokemon_encoder(cls, pkmn: Pokemon) -> NDArray[np.float32]:
+        """
+        Encodes a opponent pokemon.
+
+        :param pkmn: The pokemon to encode.
+        :return: A numpy array of shape (OP_POKEMON_FEATURES_DIM,) containing the encoded features.
+        """
+        return np.concatenate([
+            type_one_hot(pkmn.original_types),
+            type_effectiveness(pkmn.original_types),
+            type_one_hot([pkmn.tera_type] if pkmn.tera_type else None),
+            type_effectiveness([pkmn.tera_type] if pkmn.tera_type else None),
+            cls._encode_base_stats(pkmn),
             cls._hp_encoder(pkmn),
             cls._status_encoder(pkmn),
             cls._item_encoder(pkmn),
             cls._ability_encoder(pkmn),
+        ])
+
+    @classmethod
+    def my_pokemon_encoder(cls, pkmn: Pokemon) -> NDArray[np.float32]:
+        """
+        Encodes a pokemon.
+
+        :param pkmn: The pokemon to encode.
+        :return: A numpy array of shape (MY_POKEMON_FEATURES_DIM,) containing the encoded features.
+        """
+        return np.concatenate([
+            type_one_hot(pkmn.original_types),
+            type_effectiveness(pkmn.original_types),
+            type_one_hot([pkmn.tera_type] if pkmn.tera_type else None),
+            type_effectiveness([pkmn.tera_type] if pkmn.tera_type else None),
+            cls._encode_base_stats(pkmn),
+            cls._hp_encoder(pkmn),
+            cls._status_encoder(pkmn),
+            cls._item_encoder(pkmn),
+            cls._ability_encoder(pkmn),
+            cls.moves_encoder(pkmn),
         ])

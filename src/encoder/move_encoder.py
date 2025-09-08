@@ -4,9 +4,9 @@ from typing import  Union
 import numpy as np
 from numpy.typing import NDArray
 from poke_env.battle.pokemon_type import STANDARD_TYPES
-from poke_env.battle.stat import MOVABLE_STATS, STATS
+from poke_env.battle.stat import MOVABLE_STATS
 
-from encoder.encoder import Encoder
+from encoder.utils import type_one_hot, type_effectiveness
 from poke_env.battle.effect import Effect
 from poke_env.battle.status import STATUS_STRINGS, STATUSES, Status
 from poke_env.battle.move_category import MoveCategory
@@ -87,8 +87,8 @@ class MoveEncoder:
         :param move: The move to encode.
         :return: A numpy array of shape (len(VOLATILE_STATUSES),) containing the encoded features.
         """
-        if move.volatile_status:
-            return np.array([move.volatile_status.chance if move.volatile_status.effect == s else 0.0 for s in VOLATILE_STATUSES], dtype=np.float32)
+        if move.volatile_status_chance:
+            return np.array([move.volatile_status_chance.get("chance", 1.0) if move.volatile_status_chance.get("effect") == s else 0.0 for s in VOLATILE_STATUSES], dtype=np.float32)
         return np.array([0.0] * len(VOLATILE_STATUSES), dtype=np.float32)
 
 
@@ -120,8 +120,8 @@ class MoveEncoder:
             move.accuracy,
             0.0 if move.target == "self" else 1.0,
             *MoveEncoder._encode_category(move),
-            *Encoder.type_one_hot([move.type]),
-            *Encoder.type_effectiveness([move.type]),
+            *type_one_hot([move.type]),
+            *type_effectiveness([move.type]),
         ], dtype=np.float32)
 
 
