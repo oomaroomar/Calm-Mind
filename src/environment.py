@@ -1,11 +1,15 @@
-
 from typing import Any, Dict, Optional
 
 import numpy as np
 import numpy.typing as npt
 from poke_env.battle.move import Move
 from poke_env.battle.pokemon import Pokemon
-from poke_env.player.battle_order import BattleOrder, DefaultBattleOrder, ForfeitBattleOrder, SingleBattleOrder
+from poke_env.player.battle_order import (
+    BattleOrder,
+    DefaultBattleOrder,
+    ForfeitBattleOrder,
+    SingleBattleOrder,
+)
 from poke_env.player.player import Player
 from gymnasium.spaces import Box, Discrete
 from stable_baselines3 import PPO
@@ -14,6 +18,7 @@ from stable_baselines3.common.vec_env import DummyVecEnv
 from poke_env.battle import AbstractBattle, Battle
 from poke_env.environment import PokeEnv, SingleAgentWrapper, SinglesEnv
 from poke_env.player import RandomPlayer
+
 
 class Gen9RandomBattleEnv(PokeEnv):
     LOW = [-1, -1, -1, -1, 0, 0, 0, 0, 0, 0]
@@ -29,13 +34,15 @@ class Gen9RandomBattleEnv(PokeEnv):
             )
             for agent in self.possible_agents
         }
-        act_size = 4*2 + 6
+        act_size = 4 * 2 + 6
         self.action_spaces = {
             agent: Discrete(act_size) for agent in self.possible_agents
         }
 
     @staticmethod
-    def action_to_order(action: np.int64, battle: Battle, fake: bool = False, strict: bool = True) -> BattleOrder:
+    def action_to_order(
+        action: np.int64, battle: Battle, fake: bool = False, strict: bool = True
+    ) -> BattleOrder:
         """
         Returns the BattleOrder relative to the given action.
 
@@ -100,7 +107,9 @@ class Gen9RandomBattleEnv(PokeEnv):
                         assert order.order.id in [
                             m.id for m in battle.available_moves
                         ], "invalid action"
-                        assert not order.terastallize or battle.can_tera, "invalid action"
+                        assert (
+                            not order.terastallize or battle.can_tera
+                        ), "invalid action"
             return order
         except AssertionError as e:
             if not strict and str(e) == "invalid action":
@@ -160,7 +169,9 @@ class Gen9RandomBattleEnv(PokeEnv):
                             else list(battle.active_pokemon.moves.values())
                         )
                         if not fake:
-                            assert order.order.id in [m.id for m in mvs], "invalid order"
+                            assert order.order.id in [
+                                m.id for m in mvs
+                            ], "invalid order"
                         action = [m.id for m in mvs].index(order.order.id)
                         gimmick = 1 if order.terastallize else 0
                         action = 6 + action + 4 * gimmick
@@ -168,14 +179,15 @@ class Gen9RandomBattleEnv(PokeEnv):
                             assert order.order.id in [
                                 m.id for m in battle.available_moves
                             ], "invalid order"
-                            assert not order.terastallize or battle.can_tera, "invalid order"
+                            assert (
+                                not order.terastallize or battle.can_tera
+                            ), "invalid order"
             return np.int64(action)
         except AssertionError as e:
             if not strict and str(e) == "invalid order":
                 return np.int64(-2)
             else:
                 raise e
-
 
     @classmethod
     def create_single_agent_env(cls, config: Dict[str, Any]) -> SingleAgentWrapper:
@@ -226,13 +238,17 @@ class Gen9RandomBattleEnv(PokeEnv):
         )
         return np.float32(final_vector)
 
+
 def single_agent_train(total_timesteps: int = 100000):
     """Train a single agent using Stable Baselines 3 PPO."""
+
     def make_env():
-        return Gen9RandomBattleEnv.create_single_agent_env({"battle_format": "gen9randombattle"})
+        return Gen9RandomBattleEnv.create_single_agent_env(
+            {"battle_format": "gen9randombattle"}
+        )
 
     env = DummyVecEnv([make_env])
-    
+
     model = PPO(
         policy="MlpPolicy",
         env=env,
@@ -244,10 +260,10 @@ def single_agent_train(total_timesteps: int = 100000):
         verbose=1,
         device="auto",
     )
-    
+
     model.learn(total_timesteps=total_timesteps)
     model.save("sb3_showdown_ppo_single_agent")
-    
+
     return model
 
 
@@ -267,8 +283,8 @@ def multi_agent_train():
 
 if __name__ == "__main__":
     # Train single agent with SB3
-    model = single_agent_train(total_timesteps=10**5)
+    model = single_agent_train(total_timesteps=10**2)
     print("Training completed! Model saved as 'sb3_showdown_ppo_single_agent'")
-    
+
     # Multi-agent training commented out - requires different approach in SB3
     # multi_agent_train()

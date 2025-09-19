@@ -1,13 +1,15 @@
 # Rewards
 
-## Winning/Losing +/-30
+## [x] Winning/Losing +/-30
 
-## KO: +/-1
+## [x] KO: +/-1
 
-## HP delta: (op_prev - op_cur)/op_max - (my_prev-my_cur)/my_max
+## [x] HP delta: (op_prev - op_cur)/op_max - (my_prev-my_cur)/my_max
 
-## Status +/-0.2
+## [x] Status +/-0.2
 
-## Stat change +/-0.03 per stage
+## [x] Used Tera +/- 0.2
 
-## Hard switch +/-0.15
+## [x] Stat change +/-0.03 per stage
+
+## [] Hard switch +/-0.15
