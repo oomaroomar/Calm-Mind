@@ -307,7 +307,6 @@ def single_agent_train(total_timesteps: int = 100000):
         batch_size=64,
         n_epochs=10,
         verbose=1,
-        device="cuda",
     )
 
     model.learn(total_timesteps=total_timesteps)
