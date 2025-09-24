@@ -19,6 +19,8 @@ from poke_env.player.player import Player
 from poke_env.ps_client import AccountConfiguration
 from stable_baselines3 import PPO
 from stable_baselines3.common.vec_env import DummyVecEnv
+from sb3_contrib.common.wrappers import ActionMasker
+from sb3_contrib.ppo_mask import MaskablePPO
 
 from encoder import Encoder
 from teams import TEAMS
@@ -124,6 +126,30 @@ class PokemonEnv(SinglesEnv[npt.NDArray[np.float32]]):
         self._reward_buffer[battle] = current_value
 
         return reward
+
+    def valid_action_mask(self) -> np.ndarray:
+        battle = self.battle1
+        mask = np.zeros(self.action_spaces[self.agents[0]].n)
+
+        # switches
+        indices = [
+            i
+            for i, pokemon in enumerate(battle.team.values())
+            if pokemon in battle.available_switches
+        ]
+        mask[indices] = 1
+
+        # moves
+        indices = [
+            i + 6
+            for i, move in enumerate(battle.available_moves)
+            if move.current_pp > 0
+        ]
+        if not battle.used_tera:
+            indices += [i + 4 for i in indices]
+
+        mask[indices] = 1
+        return mask
 
     @staticmethod
     def action_to_order(
@@ -259,15 +285,20 @@ class PokemonEnv(SinglesEnv[npt.NDArray[np.float32]]):
                 )
 
 
+def mask_fn(saw: SingleAgentWrapper) -> np.ndarray:
+    return saw.env.valid_action_mask()
+
+
 def single_agent_train(total_timesteps: int = 100000):
     """Train a single agent using Stable Baselines 3 PPO."""
 
     def make_env():
         return PokemonEnv.create_single_agent_env({"battle_format": "gen9ou"})
 
-    env = DummyVecEnv([make_env])
+    env = make_env()
+    env = ActionMasker(env, mask_fn)
 
-    model = PPO(
+    model = MaskablePPO(
         policy="MlpPolicy",
         env=env,
         learning_rate=1e-3,

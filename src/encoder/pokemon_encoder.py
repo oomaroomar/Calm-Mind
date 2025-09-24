@@ -29,6 +29,7 @@ class PokemonEncoder:
         + len(ITEMS)
         + len(ABILITIES)
         + len(HP_FEATURES)
+        + 1  # protect counter
     )
     MY_POKEMON_FEATURES_DIM = OP_POKEMON_FEATURES_DIM + ENCODED_MOVES_DIM
 
@@ -49,6 +50,16 @@ class PokemonEncoder:
             )
             / 255
         )
+
+    @staticmethod
+    def _protect_counter_encoder(pkmn: Pokemon) -> NDArray[np.float32]:
+        """
+        Encodes the protect counter of a pokemon.
+
+        :param pkmn: The pokemon to encode.
+        :return: A numpy array of shape (1,) containing the encoded features.
+        """
+        return np.array([1.0 if pkmn.protect_counter > 0 else 0.0], dtype=np.float32)
 
     @staticmethod
     def _hp_encoder(pkmn: Pokemon) -> NDArray[np.float32]:
@@ -137,6 +148,7 @@ class PokemonEncoder:
                 cls._status_encoder(pkmn),
                 cls._item_encoder(pkmn),
                 cls._ability_encoder(pkmn),
+                cls._protect_counter_encoder(pkmn),
             ]
         )
 
@@ -159,6 +171,7 @@ class PokemonEncoder:
                 cls._status_encoder(pkmn),
                 cls._item_encoder(pkmn),
                 cls._ability_encoder(pkmn),
+                cls._protect_counter_encoder(pkmn),
                 cls.moves_encoder(pkmn),
             ]
         )

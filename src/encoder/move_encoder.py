@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import  Union
+from typing import Union
 
 import numpy as np
 from numpy.typing import NDArray
@@ -18,22 +18,16 @@ MOVE_CATEGORIES = (
     MoveCategory.STATUS,
 )
 
-VOLATILE_STATUSES = (
-    Effect.CONFUSION,
-)
+VOLATILE_STATUSES = (Effect.CONFUSION,)
 
-BASE_FEATURES = (
-    "BASE_POWER",
-    "ACCURACY",
-    "TARGET",
-)
+BASE_FEATURES = ("BASE_POWER", "ACCURACY", "TARGET", "CURRENT_PP", "0_PP")
 
 # Curated sets for effects not cleanly tagged in Showdown data
 HAZARD_REMOVERS = ("rapidspin", "defog", "mortalspin", "tidyup")
-ITEM_REMOVERS   = ("knockoff", "thief", "covet", "corrosivegas", "trick", "switcheroo")
+ITEM_REMOVERS = ("knockoff", "thief", "covet", "corrosivegas", "trick", "switcheroo")
 
 HAZARD_REMOVERS_SET = frozenset(HAZARD_REMOVERS)
-ITEM_REMOVERS_SET   = frozenset(ITEM_REMOVERS)
+ITEM_REMOVERS_SET = frozenset(ITEM_REMOVERS)
 
 SPECIAL_CASES: list[Union[str, frozenset[str]]] = [
     ITEM_REMOVERS_SET,
@@ -47,11 +41,17 @@ SPECIAL_CASES: list[Union[str, frozenset[str]]] = [
 
 MAX_BASE_POWER = 120
 
-CORE_FEATURES_DIM = len(BASE_FEATURES) + len(MOVE_CATEGORIES) + len(STANDARD_TYPES)*2
+CORE_FEATURES_DIM = len(BASE_FEATURES) + len(MOVE_CATEGORIES) + len(STANDARD_TYPES) * 2
 SPECIAL_CASES_DIM = len(SPECIAL_CASES)
-SECONDARY_EFFECTS_DIM = len(MOVABLE_STATS)*2 + 6
-ENCODED_MOVE_DIM = CORE_FEATURES_DIM + len(STATUSES) + len(VOLATILE_STATUSES) + SECONDARY_EFFECTS_DIM + SPECIAL_CASES_DIM
-
+SECONDARY_EFFECTS_DIM = len(MOVABLE_STATS) * 2 + 6
+ENCODED_MOVE_DIM = (
+    CORE_FEATURES_DIM
+    + len(STATUSES)
+    + len(VOLATILE_STATUSES)
+    + 1  # protect counter
+    + SECONDARY_EFFECTS_DIM
+    + SPECIAL_CASES_DIM
+)
 
 
 class MoveEncoder:
@@ -68,7 +68,9 @@ class MoveEncoder:
         """
         status, chance = None, 1.0
         if move.category == MoveCategory.STATUS:
-            return np.array([1.0 if s == move.status else 0.0 for s in STATUSES], dtype=np.float32)
+            return np.array(
+                [1.0 if s == move.status else 0.0 for s in STATUSES], dtype=np.float32
+            )
         else:
             secs = move.secondary or []
             sts = next((s for s in secs if s.get("status") in STATUS_STRINGS), None)
@@ -77,7 +79,19 @@ class MoveEncoder:
                 chance = sts.get("chance", 100) / 100.0
             else:
                 status = None
-            return np.array([chance if s == status else 0.0 for s in STATUSES], dtype=np.float32)
+            return np.array(
+                [chance if s == status else 0.0 for s in STATUSES], dtype=np.float32
+            )
+
+    @staticmethod
+    def _protect_counter_encoder(move: Move) -> NDArray[np.float32]:
+        """
+        Encodes the protect counter of a move.
+
+        :param move: The move to encode.
+        :return: A numpy array of shape (1,) containing the encoded features.
+        """
+        return np.array([1.0 if move.is_protect_counter else 0.0], dtype=np.float32)
 
     @staticmethod
     def _volatile_status_prob(move: Move) -> NDArray[np.float32]:
@@ -88,10 +102,18 @@ class MoveEncoder:
         :return: A numpy array of shape (len(VOLATILE_STATUSES),) containing the encoded features.
         """
         if move.volatile_status_chance:
-            return np.array([move.volatile_status_chance.get("chance", 1.0) if move.volatile_status_chance.get("effect") == s else 0.0 for s in VOLATILE_STATUSES], dtype=np.float32)
+            return np.array(
+                [
+                    (
+                        move.volatile_status_chance.get("chance", 1.0)
+                        if move.volatile_status_chance.get("effect") == s
+                        else 0.0
+                    )
+                    for s in VOLATILE_STATUSES
+                ],
+                dtype=np.float32,
+            )
         return np.array([0.0] * len(VOLATILE_STATUSES), dtype=np.float32)
-
-
 
     @staticmethod
     def _encode_category(move: Move) -> NDArray[np.float32]:
@@ -102,28 +124,34 @@ class MoveEncoder:
         :return: A numpy array of shape (len(MOVE_CATEGORIES),) containing the encoded features.
         """
         # Output shape: (len(MOVE_CATEGORIES),)
-        return np.array([1.0 if move.category == c else 0.0 for c in MOVE_CATEGORIES], dtype=np.float32)
-
+        return np.array(
+            [1.0 if move.category == c else 0.0 for c in MOVE_CATEGORIES],
+            dtype=np.float32,
+        )
 
     # +1's come from: base power, accuracy, target
     @staticmethod
     def _encode_core_features(move: Move) -> NDArray[np.float32]:
         """
-        Encodes the base features of a move: 
-        base power (1 dim), accuracy (1 dim), category (3 dim), target (1 dim), type (19*2 dim)
+        Encodes the base features of a move:
+        base power (1 dim), accuracy (1 dim), current pp (1 dim), 0 pp (1 dim), category (3 dim), target (1 dim), type (19*2 dim)
 
         :param move: The move to encode.
         :return: A numpy array of shape (CORE_FEATURES_DIM) containing the encoded features.
         """
-        return np.array([
-            move.base_power / MAX_BASE_POWER,
-            move.accuracy,
-            0.0 if move.target == "self" else 1.0,
-            *MoveEncoder._encode_category(move),
-            *type_one_hot([move.type]),
-            *type_effectiveness([move.type]),
-        ], dtype=np.float32)
-
+        return np.array(
+            [
+                move.base_power / MAX_BASE_POWER,
+                move.accuracy,
+                move.current_pp / move.max_pp,
+                0.0 if move.current_pp == 0 else 1.0,
+                0.0 if move.target == "self" else 1.0,
+                *MoveEncoder._encode_category(move),
+                *type_one_hot([move.type]),
+                *type_effectiveness([move.type]),
+            ],
+            dtype=np.float32,
+        )
 
     @staticmethod
     def _encode_self_stat_change(move: Move) -> NDArray[np.float32]:
@@ -133,7 +161,13 @@ class MoveEncoder:
         :param move: The move to encode.
         :return: a numpy array of shape (len(MOVABLE_STATS),) containing the encoded features.
         """
-        return np.array([ move.boosts_self.get(s.name, 0) for s in MOVABLE_STATS ], dtype=np.float32) / 2.0
+        return (
+            np.array(
+                [move.boosts_self.get(s.name, 0) for s in MOVABLE_STATS],
+                dtype=np.float32,
+            )
+            / 2.0
+        )
 
     @staticmethod
     def _encode_foe_stat_change(move: Move) -> NDArray[np.float32]:
@@ -143,26 +177,36 @@ class MoveEncoder:
         :param move: The move to encode.
         :return: a numpy array of shape (len(MOVABLE_STATS),) containing the encoded features.
         """
-        return np.array([ move.boosts_target.get(s.name, 0) for s in MOVABLE_STATS ], dtype=np.float32) / 2.0
-
-
+        return (
+            np.array(
+                [move.boosts_target.get(s.name, 0) for s in MOVABLE_STATS],
+                dtype=np.float32,
+            )
+            / 2.0
+        )
 
     @staticmethod
     def _encode_special_cases(move: Move) -> NDArray[np.float32]:
-
         """
         Encodes special cases of a move.
 
         :param move: The move to encode.
         :return: A numpy array of shape (SPECIAL_CASES_DIM,) containing the encoded features.
         """
-        return np.array([
-            1.0 if (
-                (isinstance(case, str) and move.id == case) or
-                (not isinstance(case, str) and move.id in case)
-            ) else 0.0
-            for case in SPECIAL_CASES
-        ], dtype=np.float32)
+        return np.array(
+            [
+                (
+                    1.0
+                    if (
+                        (isinstance(case, str) and move.id == case)
+                        or (not isinstance(case, str) and move.id in case)
+                    )
+                    else 0.0
+                )
+                for case in SPECIAL_CASES
+            ],
+            dtype=np.float32,
+        )
 
     @staticmethod
     def _encode_secondary_effects(move: Move) -> NDArray[np.float32]:
@@ -180,11 +224,14 @@ class MoveEncoder:
             float(move.self_switch),
             float(move.force_switch),
         )
-        return np.array([
-            *MoveEncoder._encode_self_stat_change(move),
-            *MoveEncoder._encode_foe_stat_change(move),
-            *feats,
-        ], dtype=np.float32)
+        return np.array(
+            [
+                *MoveEncoder._encode_self_stat_change(move),
+                *MoveEncoder._encode_foe_stat_change(move),
+                *feats,
+            ],
+            dtype=np.float32,
+        )
 
     @classmethod
     def encode_move(cls, move: Move) -> NDArray[np.float32]:
@@ -194,10 +241,13 @@ class MoveEncoder:
         :param move: The move to encode.
         :return: A numpy array of shape (ENCODED_MOVE_DIM,) containing the encoded features.
         """
-        return np.concatenate([
-            cls._encode_core_features(move),
-            cls._status_prob(move),
-            cls._volatile_status_prob(move),
-            cls._encode_secondary_effects(move),
-            cls._encode_special_cases(move),
-        ])
+        return np.concatenate(
+            [
+                cls._encode_core_features(move),
+                cls._status_prob(move),
+                cls._volatile_status_prob(move),
+                cls._protect_counter_encoder(move),
+                cls._encode_secondary_effects(move),
+                cls._encode_special_cases(move),
+            ]
+        )
