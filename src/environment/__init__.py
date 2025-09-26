@@ -47,7 +47,9 @@ class PokemonEnv(SinglesEnv[npt.NDArray[np.float32]]):
         }
 
     @classmethod
-    def create_single_agent_env(cls, config: Dict[str, Any]) -> SingleAgentWrapper:
+    def create_single_agent_env(
+        cls, opponent: Player, config: Dict[str, Any]
+    ) -> SingleAgentWrapper:
         env = cls(
             account_configuration1=AccountConfiguration("RL agent", None),
             battle_format=config["battle_format"],
@@ -56,7 +58,7 @@ class PokemonEnv(SinglesEnv[npt.NDArray[np.float32]]):
             strict=False,
             team=TEAMS[0],
         )
-        opponent = RandomPlayer(
+        opponent = opponent or RandomPlayer(
             battle_format=config["battle_format"],
             team=TEAMS[0],
             account_configuration=AccountConfiguration("Random agent", None),
@@ -127,7 +129,7 @@ class PokemonEnv(SinglesEnv[npt.NDArray[np.float32]]):
 
         return reward
 
-    def valid_action_mask(self) -> np.ndarray:
+    def action_mask(self) -> np.ndarray:
         battle = self.battle1
         mask = np.zeros(self.action_spaces[self.agents[0]].n)
 
@@ -283,39 +285,3 @@ class PokemonEnv(SinglesEnv[npt.NDArray[np.float32]]):
                 return SinglesEnv.order_to_action(
                     Player.choose_random_singles_move(battle), battle, fake, strict
                 )
-
-
-def mask_fn(saw: SingleAgentWrapper) -> np.ndarray:
-    return saw.env.valid_action_mask()
-
-
-def single_agent_train(total_timesteps: int = 100000):
-    """Train a single agent using Stable Baselines 3 PPO."""
-
-    def make_env():
-        return PokemonEnv.create_single_agent_env({"battle_format": "gen9ou"})
-
-    env = make_env()
-    env = ActionMasker(env, mask_fn)
-
-    model = MaskablePPO(
-        policy="MlpPolicy",
-        env=env,
-        learning_rate=1e-3,
-        gamma=0.99,
-        n_steps=2048,
-        batch_size=64,
-        n_epochs=10,
-        verbose=1,
-    )
-
-    model.learn(total_timesteps=total_timesteps)
-    model.save("sb3_showdown_ppo_single_agent")
-
-    return model
-
-
-if __name__ == "__main__":
-    # Train single agent with SB3
-    model = single_agent_train(total_timesteps=10**5)
-    print("Training completed! Model saved as 'sb3_showdown_ppo_single_agent'")
