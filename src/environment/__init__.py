@@ -48,20 +48,20 @@ class PokemonEnv(SinglesEnv[npt.NDArray[np.float32]]):
 
     @classmethod
     def create_single_agent_env(
-        cls, opponent: Player, config: Dict[str, Any]
+        cls, config: Dict[str, Any], iter_no: int = 0
     ) -> SingleAgentWrapper:
         env = cls(
-            account_configuration1=AccountConfiguration("RL agent", None),
+            account_configuration1=AccountConfiguration(f"RL agent {iter_no}", None),
             battle_format=config["battle_format"],
             log_level=25,
             open_timeout=None,
             strict=False,
             team=TEAMS[0],
         )
-        opponent = opponent or RandomPlayer(
+        opponent = RandomPlayer(
             battle_format=config["battle_format"],
             team=TEAMS[0],
-            account_configuration=AccountConfiguration("Random agent", None),
+            account_configuration=AccountConfiguration(f"Random agent {iter_no}", None),
         )
         return SingleAgentWrapper(env, opponent)
 
@@ -129,7 +129,7 @@ class PokemonEnv(SinglesEnv[npt.NDArray[np.float32]]):
 
         return reward
 
-    def action_mask(self) -> np.ndarray:
+    def action_masks(self) -> np.ndarray:
         battle = self.battle1
         mask = np.zeros(self.action_spaces[self.agents[0]].n)
 
