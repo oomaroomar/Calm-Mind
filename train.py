@@ -2,6 +2,7 @@ import argparse
 import asyncio
 import numpy as np
 from tabulate import tabulate
+from os import putenv
 
 from poke_env.battle.abstract_battle import AbstractBattle
 from poke_env.environment.single_agent_wrapper import SingleAgentWrapper
@@ -144,6 +145,7 @@ if __name__ == "__main__":
     parser.add_argument("--train_selfplay", action="store_true")
     parser.add_argument("--total_timesteps", type=int, default=10**5)
     args = parser.parse_args()
+    putenv("HSA_OVERRIDE_GFX_VERSION", "11.0.0")
     if args.train_selfplay:
         print("Training via selfplay...")
         asyncio.run(train_selfplay(total_timesteps=args.total_timesteps))
