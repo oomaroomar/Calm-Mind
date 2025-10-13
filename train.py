@@ -1,8 +1,10 @@
 import argparse
 import asyncio
+from typing import Tuple
 import numpy as np
 from tabulate import tabulate
 
+from gymnasium.spaces import Discrete
 from poke_env.battle.abstract_battle import AbstractBattle
 from poke_env.environment.single_agent_wrapper import SingleAgentWrapper
 from poke_env.player.baselines import (
@@ -17,7 +19,9 @@ from sb3_contrib.ppo_mask import MaskablePPO
 from stable_baselines3.common.vec_env import DummyVecEnv
 from encoder import Encoder
 from environment import PokemonEnv
+from environment.utils import action_masker
 from teams import TEAMS
+from utils import gen_acc_config
 
 
 ### Parameters
@@ -29,17 +33,38 @@ OPPONENT_CHECKPOINT = "sb3_showdown_ppo_single_agent_opponent"
 
 class ModelPlayer(Player):
     def __init__(self, model_path, **kwargs):
-        super().__init__(team=TEAMS[0], **kwargs)
+        # Create action space matching Gen9Env (before parent init)
+        num_switches = 6
+        num_moves = 4
+        act_size = num_switches + num_moves * 2  # = 14
+        self.action_space = Discrete(act_size)
+        # Load the model BEFORE calling parent init (which might trigger choose_move)
+        print(f"Loading model from {model_path}...")
         self.model = MaskablePPO.load(model_path, device="cpu")
+        print(f"Model loaded successfully. Model type: {type(self.model)}")
+        # Now initialize the parent Player class
+        super().__init__(battle_format="gen9ou", team=TEAMS[0], **kwargs)
 
     def choose_move(self, battle: AbstractBattle):
         obs = Encoder.embed_battle(battle)
         action, _ = self.model.predict(obs, deterministic=True)
         return PokemonEnv.action_to_order(action, battle)
 
+    def action_masks(self):
+        # Get any active battle, or return all ones if no battle
+        if not self._battles:
+            return np.ones(self.action_space.n)
+        # Get the first battle from the dictionary
+        battle = next(iter(self._battles.values()))
+        return action_masker(battle, self.action_space)
 
-def create_model(opponent: Player | None = None):
-    gym_env = PokemonEnv.create_single_agent_env(opponent, {"battle_format": "gen9ou"})
+
+def create_model(opponent: Player | None = None) -> Tuple[MaskablePPO, PokemonEnv]:
+    """Create a model and a gym environment.
+    :param opponent: The opponent player. If None, a random player is used.
+    :return: A tuple containing the model and the gym environment.
+    """
+    gym_env = PokemonEnv.create_single_agent_env(opponent)
     vec_env = DummyVecEnv([lambda: gym_env])
 
     model = MaskablePPO(
@@ -57,6 +82,7 @@ def create_model(opponent: Player | None = None):
 
 def single_agent_train(total_timesteps: int = 100000):
     """Train a single agent using Stable Baselines 3 PPO."""
+    model, _ = create_model()
 
     model.learn(total_timesteps=total_timesteps)
     model.save("sb3_showdown_ppo_single_agent")
@@ -65,11 +91,25 @@ def single_agent_train(total_timesteps: int = 100000):
 
 
 async def evaluate_agent(model_path: str):
-    rl_agent = ModelPlayer(model_path=model_path, team=TEAMS[0])
-    random_player = RandomPlayer(battle_format="gen9ou", team=TEAMS[0])
-    max_base_power_player = MaxBasePowerPlayer(battle_format="gen9ou", team=TEAMS[0])
+    rl_agent = ModelPlayer(
+        model_path=model_path,
+        max_concurrent_battles=1,
+        account_configuration=gen_acc_config(f"Agent"),
+    )
+    random_player = RandomPlayer(
+        battle_format="gen9ou",
+        team=TEAMS[0],
+        account_configuration=gen_acc_config(f"Random"),
+    )
+    max_base_power_player = MaxBasePowerPlayer(
+        battle_format="gen9ou",
+        team=TEAMS[0],
+        account_configuration=gen_acc_config(f"MaxBasePower"),
+    )
     simple_heuristics_player = SimpleHeuristicsPlayer(
-        battle_format="gen9ou", team=TEAMS[0]
+        battle_format="gen9ou",
+        team=TEAMS[0],
+        account_configuration=gen_acc_config(f"SimpleHeuristics"),
     )
     players = [rl_agent, random_player, max_base_power_player, simple_heuristics_player]
     x_eval = await cross_evaluate(players, n_challenges=100)
@@ -94,13 +134,9 @@ async def train_selfplay(total_timesteps: int = 10**5):
         model.save(AGENT_CHECKPOINT)
 
         # reload new opponent player for the env (you may need to recreate envs)
-        opponent_player = ModelPlayer(
-            model_path=AGENT_CHECKPOINT, name=f"Opponent-{iter_no}"
-        )
+        opponent_player = ModelPlayer(model_path=AGENT_CHECKPOINT)
         gym_env.close()
-        gym_env = PokemonEnv.create_single_agent_env(
-            opponent_player, {"battle_format": "gen9ou"}
-        )
+        gym_env = PokemonEnv.create_single_agent_env(opponent_player)
         vec_env = DummyVecEnv([lambda: gym_env])
         model.set_env(vec_env)
 
@@ -115,11 +151,17 @@ async def train_selfplay(total_timesteps: int = 10**5):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--train_selfplay", action="store_true")
+    parser.add_argument("--test_eval", action="store_true")
     parser.add_argument("--total_timesteps", type=int, default=10**5)
     args = parser.parse_args()
     if args.train_selfplay:
         print("Training via selfplay...")
         asyncio.run(train_selfplay(total_timesteps=args.total_timesteps))
+    elif args.test_eval:
+        print("Testing evaluation...")
+        # agent = ModelPlayer(model_path=AGENT_CHECKPOINT)
+        # print(agent.action_masks())
+        asyncio.run(evaluate_agent(AGENT_CHECKPOINT))
     else:
         print("Training vs a fixed opponent...")
         model = single_agent_train(total_timesteps=args.total_timesteps)

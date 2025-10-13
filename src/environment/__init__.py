@@ -1,20 +1,14 @@
-from typing import Any, Dict
-from gymnasium.spaces import Box, Discrete
+from gymnasium.spaces import Box
 import numpy as np
 import numpy.typing as npt
+import random
+import time
 
+from poke_env import LocalhostServerConfiguration
 from poke_env.battle.abstract_battle import AbstractBattle
-from poke_env.battle.battle import Battle
-from poke_env.battle.pokemon import Pokemon
 from poke_env.environment.single_agent_wrapper import SingleAgentWrapper
-from poke_env.environment.singles_env import SinglesEnv
 from poke_env.player.baselines import RandomPlayer
-from poke_env.player.battle_order import (
-    BattleOrder,
-    DefaultBattleOrder,
-    ForfeitBattleOrder,
-    SingleBattleOrder,
-)
+
 from poke_env.player.player import Player
 from poke_env.ps_client import AccountConfiguration
 from stable_baselines3 import PPO
@@ -23,19 +17,26 @@ from sb3_contrib.common.wrappers import ActionMasker
 from sb3_contrib.ppo_mask import MaskablePPO
 
 from encoder import Encoder
+from environment.Gen9Env import Gen9Env
+from environment.utils import action_masker
 from teams import TEAMS
 
 
-class PokemonEnv(SinglesEnv[npt.NDArray[np.float32]]):
+def count_calls(func):
+    """Decorator to keep track of how many times a function is called."""
+
+    def wrapper(*args, **kwargs):
+        wrapper.call_count += 1
+        return func(*args, **kwargs)
+
+    # Initialize the call count
+    wrapper.call_count = 0
+    return wrapper
+
+
+class PokemonEnv(Gen9Env):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        num_switches = 6
-        num_moves = 4
-        act_size = num_switches + num_moves * 2
-        self.action_spaces = {
-            agent: Discrete(act_size) for agent in self.possible_agents
-        }
-        # This is our big 5k-dim vector
         print(
             f"Initializing Pokemon battle environment with {Encoder.BATTLE_FEATURES_DIM}-dimensional feature vector."
         )
@@ -47,23 +48,22 @@ class PokemonEnv(SinglesEnv[npt.NDArray[np.float32]]):
         }
 
     @classmethod
-    def create_single_agent_env(
-        cls, opponent: Player, config: Dict[str, Any]
-    ) -> SingleAgentWrapper:
+    @count_calls
+    def create_single_agent_env(cls) -> SingleAgentWrapper:
+        # Use timestamp + random number to ensure unique usernames (max 18 chars)
+        # unique_id = f"{int(time.time()) % 100000}{random.randint(0, 999):03d}"
         env = cls(
-            account_configuration1=AccountConfiguration("RL agent", None),
-            battle_format=config["battle_format"],
+            # account_configuration1=AccountConfiguration(f"A{unique_id}", None),
+            # account_configuration2=AccountConfiguration(f"B{unique_id}", None),
             log_level=25,
             open_timeout=None,
             strict=False,
             team=TEAMS[0],
         )
-        opponent = opponent or RandomPlayer(
-            battle_format=config["battle_format"],
-            team=TEAMS[0],
-            account_configuration=AccountConfiguration("Random agent", None),
-        )
-        return SingleAgentWrapper(env, opponent)
+        # Opponent doesn't need to connect to server - it just provides move choices
+        opponent = RandomPlayer(start_listening=False)
+        saw = SingleAgentWrapper(env, opponent)
+        return saw
 
     def embed_battle(self, battle: AbstractBattle):
         return Encoder.embed_battle(battle)
@@ -79,7 +79,7 @@ class PokemonEnv(SinglesEnv[npt.NDArray[np.float32]]):
         victory_value: float = 30.0,
     ) -> float:
         """
-        reward_buffer is the total return thus far (idk why its named that)
+        reward_buffer is the total return thus far
         """
         if battle not in self._reward_buffer:
             self._reward_buffer[battle] = starting_value
@@ -129,159 +129,26 @@ class PokemonEnv(SinglesEnv[npt.NDArray[np.float32]]):
 
         return reward
 
-    def action_mask(self) -> np.ndarray:
-        battle = self.battle1
-        mask = np.zeros(self.action_spaces[self.agents[0]].n)
+    def action_masks(self) -> np.ndarray:
+        return action_masker(self.battle1, self.action_spaces[self.agents[0]])
 
-        # switches
-        indices = [
-            i
-            for i, pokemon in enumerate(battle.team.values())
-            if pokemon in battle.available_switches
-        ]
-        mask[indices] = 1
 
-        # moves
-        indices = [
-            i + 6
-            for i, move in enumerate(battle.available_moves)
-            if move.current_pp > 0
-        ]
-        if not battle.used_tera:
-            indices += [i + 4 for i in indices]
+if __name__ == "__main__":
+    gym_env_generator = PokemonEnv.create_single_agent_env()
+    print(
+        f"create_single_agent_env called {PokemonEnv.create_single_agent_env.call_count} times"
+    )
+    # vec_env = DummyVecEnv([lambda: gym_env_generator()])
 
-        mask[indices] = 1
-        return mask
-
-    @staticmethod
-    def action_to_order(
-        action: np.int64, battle: Battle, fake: bool = False, strict: bool = True
-    ) -> BattleOrder:
-        """
-        Returns the BattleOrder relative to the given action.
-
-        The action mapping is as follows:
-        action = -2: default
-        action = -1: forfeit
-        0 <= action <= 5: switch
-        6 <= action <= 9: move
-        10 <= action <= 13: move and terastallize
-
-        :param action: The action to take.
-        :param battle: The current battle state
-        :param fake: If true, action-order converters will try to avoid returning a default
-            output if at all possible, even if the output isn't a legal decision. Defaults
-            to False.
-        :param strict: If true, action-order converters will throw an error if the move is
-            illegal. Otherwise, it will return default. Defaults to True.
-
-        :return: The battle order for the given action in context of the current battle.
-        :rtype: BattleOrder
-        """
-        try:
-            if action == -2:
-                return DefaultBattleOrder()
-            elif action == -1:
-                return ForfeitBattleOrder()
-            elif action < 6:
-                order = Player.create_order(list(battle.team.values())[action])
-            else:
-                if battle.active_pokemon is None:
-                    raise ValueError(
-                        f"Invalid order from player {battle.player_username} "
-                        f"in battle {battle.battle_tag} - action specifies a "
-                        f"move, but battle.active_pokemon is None!"
-                    )
-                mvs = (
-                    battle.available_moves
-                    if len(battle.available_moves) == 1
-                    and battle.available_moves[0].id in ["struggle", "recharge"]
-                    else list(battle.active_pokemon.moves.values())
-                )
-                if (action - 6) % 4 not in range(len(mvs)):
-                    raise ValueError(
-                        f"Invalid action {action} from player {battle.player_username} "
-                        f"in battle {battle.battle_tag} - action specifies a move "
-                        f"but the move index {(action - 6) % 4} is out of bounds "
-                        f"for available moves {mvs}!"
-                    )
-                order = Player.create_order(
-                    mvs[(action - 6) % 4],
-                    terastallize=10 <= action.item() < 14,
-                )
-            if not fake and str(order) not in [str(o) for o in battle.valid_orders]:
-                raise ValueError(
-                    f"Invalid action {action} from player {battle.player_username} "
-                    f"in battle {battle.battle_tag} - converted order {order} "
-                    f"not in valid orders {[str(o) for o in battle.valid_orders]}!"
-                )
-            return order
-        except ValueError as e:
-            # if strict:
-            raise e
-            # else:
-            #     if battle.logger is not None:
-            #         battle.logger.warning(str(e) + "BOOBA Defaulting to random move.")
-            #     return Player.choose_random_singles_move(battle)
-
-    @staticmethod
-    def order_to_action(
-        order: BattleOrder, battle: Battle, fake: bool = False, strict: bool = True
-    ) -> np.int64:
-        """
-        Returns the action relative to the given BattleOrder.
-
-        :param order: The order to take.
-        :type order: BattleOrder
-        :param battle: The current battle state
-        :type battle: AbstractBattle
-        :param fake: If true, action-order converters will try to avoid returning a default
-            output if at all possible, even if the output isn't a legal decision. Defaults
-            to False.
-        :type fake: bool
-        :param strict: If true, action-order converters will throw an error if the move is
-            illegal. Otherwise, it will return default. Defaults to True.
-        :type strict: bool
-
-        :return: The action for the given battle order in context of the current battle.
-        :rtype: int64
-        """
-        try:
-            if isinstance(order, DefaultBattleOrder):
-                action = -2
-            elif isinstance(order, ForfeitBattleOrder):
-                action = -1
-            else:
-                assert isinstance(order, SingleBattleOrder)
-                assert not isinstance(order.order, str)
-                if not fake and str(order) not in [str(o) for o in battle.valid_orders]:
-                    raise ValueError(
-                        f"Invalid order from player {battle.player_username} "
-                        f"in battle {battle.battle_tag} - order {order} "
-                        f"not in valid orders {[str(o) for o in battle.valid_orders]}!"
-                    )
-                if isinstance(order.order, Pokemon):
-                    action = [p.base_species for p in battle.team.values()].index(
-                        order.order.base_species
-                    )
-                else:
-                    assert battle.active_pokemon is not None
-                    mvs = (
-                        battle.available_moves
-                        if len(battle.available_moves) == 1
-                        and battle.available_moves[0].id in ["struggle", "recharge"]
-                        else list(battle.active_pokemon.moves.values())
-                    )
-                    action = [m.id for m in mvs].index(order.order.id)
-                    gimmick = 1 if order.terastallize else 0
-                    action = 6 + action + 4 * gimmick
-            return np.int64(action)
-        except ValueError as e:
-            if strict:
-                raise e
-            else:
-                if battle.logger is not None:
-                    battle.logger.warning(str(e) + " Defaulting to random move.")
-                return SinglesEnv.order_to_action(
-                    Player.choose_random_singles_move(battle), battle, fake, strict
-                )
+    # model = MaskablePPO(
+    #     policy="MlpPolicy",
+    #     env=vec_env,
+    #     learning_rate=1e-3,
+    #     gamma=0.99,
+    #     n_steps=2048,
+    #     batch_size=64,
+    #     n_epochs=10,
+    #     verbose=1,
+    # )
+    # model.learn(total_timesteps=10)
+    # model.save("sb3_showdown_ppo_single_agent")

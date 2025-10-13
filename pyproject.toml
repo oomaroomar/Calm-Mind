@@ -6,3 +6,6 @@ build-backend = "setuptools.build_meta"
 name = "calmmind"
 version = "0.1.0"
 dependencies = []
+
+[tool.setuptools]
+package-dir = {"" = "src"}
