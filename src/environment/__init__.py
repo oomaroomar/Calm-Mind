@@ -1,37 +1,18 @@
 from gymnasium.spaces import Box
 import numpy as np
 import numpy.typing as npt
-import random
-import time
 
-from poke_env import LocalhostServerConfiguration
 from poke_env.battle.abstract_battle import AbstractBattle
 from poke_env.environment.single_agent_wrapper import SingleAgentWrapper
 from poke_env.player.baselines import RandomPlayer
-
 from poke_env.player.player import Player
-from poke_env.ps_client import AccountConfiguration
-from stable_baselines3 import PPO
 from stable_baselines3.common.vec_env import DummyVecEnv
-from sb3_contrib.common.wrappers import ActionMasker
 from sb3_contrib.ppo_mask import MaskablePPO
 
 from encoder import Encoder
 from environment.Gen9Env import Gen9Env
 from environment.utils import action_masker
 from teams import TEAMS
-
-
-def count_calls(func):
-    """Decorator to keep track of how many times a function is called."""
-
-    def wrapper(*args, **kwargs):
-        wrapper.call_count += 1
-        return func(*args, **kwargs)
-
-    # Initialize the call count
-    wrapper.call_count = 0
-    return wrapper
 
 
 class PokemonEnv(Gen9Env):
@@ -48,22 +29,18 @@ class PokemonEnv(Gen9Env):
         }
 
     @classmethod
-    @count_calls
-    def create_single_agent_env(cls) -> SingleAgentWrapper:
-        # Use timestamp + random number to ensure unique usernames (max 18 chars)
-        # unique_id = f"{int(time.time()) % 100000}{random.randint(0, 999):03d}"
+    def create_single_agent_env(
+        cls, opponent: Player | None = None
+    ) -> SingleAgentWrapper:
         env = cls(
-            # account_configuration1=AccountConfiguration(f"A{unique_id}", None),
-            # account_configuration2=AccountConfiguration(f"B{unique_id}", None),
             log_level=25,
             open_timeout=None,
             strict=False,
             team=TEAMS[0],
         )
         # Opponent doesn't need to connect to server - it just provides move choices
-        opponent = RandomPlayer(start_listening=False)
-        saw = SingleAgentWrapper(env, opponent)
-        return saw
+        opponent = opponent or RandomPlayer(start_listening=False)
+        return SingleAgentWrapper(env, opponent)
 
     def embed_battle(self, battle: AbstractBattle):
         return Encoder.embed_battle(battle)
@@ -134,21 +111,20 @@ class PokemonEnv(Gen9Env):
 
 
 if __name__ == "__main__":
-    gym_env_generator = PokemonEnv.create_single_agent_env()
-    print(
-        f"create_single_agent_env called {PokemonEnv.create_single_agent_env.call_count} times"
-    )
-    # vec_env = DummyVecEnv([lambda: gym_env_generator()])
+    gym_env = PokemonEnv.create_single_agent_env()
+    vec_env = DummyVecEnv([lambda: gym_env])
 
-    # model = MaskablePPO(
-    #     policy="MlpPolicy",
-    #     env=vec_env,
-    #     learning_rate=1e-3,
-    #     gamma=0.99,
-    #     n_steps=2048,
-    #     batch_size=64,
-    #     n_epochs=10,
-    #     verbose=1,
-    # )
-    # model.learn(total_timesteps=10)
-    # model.save("sb3_showdown_ppo_single_agent")
+    model = MaskablePPO(
+        policy="MlpPolicy",
+        env=vec_env,
+        learning_rate=1e-3,
+        gamma=0.99,
+        n_steps=2048,
+        batch_size=64,
+        n_epochs=10,
+        verbose=1,
+    )
+    model.learn(total_timesteps=10)
+    model.save("sb3_showdown_ppo_single_agent")
+    # Ensure proper cleanup of connections
+    gym_env.close()

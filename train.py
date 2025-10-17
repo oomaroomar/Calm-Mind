@@ -91,11 +91,11 @@ def single_agent_train(total_timesteps: int = 100000):
 
 
 async def evaluate_agent(model_path: str):
-    rl_agent = ModelPlayer(
-        model_path=model_path,
-        max_concurrent_battles=1,
-        account_configuration=gen_acc_config(f"Agent"),
-    )
+    # rl_agent = ModelPlayer(
+    #     model_path=model_path,
+    #     # max_concurrent_battles=1,
+    #     account_configuration=gen_acc_config(f"Agent"),
+    # )
     random_player = RandomPlayer(
         battle_format="gen9ou",
         team=TEAMS[0],
@@ -111,8 +111,12 @@ async def evaluate_agent(model_path: str):
         team=TEAMS[0],
         account_configuration=gen_acc_config(f"SimpleHeuristics"),
     )
-    players = [rl_agent, random_player, max_base_power_player, simple_heuristics_player]
-    x_eval = await cross_evaluate(players, n_challenges=100)
+    players = [random_player, max_base_power_player, simple_heuristics_player]
+    x_eval = await cross_evaluate(players, n_challenges=10)
+    table = [["-"] + [p.username for p in players]]
+    for p_1, results in x_eval.items():
+        table.append([p_1] + [x_eval[p_1][p_2] for p_2 in results])
+    print(tabulate(table))
     return x_eval
 
 
