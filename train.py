@@ -2,6 +2,9 @@ import argparse
 import asyncio
 from typing import Tuple
 import numpy as np
+import json
+from datetime import datetime
+from pathlib import Path
 from poke_env.ps_client.account_configuration import AccountConfiguration
 from tabulate import tabulate
 
@@ -83,6 +86,42 @@ def create_model(opponent: Player | None = None) -> Tuple[MaskablePPO, PokemonEn
     return model, gym_env
 
 
+def save_eval_results(x_eval: dict, iteration: int, timesteps: int):
+    """Save evaluation results to JSON file for tracking over time."""
+    eval_dir = Path("eval_results")
+    eval_dir.mkdir(exist_ok=True)
+    eval_file = eval_dir / "training_history.json"
+
+    # Load existing results
+    if eval_file.exists():
+        with open(eval_file, "r") as f:
+            history = json.load(f)
+    else:
+        history = []
+
+    # Extract winrates for the agent
+    agent_results = x_eval.get("Agent", {})
+
+    entry = {
+        "iteration": iteration,
+        "timesteps": timesteps,
+        "timestamp": datetime.now().isoformat(),
+        "winrates": {
+            "Random": agent_results.get("Random", 0),
+            "MaxBasePower": agent_results.get("MaxBasePower", 0),
+            "SimpleHeuristics": agent_results.get("SimpleHeuristics", 0),
+        },
+    }
+
+    history.append(entry)
+
+    # Save updated history
+    with open(eval_file, "w") as f:
+        json.dump(history, f, indent=2)
+
+    print(f"Saved evaluation results to {eval_file}")
+
+
 def single_agent_train(total_timesteps: int = 100000):
     """Train a single agent using Stable Baselines 3 PPO."""
     model, _ = create_model()
@@ -93,7 +132,7 @@ def single_agent_train(total_timesteps: int = 100000):
     return model
 
 
-async def evaluate_agent(model_path: str):
+async def evaluate_agent(model_path: str, iteration: int = None, timesteps: int = None):
     rl_agent = ModelPlayer(
         model_path=model_path,
         account_configuration=AccountConfiguration("Agent", None),
@@ -119,6 +158,11 @@ async def evaluate_agent(model_path: str):
     for p_1, results in x_eval.items():
         table.append([p_1] + [x_eval[p_1][p_2] for p_2 in results])
     print(tabulate(table))
+
+    # Save evaluation results
+    if iteration is not None or timesteps is not None:
+        save_eval_results(x_eval, iteration, timesteps)
+
     return x_eval
 
 
@@ -147,7 +191,9 @@ async def train_selfplay(total_timesteps: int = 10**5):
         model.set_env(vec_env)
 
         # Evaluate current agent against a suite of opponents
-        x_eval = await evaluate_agent(AGENT_CHECKPOINT)
+        x_eval = await evaluate_agent(
+            AGENT_CHECKPOINT, iteration=iter_no, timesteps=total
+        )
         print(tabulate(x_eval))
 
     print("Training finished.")
@@ -156,11 +202,30 @@ async def train_selfplay(total_timesteps: int = 10**5):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--train_selfplay", action="store_true")
-    parser.add_argument("--test_eval", action="store_true")
-    parser.add_argument("--total_timesteps", type=int, default=10**5)
+    parser.add_argument(
+        "--train_selfplay", action="store_true", help="Train via self-play"
+    )
+    parser.add_argument(
+        "--test_eval",
+        action="store_true",
+        help="Test evaluation against baseline opponents",
+    )
+    parser.add_argument(
+        "--visualize",
+        action="store_true",
+        help="Visualize training results (requires training history)",
+    )
+    parser.add_argument(
+        "--total_timesteps", type=int, default=10**5, help="Total training timesteps"
+    )
     args = parser.parse_args()
-    if args.train_selfplay:
+
+    if args.visualize:
+        print("Visualizing results...")
+        import subprocess
+
+        subprocess.run(["python", "visualize_results.py"])
+    elif args.train_selfplay:
         print("Training via selfplay...")
         asyncio.run(train_selfplay(total_timesteps=args.total_timesteps))
     elif args.test_eval:

@@ -1,0 +1,102 @@
+[
+    {
+        "iteration": 1,
+        "timesteps": 10000,
+        "timestamp": "2025-10-20T10:00:00.000000",
+        "winrates": {
+            "Random": 0.6,
+            "MaxBasePower": 0.3,
+            "SimpleHeuristics": 0.2
+        }
+    },
+    {
+        "iteration": 2,
+        "timesteps": 20000,
+        "timestamp": "2025-10-20T10:30:00.000000",
+        "winrates": {
+            "Random": 0.7,
+            "MaxBasePower": 0.4,
+            "SimpleHeuristics": 0.3
+        }
+    },
+    {
+        "iteration": 3,
+        "timesteps": 30000,
+        "timestamp": "2025-10-20T11:00:00.000000",
+        "winrates": {
+            "Random": 0.75,
+            "MaxBasePower": 0.5,
+            "SimpleHeuristics": 0.35
+        }
+    },
+    {
+        "iteration": 4,
+        "timesteps": 40000,
+        "timestamp": "2025-10-20T11:30:00.000000",
+        "winrates": {
+            "Random": 0.8,
+            "MaxBasePower": 0.55,
+            "SimpleHeuristics": 0.45
+        }
+    },
+    {
+        "iteration": 5,
+        "timesteps": 50000,
+        "timestamp": "2025-10-20T12:00:00.000000",
+        "winrates": {
+            "Random": 0.85,
+            "MaxBasePower": 0.6,
+            "SimpleHeuristics": 0.5
+        }
+    },
+    {
+        "iteration": 6,
+        "timesteps": 60000,
+        "timestamp": "2025-10-20T12:30:00.000000",
+        "winrates": {
+            "Random": 0.9,
+            "MaxBasePower": 0.65,
+            "SimpleHeuristics": 0.55
+        }
+    },
+    {
+        "iteration": 7,
+        "timesteps": 70000,
+        "timestamp": "2025-10-20T13:00:00.000000",
+        "winrates": {
+            "Random": 0.9,
+            "MaxBasePower": 0.7,
+            "SimpleHeuristics": 0.6
+        }
+    },
+    {
+        "iteration": 8,
+        "timesteps": 80000,
+        "timestamp": "2025-10-20T13:30:00.000000",
+        "winrates": {
+            "Random": 0.95,
+            "MaxBasePower": 0.7,
+            "SimpleHeuristics": 0.65
+        }
+    },
+    {
+        "iteration": 9,
+        "timesteps": 90000,
+        "timestamp": "2025-10-20T14:00:00.000000",
+        "winrates": {
+            "Random": 0.95,
+            "MaxBasePower": 0.75,
+            "SimpleHeuristics": 0.65
+        }
+    },
+    {
+        "iteration": 10,
+        "timesteps": 100000,
+        "timestamp": "2025-10-20T14:30:00.000000",
+        "winrates": {
+            "Random": 1.0,
+            "MaxBasePower": 0.8,
+            "SimpleHeuristics": 0.7
+        }
+    }
+]
