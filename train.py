@@ -2,6 +2,7 @@ import argparse
 import asyncio
 from typing import Tuple
 import numpy as np
+from poke_env.ps_client.account_configuration import AccountConfiguration
 from tabulate import tabulate
 
 from gymnasium.spaces import Discrete
@@ -21,7 +22,6 @@ from encoder import Encoder
 from environment import PokemonEnv
 from environment.utils import action_masker
 from teams import TEAMS
-from utils import gen_acc_config
 
 
 ### Parameters
@@ -34,10 +34,6 @@ OPPONENT_CHECKPOINT = "sb3_showdown_ppo_single_agent_opponent"
 class ModelPlayer(Player):
     def __init__(self, model_path, **kwargs):
         # Create action space matching Gen9Env (before parent init)
-        num_switches = 6
-        num_moves = 4
-        act_size = num_switches + num_moves * 2  # = 14
-        self.action_space = Discrete(act_size)
         # Load the model BEFORE calling parent init (which might trigger choose_move)
         print(f"Loading model from {model_path}...")
         self.model = MaskablePPO.load(model_path, device="cpu")
@@ -47,16 +43,23 @@ class ModelPlayer(Player):
 
     def choose_move(self, battle: AbstractBattle):
         obs = Encoder.embed_battle(battle)
-        action, _ = self.model.predict(obs, deterministic=True)
-        return PokemonEnv.action_to_order(action, battle)
-
-    def action_masks(self):
-        # Get any active battle, or return all ones if no battle
-        if not self._battles:
-            return np.ones(self.action_space.n)
-        # Get the first battle from the dictionary
-        battle = next(iter(self._battles.values()))
-        return action_masker(battle, self.action_space)
+        action_masks = action_masker(battle)
+        action, _ = self.model.predict(
+            obs, deterministic=True, action_masks=action_masks
+        )
+        try:
+            return PokemonEnv.action_to_order(action, battle)
+        except ValueError as e:
+            print(f"Invalid action {action}: {e}. Trying next best move.")
+            action_masks[action] = 0
+            try:
+                action, _ = self.model.predict(
+                    obs, deterministic=True, action_masks=action_masks
+                )
+                return PokemonEnv.action_to_order(action, battle)
+            except ValueError as e:
+                print(f"Invalid action {action}: {e}. Defaulting to random move.")
+                return Player.choose_random_move(battle)
 
 
 def create_model(opponent: Player | None = None) -> Tuple[MaskablePPO, PokemonEnv]:
@@ -91,27 +94,26 @@ def single_agent_train(total_timesteps: int = 100000):
 
 
 async def evaluate_agent(model_path: str):
-    # rl_agent = ModelPlayer(
-    #     model_path=model_path,
-    #     # max_concurrent_battles=1,
-    #     account_configuration=gen_acc_config(f"Agent"),
-    # )
+    rl_agent = ModelPlayer(
+        model_path=model_path,
+        account_configuration=AccountConfiguration("Agent", None),
+    )
     random_player = RandomPlayer(
         battle_format="gen9ou",
         team=TEAMS[0],
-        account_configuration=gen_acc_config(f"Random"),
+        account_configuration=AccountConfiguration("Random", None),
     )
     max_base_power_player = MaxBasePowerPlayer(
         battle_format="gen9ou",
         team=TEAMS[0],
-        account_configuration=gen_acc_config(f"MaxBasePower"),
+        account_configuration=AccountConfiguration("MaxBasePower", None),
     )
     simple_heuristics_player = SimpleHeuristicsPlayer(
         battle_format="gen9ou",
         team=TEAMS[0],
-        account_configuration=gen_acc_config(f"SimpleHeuristics"),
+        account_configuration=AccountConfiguration("SimpleHeuristics", None),
     )
-    players = [random_player, max_base_power_player, simple_heuristics_player]
+    players = [rl_agent, random_player, max_base_power_player, simple_heuristics_player]
     x_eval = await cross_evaluate(players, n_challenges=10)
     table = [["-"] + [p.username for p in players]]
     for p_1, results in x_eval.items():

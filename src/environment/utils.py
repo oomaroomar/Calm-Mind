@@ -2,26 +2,34 @@ from gymnasium.spaces import Discrete
 import numpy as np
 
 from poke_env.battle.battle import Battle
+from poke_env.battle.move import Move
 
 
-def action_masker(battle: Battle, action_space: Discrete) -> np.ndarray:
+def action_masker(battle: Battle, action_space: Discrete = Discrete(14)) -> np.ndarray:
     mask = np.zeros(action_space.n)
     # switches
-    indices = [
-        i
-        for i, pokemon in enumerate(battle.team.values())
-        if pokemon in battle.available_switches
+    team = list(battle.team.values())
+    switch_indices = [
+        i for i, pokemon in enumerate(team) if pokemon in battle.available_switches
     ]
-    mask[indices] = 1
+    # Explicitly ensure the active pokemon is never a switch target, even if available_switches is inconsistent/empty
+    # if battle.active_pokemon in team:
+    #     active_idx = team.index(battle.active_pokemon)
+    #     switch_indices = [i for i in switch_indices if i != active_idx]
+    mask[switch_indices] = 1
+
+    if battle.active_pokemon is None or battle.force_switch:
+        return mask
 
     # moves
-    indices = [
+    move_indices = [
         i + 6
-        for i, move in enumerate(battle.available_moves)
-        if move.current_pp > 0 and not battle.force_switch
+        for i, move in enumerate(battle.active_pokemon.moves.values())
+        if move in battle.available_moves
     ]
-    if not battle.used_tera:
-        indices += [i + 4 for i in indices]
 
-    mask[indices] = 1
+    if not battle.used_tera:
+        move_indices += [i + 4 for i in move_indices]
+
+    mask[move_indices] = 1
     return mask
