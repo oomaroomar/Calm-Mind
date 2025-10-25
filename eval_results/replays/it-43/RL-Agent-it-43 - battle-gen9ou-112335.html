@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<!-- version 1 -->
+<title>battle-gen9ou-112335</title>
+<style>
+    html,
+    body {
+        font-family: Verdana, sans-serif;
+        font-size: 10pt;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        padding: 12px 0;
+    }
+
+    .battle-log {
+        font-family: Verdana, sans-serif;
+        font-size: 10pt;
+    }
+
+    .battle-log-inline {
+        border: 1px solid #AAAAAA;
+        background: #EEF2F5;
+        color: black;
+        max-width: 640px;
+        margin: 0 auto 80px;
+        padding-bottom: 5px;
+    }
+
+    .battle-log .inner {
+        padding: 4px 8px 0px 8px;
+    }
+
+    .battle-log .inner-preempt {
+        padding: 0 8px 4px 8px;
+    }
+
+    .battle-log .inner-after {
+        margin-top: 0.5em;
+    }
+
+    .battle-log h2 {
+        margin: 0.5em -8px;
+        padding: 4px 8px;
+        border: 1px solid #AAAAAA;
+        background: #E0E7EA;
+        border-left: 0;
+        border-right: 0;
+        font-family: Verdana, sans-serif;
+        font-size: 13pt;
+    }
+
+    .backprop {
+        top: 0;
+    }
+
+    .battle-log .chat {
+        vertical-align: middle;
+        padding: 3px 0 3px 0;
+        font-size: 8pt;
+    }
+
+    .battle-log .chat strong {
+        color: #40576A;
+    }
+
+    .battle-log .chat em {
+        padding: 1px 4px 1px 3px;
+        color: #000000;
+        font-style: normal;
+    }
+
+    .chat.mine {
+        background: rgba(0, 0, 0, 0.05);
+        margin-left: -8px;
+        margin-right: -8px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .spoiler {
+        color: #BBBBBB;
+        background: #BBBBBB;
+        padding: 0px 3px;
+    }
+
+    .spoiler:hover,
+    .spoiler:active,
+    .spoiler-shown {
+        color: #000000;
+        background: #E2E2E2;
+        padding: 0px 3px;
+    }
+
+    .spoiler a {
+        color: #BBBBBB;
+    }
+
+    .spoiler:hover a,
+    .spoiler:active a,
+    .spoiler-shown a {
+        color: #2288CC;
+    }
+
+    .chat code,
+    .chat .spoiler:hover code,
+    .chat .spoiler:active code,
+    .chat .spoiler-shown code {
+        border: 1px solid #C0C0C0;
+        background: #EEEEEE;
+        color: black;
+        padding: 0 2px;
+    }
+
+    .chat .spoiler code {
+        border: 1px solid #CCCCCC;
+        background: #CCCCCC;
+        color: #CCCCCC;
+    }
+
+    .battle-log .rated {
+        padding: 3px 4px;
+    }
+
+    .battle-log .rated strong {
+        color: white;
+        background: #89A;
+        padding: 1px 4px;
+        border-radius: 4px;
+    }
+
+    .spacer {
+        margin-top: 0.5em;
+    }
+
+    .message-announce {
+        background: #6688AA;
+        color: white;
+        padding: 1px 4px 2px;
+    }
+
+    .message-announce a,
+    .broadcast-green a,
+    .broadcast-blue a,
+    .broadcast-red a {
+        color: #DDEEFF;
+    }
+
+    .broadcast-green {
+        background-color: #559955;
+        color: white;
+        padding: 2px 4px;
+    }
+
+    .broadcast-blue {
+        background-color: #6688AA;
+        color: white;
+        padding: 2px 4px;
+    }
+
+    .infobox {
+        border: 1px solid #6688AA;
+        padding: 2px 4px;
+    }
+
+    .infobox-limited {
+        max-height: 200px;
+        overflow: auto;
+        overflow-x: hidden;
+    }
+
+    .broadcast-red {
+        background-color: #AA5544;
+        color: white;
+        padding: 2px 4px;
+    }
+
+    .message-learn-canlearn {
+        font-weight: bold;
+        color: #228822;
+        text-decoration: underline;
+    }
+
+    .message-learn-cannotlearn {
+        font-weight: bold;
+        color: #CC2222;
+        text-decoration: underline;
+    }
+
+    .message-effect-weak {
+        font-weight: bold;
+        color: #CC2222;
+    }
+
+    .message-effect-resist {
+        font-weight: bold;
+        color: #6688AA;
+    }
+
+    .message-effect-immune {
+        font-weight: bold;
+        color: #666666;
+    }
+
+    .message-learn-list {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .message-throttle-notice,
+    .message-error {
+        color: #992222;
+    }
+
+    .message-overflow,
+    .chat small.message-overflow {
+        font-size: 0pt;
+    }
+
+    .message-overflow::before {
+        font-size: 9pt;
+        content: '...';
+    }
+
+    .subtle {
+        color: #3A4A66;
+    }
+</style>
+<div class="wrapper replay-wrapper" style="max-width:1180px;margin:0 auto">
+    <input type="hidden" name="replayid" value="unregisteredserver-gen8randombattle-320064" />
+    <div class="battle"></div>
+    <div class="battle-log"></div>
+    <div class="replay-controls"></div>
+    <div class="replay-controls-2"></div>
+    <h1 style="font-weight:normal;text-align:center"><strong>poke-env battle replay</strong><br />battle-gen9ou-112335<br /><a
+            href="http://pokemonshowdown.com/users/randomplayer1" class="subtle" target="_blank">RL-Agent-it-43</a>
+        vs. <a href="http://pokemonshowdown.com/users/randomplayer2" class="subtle"
+            target="_blank">MaxBasePower</a></h1>
+    <script type="text/plain" class="battle-log-data">
+    >battle-gen9ou-112335|init|battle
+|title|RL-Agent-it-43 vs. MaxBasePower
+|j|☆RL-Agent-it-43
+|j|☆MaxBasePower
+|gametype|singles
+|player|p1|RL-Agent-it-43|101|
+|player|p2|MaxBasePower|266|
+|gen|9
+|tier|[Gen 9] OU
+|rule|HP Percentage Mod: HP is shown in percentages
+|rule|Endless Battle Clause: Forcing endless battles is banned
+|rule|Species Clause: Limit one of each Pokémon
+|rule|OHKO Clause: OHKO moves are banned
+|rule|Evasion Items Clause: Evasion items are banned
+|rule|Evasion Moves Clause: Evasion moves are banned
+|rule|Evasion Abilities Clause: Evasion abilities are banned
+|rule|Sleep Moves Clause: Sleep-inducing moves are banned
+|clearpoke
+|poke|p1|Blaziken, F|
+|poke|p1|Alomomola, M|
+|poke|p1|Rillaboom, F|
+|poke|p1|Slowking-Galar, M|
+|poke|p1|Ting-Lu|
+|poke|p1|Weezing-Galar, M|
+|poke|p2|Blaziken, F|
+|poke|p2|Alomomola, M|
+|poke|p2|Rillaboom, M|
+|poke|p2|Slowking-Galar, M|
+|poke|p2|Ting-Lu|
+|poke|p2|Weezing-Galar, F|
+|teampreview
+|
+|teamsize|p1|6
+|teamsize|p2|6
+|start
+|switch|p1a: Blaziken|Blaziken, F|305/305
+|switch|p2a: Slowking|Slowking-Galar, M|100/100
+|turn|1
+|
+|-terastallize|p1a: Blaziken|Fighting
+|move|p1a: Blaziken|Protect|p1a: Blaziken
+|-singleturn|p1a: Blaziken|Protect
+|move|p2a: Slowking|Future Sight|p1a: Blaziken
+|-start|p2a: Slowking|move: Future Sight
+|
+|-ability|p1a: Blaziken|Speed Boost|boost
+|-boost|p1a: Blaziken|spe|1
+|upkeep
+|turn|2
+|
+|move|p1a: Blaziken|Close Combat|p2a: Slowking
+|-resisted|p2a: Slowking
+|-damage|p2a: Slowking|72/100
+|-unboost|p1a: Blaziken|def|1
+|-unboost|p1a: Blaziken|spd|1
+|-damage|p1a: Blaziken|275/305|[from] item: Life Orb
+|move|p2a: Slowking|Future Sight||[still]
+|-fail|p2a: Slowking
+|
+|-ability|p1a: Blaziken|Speed Boost|boost
+|-boost|p1a: Blaziken|spe|1
+|upkeep
+|turn|3
+|
+|move|p1a: Blaziken|Close Combat|p2a: Slowking
+|-resisted|p2a: Slowking
+|-damage|p2a: Slowking|45/100
+|-unboost|p1a: Blaziken|def|1
+|-unboost|p1a: Blaziken|spd|1
+|-damage|p1a: Blaziken|245/305|[from] item: Life Orb
+|move|p2a: Slowking|Future Sight||[still]
+|-fail|p2a: Slowking
+|
+|-end|p1a: Blaziken|move: Future Sight
+|-supereffective|p1a: Blaziken
+|-damage|p1a: Blaziken|0 fnt
+|faint|p1a: Blaziken
+|upkeep
+|
+|switch|p1a: Slowking|Slowking-Galar, M|393/393
+|turn|4
+|
+|move|p1a: Slowking|Future Sight|p2a: Slowking
+|-start|p1a: Slowking|move: Future Sight
+|move|p2a: Slowking|Future Sight|p1a: Slowking
+|-start|p2a: Slowking|move: Future Sight
+|
+|upkeep
+|turn|5
+|
+|move|p1a: Slowking|Future Sight||[still]
+|-fail|p1a: Slowking
+|move|p2a: Slowking|Future Sight||[still]
+|-fail|p2a: Slowking
+|
+|upkeep
+|turn|6
+|
+|move|p2a: Slowking|Future Sight||[still]
+|-fail|p2a: Slowking
+|move|p1a: Slowking|Future Sight||[still]
+|-fail|p1a: Slowking
+|
+|-end|p2a: Slowking|move: Future Sight
+|-damage|p2a: Slowking|20/100
+|-end|p1a: Slowking|move: Future Sight
+|-damage|p1a: Slowking|290/393
+|upkeep
+|turn|7
+|
+|move|p2a: Slowking|Future Sight|p1a: Slowking
+|-start|p2a: Slowking|move: Future Sight
+|move|p1a: Slowking|Future Sight|p2a: Slowking
+|-start|p1a: Slowking|move: Future Sight
+|
+|upkeep
+|turn|8
+|
+|move|p1a: Slowking|Future Sight||[still]
+|-fail|p1a: Slowking
+|move|p2a: Slowking|Future Sight||[still]
+|-fail|p2a: Slowking
+|
+|upkeep
+|turn|9
+|
+|move|p1a: Slowking|Future Sight||[still]
+|-fail|p1a: Slowking
+|move|p2a: Slowking|Future Sight||[still]
+|-fail|p2a: Slowking
+|
+|-end|p2a: Slowking|move: Future Sight
+|-damage|p2a: Slowking|0 fnt
+|faint|p2a: Slowking
+|-end|p1a: Slowking|move: Future Sight
+|-damage|p1a: Slowking|184/393
+|upkeep
+|
+|switch|p2a: Ting-Lu|Ting-Lu|100/100
+|-ability|p2a: Ting-Lu|Vessel of Ruin
+|turn|10
+|
+|move|p2a: Ting-Lu|Stomping Tantrum|p1a: Slowking
+|-supereffective|p1a: Slowking
+|-damage|p1a: Slowking|0 fnt
+|faint|p1a: Slowking
+|
+|upkeep
+|
+|switch|p1a: Alomomola|Alomomola, M|473/473
+|turn|11
+|
+|move|p1a: Alomomola|Protect|p1a: Alomomola
+|-singleturn|p1a: Alomomola|Protect
+|move|p2a: Ting-Lu|Stomping Tantrum|p1a: Alomomola
+|-activate|p1a: Alomomola|move: Protect
+|
+|upkeep
+|turn|12
+|
+|move|p1a: Alomomola|Protect||[still]
+|-fail|p1a: Alomomola
+|move|p2a: Ting-Lu|Stomping Tantrum|p1a: Alomomola
+|-damage|p1a: Alomomola|397/473
+|
+|upkeep
+|turn|13
+|
+|move|p1a: Alomomola|Protect|p1a: Alomomola
+|-singleturn|p1a: Alomomola|Protect
+|move|p2a: Ting-Lu|Stomping Tantrum|p1a: Alomomola
+|-activate|p1a: Alomomola|move: Protect
+|
+|upkeep
+|turn|14
+|
+|move|p1a: Alomomola|Protect||[still]
+|-fail|p1a: Alomomola
+|move|p2a: Ting-Lu|Stomping Tantrum|p1a: Alomomola
+|-damage|p1a: Alomomola|322/473
+|
+|upkeep
+|turn|15
+|
+|move|p1a: Alomomola|Protect|p1a: Alomomola
+|-singleturn|p1a: Alomomola|Protect
+|move|p2a: Ting-Lu|Stomping Tantrum|p1a: Alomomola
+|-activate|p1a: Alomomola|move: Protect
+|
+|upkeep
+|turn|16
+|
+|move|p1a: Alomomola|Protect||[still]
+|-fail|p1a: Alomomola
+|move|p2a: Ting-Lu|Stomping Tantrum|p1a: Alomomola
+|-damage|p1a: Alomomola|241/473
+|
+|upkeep
+|turn|17
+|
+|move|p1a: Alomomola|Protect|p1a: Alomomola
+|-singleturn|p1a: Alomomola|Protect
+|move|p2a: Ting-Lu|Stomping Tantrum|p1a: Alomomola
+|-activate|p1a: Alomomola|move: Protect
+|
+|upkeep
+|turn|18
+|
+|move|p1a: Alomomola|Protect|p1a: Alomomola
+|-singleturn|p1a: Alomomola|Protect
+|move|p2a: Ting-Lu|Stomping Tantrum|p1a: Alomomola
+|-activate|p1a: Alomomola|move: Protect
+|
+|upkeep
+|turn|19
+|
+|move|p1a: Alomomola|Protect||[still]
+|-fail|p1a: Alomomola
+|move|p2a: Ting-Lu|Stomping Tantrum|p1a: Alomomola
+|-damage|p1a: Alomomola|162/473
+|
+|upkeep
+|turn|20
+|
+|move|p1a: Alomomola|Protect|p1a: Alomomola
+|-singleturn|p1a: Alomomola|Protect
+|move|p2a: Ting-Lu|Stomping Tantrum|p1a: Alomomola
+|-activate|p1a: Alomomola|move: Protect
+|
+|upkeep
+|turn|21
+|
+|move|p1a: Alomomola|Protect||[still]
+|-fail|p1a: Alomomola
+|move|p2a: Ting-Lu|Stomping Tantrum|p1a: Alomomola
+|-damage|p1a: Alomomola|78/473
+|
+|upkeep
+|turn|22
+|
+|move|p1a: Alomomola|Protect|p1a: Alomomola
+|-singleturn|p1a: Alomomola|Protect
+|move|p2a: Ting-Lu|Stomping Tantrum|p1a: Alomomola
+|-activate|p1a: Alomomola|move: Protect
+|
+|upkeep
+|turn|23
+|
+|move|p1a: Alomomola|Protect|p1a: Alomomola
+|-singleturn|p1a: Alomomola|Protect
+|move|p2a: Ting-Lu|Stomping Tantrum|p1a: Alomomola
+|-activate|p1a: Alomomola|move: Protect
+|
+|upkeep
+|turn|24
+|
+|move|p1a: Alomomola|Protect||[still]
+|-fail|p1a: Alomomola
+|move|p2a: Ting-Lu|Stomping Tantrum|p1a: Alomomola
+|-damage|p1a: Alomomola|3/473
+|
+|upkeep
+|turn|25
+|
+|move|p1a: Alomomola|Protect|p1a: Alomomola
+|-singleturn|p1a: Alomomola|Protect
+|move|p2a: Ting-Lu|Stomping Tantrum|p1a: Alomomola
+|-activate|p1a: Alomomola|move: Protect
+|
+|upkeep
+|turn|26
+|
+|move|p1a: Alomomola|Protect|p1a: Alomomola
+|-singleturn|p1a: Alomomola|Protect
+|move|p2a: Ting-Lu|Ruination|p1a: Alomomola
+|-activate|p1a: Alomomola|move: Protect
+|
+|upkeep
+|turn|27
+|
+|move|p2a: Ting-Lu|Ruination|p1a: Alomomola
+|-damage|p1a: Alomomola|2/473
+|move|p1a: Alomomola|Wish|p1a: Alomomola
+|
+|upkeep
+|turn|28
+|
+|move|p2a: Ting-Lu|Ruination|p1a: Alomomola
+|-damage|p1a: Alomomola|1/473
+|move|p1a: Alomomola|Wish||[still]
+|-fail|p1a: Alomomola
+|
+|-heal|p1a: Alomomola|237/473|[from] move: Wish|[wisher] Alomomola
+|upkeep
+|turn|29
+|
+|move|p2a: Ting-Lu|Ruination|p1a: Alomomola
+|-damage|p1a: Alomomola|119/473
+|move|p1a: Alomomola|Wish|p1a: Alomomola
+|
+|upkeep
+|turn|30
+|
+|move|p2a: Ting-Lu|Ruination|p1a: Alomomola
+|-damage|p1a: Alomomola|60/473
+|move|p1a: Alomomola|Wish||[still]
+|-fail|p1a: Alomomola
+|
+|-heal|p1a: Alomomola|296/473|[from] move: Wish|[wisher] Alomomola
+|upkeep
+|turn|31
+|
+|move|p2a: Ting-Lu|Ruination|p1a: Alomomola
+|-damage|p1a: Alomomola|148/473
+|move|p1a: Alomomola|Wish|p1a: Alomomola
+|
+|upkeep
+|turn|32
+|
+|move|p2a: Ting-Lu|Ruination|p1a: Alomomola
+|-damage|p1a: Alomomola|74/473
+|move|p1a: Alomomola|Wish||[still]
+|-fail|p1a: Alomomola
+|
+|-heal|p1a: Alomomola|310/473|[from] move: Wish|[wisher] Alomomola
+|upkeep
+|turn|33
+|
+|move|p2a: Ting-Lu|Ruination|p1a: Alomomola
+|-damage|p1a: Alomomola|155/473
+|move|p1a: Alomomola|Wish|p1a: Alomomola
+|
+|upkeep
+|turn|34
+|
+|move|p2a: Ting-Lu|Ruination|p1a: Alomomola
+|-damage|p1a: Alomomola|78/473
+|move|p1a: Alomomola|Wish||[still]
+|-fail|p1a: Alomomola
+|
+|-heal|p1a: Alomomola|314/473|[from] move: Wish|[wisher] Alomomola
+|upkeep
+|turn|35
+|
+|move|p2a: Ting-Lu|Ruination|p1a: Alomomola
+|-damage|p1a: Alomomola|157/473
+|move|p1a: Alomomola|Wish|p1a: Alomomola
+|
+|upkeep
+|turn|36
+|
+|move|p2a: Ting-Lu|Ruination|p1a: Alomomola
+|-damage|p1a: Alomomola|79/473
+|move|p1a: Alomomola|Wish||[still]
+|-fail|p1a: Alomomola
+|
+|-heal|p1a: Alomomola|315/473|[from] move: Wish|[wisher] Alomomola
+|upkeep
+|turn|37
+|
+|move|p2a: Ting-Lu|Ruination|p1a: Alomomola
+|-damage|p1a: Alomomola|158/473
+|move|p1a: Alomomola|Wish|p1a: Alomomola
+|
+|upkeep
+|turn|38
+|
+|move|p2a: Ting-Lu|Ruination|p1a: Alomomola
+|-damage|p1a: Alomomola|79/473
+|move|p1a: Alomomola|Wish||[still]
+|-fail|p1a: Alomomola
+|
+|-heal|p1a: Alomomola|315/473|[from] move: Wish|[wisher] Alomomola
+|upkeep
+|turn|39
+|
+|move|p2a: Ting-Lu|Ruination|p1a: Alomomola
+|-damage|p1a: Alomomola|158/473
+|move|p1a: Alomomola|Wish|p1a: Alomomola
+|
+|upkeep
+|turn|40
+|
+|move|p2a: Ting-Lu|Ruination|p1a: Alomomola
+|-damage|p1a: Alomomola|79/473
+|move|p1a: Alomomola|Wish||[still]
+|-fail|p1a: Alomomola
+|
+|-heal|p1a: Alomomola|315/473|[from] move: Wish|[wisher] Alomomola
+|upkeep
+|turn|41
+|
+|move|p2a: Ting-Lu|Ruination|p1a: Alomomola
+|-damage|p1a: Alomomola|158/473
+|move|p1a: Alomomola|Wish|p1a: Alomomola
+|
+|upkeep
+|turn|42
+|
+|move|p1a: Alomomola|Wish||[still]
+|-fail|p1a: Alomomola
+|move|p2a: Ting-Lu|Whirlwind|p1a: Alomomola
+|drag|p1a: Weezing|Weezing-Galar, M|333/333
+|-ability|p1a: Weezing|Neutralizing Gas
+|
+|upkeep
+|turn|43
+|
+|move|p1a: Weezing|Strange Steam|p2a: Ting-Lu
+|-supereffective|p2a: Ting-Lu
+|-crit|p2a: Ting-Lu
+|-damage|p2a: Ting-Lu|54/100
+|move|p2a: Ting-Lu|Whirlwind|p1a: Weezing
+|-end|p1a: Weezing|ability: Neutralizing Gas
+|-ability|p2a: Ting-Lu|Vessel of Ruin
+|drag|p1a: Ting-Lu|Ting-Lu|513/513
+|-ability|p1a: Ting-Lu|Vessel of Ruin
+|
+|-heal|p2a: Ting-Lu|60/100|[from] item: Leftovers
+|upkeep
+|turn|44
+|
+|move|p1a: Ting-Lu|Stealth Rock|p2a: Ting-Lu
+|-sidestart|p2: MaxBasePower|move: Stealth Rock
+|move|p2a: Ting-Lu|Whirlwind|p1a: Ting-Lu
+|drag|p1a: Rillaboom|Rillaboom, F|341/341
+|-fieldstart|move: Grassy Terrain|[from] ability: Grassy Surge|[of] p1a: Rillaboom
+|
+|-heal|p2a: Ting-Lu|66/100|[from] Grassy Terrain
+|-heal|p2a: Ting-Lu|72/100|[from] item: Leftovers
+|upkeep
+|turn|45
+|
+|move|p1a: Rillaboom|U-turn|p2a: Ting-Lu
+|-supereffective|p2a: Ting-Lu
+|-damage|p2a: Ting-Lu|30/100
+|
+|switch|p1a: Alomomola|Alomomola, M|315/473|[from] U-turn
+|move|p2a: Ting-Lu|Whirlwind|p1a: Alomomola
+|drag|p1a: Rillaboom|Rillaboom, F|341/341
+|
+|-heal|p2a: Ting-Lu|36/100|[from] Grassy Terrain
+|-heal|p2a: Ting-Lu|42/100|[from] item: Leftovers
+|upkeep
+|turn|46
+|
+|move|p1a: Rillaboom|U-turn|p2a: Ting-Lu
+|-supereffective|p2a: Ting-Lu
+|-damage|p2a: Ting-Lu|0 fnt
+|faint|p2a: Ting-Lu
+|
+|switch|p1a: Alomomola|Alomomola, M|472/473|[from] U-turn
+|
+|-heal|p1a: Alomomola|473/473|[from] Grassy Terrain
+|upkeep
+|
+|switch|p2a: Alomomola|Alomomola, M|100/100
+|turn|47
+|
+|move|p1a: Alomomola|Tickle|p2a: Alomomola
+|-unboost|p2a: Alomomola|atk|1
+|-unboost|p2a: Alomomola|def|1
+|move|p2a: Alomomola|Flip Turn|p1a: Alomomola
+|-resisted|p1a: Alomomola
+|-damage|p1a: Alomomola|456/473
+|
+|switch|p2a: Rillaboom|Rillaboom, M|100/100|[from] Flip Turn
+|-damage|p2a: Rillaboom|88/100|[from] Stealth Rock
+|
+|-heal|p2a: Rillaboom|94/100|[from] Grassy Terrain
+|-heal|p1a: Alomomola|473/473|[from] Grassy Terrain
+|upkeep
+|turn|48
+|
+|move|p2a: Rillaboom|Wood Hammer|p1a: Alomomola
+|-supereffective|p1a: Alomomola
+|-damage|p1a: Alomomola|0 fnt
+|faint|p1a: Alomomola
+|-damage|p2a: Rillaboom|49/100|[from] Recoil
+|
+|-heal|p2a: Rillaboom|55/100|[from] Grassy Terrain
+|-fieldend|move: Grassy Terrain
+|upkeep
+|
+|switch|p1a: Rillaboom|Rillaboom, F|341/341
+|-fieldstart|move: Grassy Terrain|[from] ability: Grassy Surge|[of] p1a: Rillaboom
+|turn|49
+|
+|move|p1a: Rillaboom|U-turn|p2a: Rillaboom
+|-supereffective|p2a: Rillaboom
+|-damage|p2a: Rillaboom|0 fnt
+|faint|p2a: Rillaboom
+|
+|switch|p1a: Ting-Lu|Ting-Lu|513/513|[from] U-turn
+|-ability|p1a: Ting-Lu|Vessel of Ruin
+|
+|upkeep
+|
+|switch|p2a: Blaziken|Blaziken, F|100/100
+|-damage|p2a: Blaziken|88/100|[from] Stealth Rock
+|turn|50
+|
+|move|p2a: Blaziken|Close Combat|p1a: Ting-Lu
+|-supereffective|p1a: Ting-Lu
+|-damage|p1a: Ting-Lu|0 fnt
+|-unboost|p2a: Blaziken|def|1
+|-unboost|p2a: Blaziken|spd|1
+|faint|p1a: Ting-Lu
+|-damage|p2a: Blaziken|78/100|[from] item: Life Orb
+|
+|-heal|p2a: Blaziken|84/100|[from] Grassy Terrain
+|-ability|p2a: Blaziken|Speed Boost|boost
+|-boost|p2a: Blaziken|spe|1
+|upkeep
+|
+|switch|p1a: Rillaboom|Rillaboom, F|341/341
+|turn|51
+|
+|move|p2a: Blaziken|Close Combat|p1a: Rillaboom
+|-damage|p1a: Rillaboom|25/341
+|-unboost|p2a: Blaziken|def|1
+|-unboost|p2a: Blaziken|spd|1
+|-damage|p2a: Blaziken|75/100|[from] item: Life Orb
+|move|p1a: Rillaboom|U-turn|p2a: Blaziken
+|-resisted|p2a: Blaziken
+|-damage|p2a: Blaziken|44/100
+|
+|switch|p1a: Weezing|Weezing-Galar, M|333/333|[from] U-turn
+|-ability|p1a: Weezing|Neutralizing Gas
+|
+|-heal|p2a: Blaziken|50/100|[from] Grassy Terrain
+|upkeep
+|turn|52
+|
+|move|p2a: Blaziken|Close Combat|p1a: Weezing
+|-resisted|p1a: Weezing
+|-damage|p1a: Weezing|281/333
+|-unboost|p2a: Blaziken|def|1
+|-unboost|p2a: Blaziken|spd|1
+|-damage|p2a: Blaziken|40/100|[from] item: Life Orb
+|move|p1a: Weezing|Strange Steam|p2a: Blaziken
+|-damage|p2a: Blaziken|0 fnt
+|faint|p2a: Blaziken
+|
+|-heal|p1a: Weezing|301/333|[from] Grassy Terrain
+|upkeep
+|
+|switch|p2a: Weezing|Weezing-Galar, F|100/100
+|-ability|p2a: Weezing|Neutralizing Gas
+|turn|53
+|
+|move|p1a: Weezing|Strange Steam|p2a: Weezing
+|-resisted|p2a: Weezing
+|-damage|p2a: Weezing|83/100
+|move|p2a: Weezing|Strange Steam|p1a: Weezing
+|-resisted|p1a: Weezing
+|-damage|p1a: Weezing|235/333
+|
+|-heal|p1a: Weezing|255/333|[from] Grassy Terrain
+|-heal|p2a: Weezing|89/100|[from] Grassy Terrain
+|-fieldend|move: Grassy Terrain
+|upkeep
+|turn|54
+|
+|move|p1a: Weezing|Strange Steam|p2a: Weezing
+|-resisted|p2a: Weezing
+|-damage|p2a: Weezing|71/100
+|move|p2a: Weezing|Strange Steam|p1a: Weezing
+|-resisted|p1a: Weezing
+|-damage|p1a: Weezing|195/333
+|
+|upkeep
+|turn|55
+|
+|move|p1a: Weezing|Strange Steam|p2a: Weezing
+|-resisted|p2a: Weezing
+|-damage|p2a: Weezing|53/100
+|move|p2a: Weezing|Strange Steam|p1a: Weezing
+|-resisted|p1a: Weezing
+|-damage|p1a: Weezing|128/333
+|
+|upkeep
+|turn|56
+|
+|move|p1a: Weezing|Strange Steam|p2a: Weezing
+|-resisted|p2a: Weezing
+|-damage|p2a: Weezing|34/100
+|move|p2a: Weezing|Strange Steam|p1a: Weezing
+|-resisted|p1a: Weezing
+|-damage|p1a: Weezing|62/333
+|
+|upkeep
+|turn|57
+|
+|move|p1a: Weezing|Strange Steam|p2a: Weezing
+|-resisted|p2a: Weezing
+|-damage|p2a: Weezing|15/100
+|move|p2a: Weezing|Strange Steam|p1a: Weezing
+|-resisted|p1a: Weezing
+|-damage|p1a: Weezing|5/333
+|
+|upkeep
+|turn|58
+|
+|move|p2a: Weezing|Strange Steam|p1a: Weezing
+|-resisted|p1a: Weezing
+|-damage|p1a: Weezing|0 fnt
+|faint|p1a: Weezing
+|
+|upkeep
+|
+|switch|p1a: Rillaboom|Rillaboom, F|25/341
+|turn|59
+|
+|move|p1a: Rillaboom|U-turn|p2a: Weezing
+|-resisted|p2a: Weezing
+|-damage|p2a: Weezing|8/100
+|move|p2a: Weezing|Strange Steam|p1a: Rillaboom
+|-damage|p1a: Rillaboom|0 fnt
+|faint|p1a: Rillaboom
+|
+    </script>
+</div>
+
+<div class="battle-log battle-log-inline" style="display:none"></div>
+
+<script>
+    let daily = Math.floor(Date.now() / 1000 / 60 / 60 / 24); document.write('<script src="https://play.pokemonshowdown.com/js/replay-embed.js?version' + daily + '"></' + 'script>');
+</script>
+
+<p style="text-align:center"> Replay created by <a href="https://github.com/hsahovic/poke-env">poke-env</a>, with code from <a
+        href="https://github.com/smogon/pokemon-showdown"> pokemon-showdown</a>. If something goes wrong, don't hesitate
+    to open an <a href="https://github.com/hsahovic/poke-env/issues">issue!</a></p>

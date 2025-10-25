@@ -1,3 +1,4 @@
+from abc import abstractmethod
 from gymnasium.spaces import Discrete
 import numpy as np
 import numpy.typing as npt
@@ -24,6 +25,10 @@ class Gen9Env(SinglesEnv[npt.NDArray[np.float32]]):
         self.action_spaces = {
             agent: Discrete(act_size) for agent in self.possible_agents
         }
+
+    @abstractmethod
+    def action_masks(self) -> np.ndarray:
+        pass
 
     @staticmethod
     def action_to_order(

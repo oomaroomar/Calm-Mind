@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<!-- version 1 -->
+<title>battle-gen9ou-80345</title>
+<style>
+    html,
+    body {
+        font-family: Verdana, sans-serif;
+        font-size: 10pt;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        padding: 12px 0;
+    }
+
+    .battle-log {
+        font-family: Verdana, sans-serif;
+        font-size: 10pt;
+    }
+
+    .battle-log-inline {
+        border: 1px solid #AAAAAA;
+        background: #EEF2F5;
+        color: black;
+        max-width: 640px;
+        margin: 0 auto 80px;
+        padding-bottom: 5px;
+    }
+
+    .battle-log .inner {
+        padding: 4px 8px 0px 8px;
+    }
+
+    .battle-log .inner-preempt {
+        padding: 0 8px 4px 8px;
+    }
+
+    .battle-log .inner-after {
+        margin-top: 0.5em;
+    }
+
+    .battle-log h2 {
+        margin: 0.5em -8px;
+        padding: 4px 8px;
+        border: 1px solid #AAAAAA;
+        background: #E0E7EA;
+        border-left: 0;
+        border-right: 0;
+        font-family: Verdana, sans-serif;
+        font-size: 13pt;
+    }
+
+    .backprop {
+        top: 0;
+    }
+
+    .battle-log .chat {
+        vertical-align: middle;
+        padding: 3px 0 3px 0;
+        font-size: 8pt;
+    }
+
+    .battle-log .chat strong {
+        color: #40576A;
+    }
+
+    .battle-log .chat em {
+        padding: 1px 4px 1px 3px;
+        color: #000000;
+        font-style: normal;
+    }
+
+    .chat.mine {
+        background: rgba(0, 0, 0, 0.05);
+        margin-left: -8px;
+        margin-right: -8px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .spoiler {
+        color: #BBBBBB;
+        background: #BBBBBB;
+        padding: 0px 3px;
+    }
+
+    .spoiler:hover,
+    .spoiler:active,
+    .spoiler-shown {
+        color: #000000;
+        background: #E2E2E2;
+        padding: 0px 3px;
+    }
+
+    .spoiler a {
+        color: #BBBBBB;
+    }
+
+    .spoiler:hover a,
+    .spoiler:active a,
+    .spoiler-shown a {
+        color: #2288CC;
+    }
+
+    .chat code,
+    .chat .spoiler:hover code,
+    .chat .spoiler:active code,
+    .chat .spoiler-shown code {
+        border: 1px solid #C0C0C0;
+        background: #EEEEEE;
+        color: black;
+        padding: 0 2px;
+    }
+
+    .chat .spoiler code {
+        border: 1px solid #CCCCCC;
+        background: #CCCCCC;
+        color: #CCCCCC;
+    }
+
+    .battle-log .rated {
+        padding: 3px 4px;
+    }
+
+    .battle-log .rated strong {
+        color: white;
+        background: #89A;
+        padding: 1px 4px;
+        border-radius: 4px;
+    }
+
+    .spacer {
+        margin-top: 0.5em;
+    }
+
+    .message-announce {
+        background: #6688AA;
+        color: white;
+        padding: 1px 4px 2px;
+    }
+
+    .message-announce a,
+    .broadcast-green a,
+    .broadcast-blue a,
+    .broadcast-red a {
+        color: #DDEEFF;
+    }
+
+    .broadcast-green {
+        background-color: #559955;
+        color: white;
+        padding: 2px 4px;
+    }
+
+    .broadcast-blue {
+        background-color: #6688AA;
+        color: white;
+        padding: 2px 4px;
+    }
+
+    .infobox {
+        border: 1px solid #6688AA;
+        padding: 2px 4px;
+    }
+
+    .infobox-limited {
+        max-height: 200px;
+        overflow: auto;
+        overflow-x: hidden;
+    }
+
+    .broadcast-red {
+        background-color: #AA5544;
+        color: white;
+        padding: 2px 4px;
+    }
+
+    .message-learn-canlearn {
+        font-weight: bold;
+        color: #228822;
+        text-decoration: underline;
+    }
+
+    .message-learn-cannotlearn {
+        font-weight: bold;
+        color: #CC2222;
+        text-decoration: underline;
+    }
+
+    .message-effect-weak {
+        font-weight: bold;
+        color: #CC2222;
+    }
+
+    .message-effect-resist {
+        font-weight: bold;
+        color: #6688AA;
+    }
+
+    .message-effect-immune {
+        font-weight: bold;
+        color: #666666;
+    }
+
+    .message-learn-list {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .message-throttle-notice,
+    .message-error {
+        color: #992222;
+    }
+
+    .message-overflow,
+    .chat small.message-overflow {
+        font-size: 0pt;
+    }
+
+    .message-overflow::before {
+        font-size: 9pt;
+        content: '...';
+    }
+
+    .subtle {
+        color: #3A4A66;
+    }
+</style>
+<div class="wrapper replay-wrapper" style="max-width:1180px;margin:0 auto">
+    <input type="hidden" name="replayid" value="unregisteredserver-gen8randombattle-320064" />
+    <div class="battle"></div>
+    <div class="battle-log"></div>
+    <div class="replay-controls"></div>
+    <div class="replay-controls-2"></div>
+    <h1 style="font-weight:normal;text-align:center"><strong>poke-env battle replay</strong><br />battle-gen9ou-80345<br /><a
+            href="http://pokemonshowdown.com/users/randomplayer1" class="subtle" target="_blank">RL-Agent-it-27</a>
+        vs. <a href="http://pokemonshowdown.com/users/randomplayer2" class="subtle"
+            target="_blank">Random</a></h1>
+    <script type="text/plain" class="battle-log-data">
+    >battle-gen9ou-80345|init|battle
+|title|RL-Agent-it-27 vs. Random
+|j|☆RL-Agent-it-27
+|j|☆Random
+|gametype|singles
+|player|p1|RL-Agent-it-27|101|
+|player|p2|Random|2|
+|gen|9
+|tier|[Gen 9] OU
+|rule|HP Percentage Mod: HP is shown in percentages
+|rule|Endless Battle Clause: Forcing endless battles is banned
+|rule|Species Clause: Limit one of each Pokémon
+|rule|OHKO Clause: OHKO moves are banned
+|rule|Evasion Items Clause: Evasion items are banned
+|rule|Evasion Moves Clause: Evasion moves are banned
+|rule|Evasion Abilities Clause: Evasion abilities are banned
+|rule|Sleep Moves Clause: Sleep-inducing moves are banned
+|clearpoke
+|poke|p1|Blaziken, F|
+|poke|p1|Alomomola, F|
+|poke|p1|Rillaboom, M|
+|poke|p1|Slowking-Galar, F|
+|poke|p1|Ting-Lu|
+|poke|p1|Weezing-Galar, M|
+|poke|p2|Blaziken, M|
+|poke|p2|Alomomola, M|
+|poke|p2|Rillaboom, F|
+|poke|p2|Slowking-Galar, M|
+|poke|p2|Ting-Lu|
+|poke|p2|Weezing-Galar, M|
+|teampreview
+|
+|teamsize|p1|6
+|teamsize|p2|6
+|start
+|switch|p1a: Blaziken|Blaziken, F|305/305
+|switch|p2a: Ting-Lu|Ting-Lu|100/100
+|-ability|p2a: Ting-Lu|Vessel of Ruin
+|turn|1
+|
+|switch|p1a: Ting-Lu|Ting-Lu|513/513
+|-ability|p1a: Ting-Lu|Vessel of Ruin
+|switch|p2a: Blaziken|Blaziken, M|100/100
+|
+|upkeep
+|turn|2
+|
+|-terastallize|p2a: Blaziken|Fighting
+|-terastallize|p1a: Ting-Lu|Ghost
+|move|p2a: Blaziken|Close Combat|p1a: Ting-Lu
+|-immune|p1a: Ting-Lu
+|move|p1a: Ting-Lu|Ruination|p2a: Blaziken
+|-damage|p2a: Blaziken|51/100
+|
+|-ability|p2a: Blaziken|Speed Boost|boost
+|-boost|p2a: Blaziken|spe|1
+|upkeep
+|turn|3
+|
+|switch|p2a: Rillaboom|Rillaboom, F|100/100
+|-fieldstart|move: Grassy Terrain|[from] ability: Grassy Surge|[of] p2a: Rillaboom
+|move|p1a: Ting-Lu|Ruination|p2a: Rillaboom
+|-damage|p2a: Rillaboom|51/100
+|
+|-heal|p2a: Rillaboom|57/100|[from] Grassy Terrain
+|upkeep
+|turn|4
+|
+|move|p2a: Rillaboom|U-turn|p1a: Ting-Lu
+|-resisted|p1a: Ting-Lu
+|-damage|p1a: Ting-Lu|453/513
+|
+|switch|p2a: Alomomola|Alomomola, M|100/100|[from] U-turn
+|move|p1a: Ting-Lu|Ruination|p2a: Alomomola
+|-damage|p2a: Alomomola|51/100
+|
+|-heal|p1a: Ting-Lu|485/513|[from] Grassy Terrain
+|-heal|p1a: Ting-Lu|513/513|[from] item: Leftovers
+|-heal|p2a: Alomomola|57/100|[from] Grassy Terrain
+|upkeep
+|turn|5
+|
+|move|p1a: Ting-Lu|Ruination|p2a: Alomomola|[miss]
+|-miss|p1a: Ting-Lu|p2a: Alomomola
+|move|p2a: Alomomola|Wish|p2a: Alomomola
+|
+|-heal|p2a: Alomomola|63/100|[from] Grassy Terrain
+|upkeep
+|turn|6
+|
+|switch|p2a: Ting-Lu|Ting-Lu|100/100
+|-ability|p2a: Ting-Lu|Vessel of Ruin
+|move|p1a: Ting-Lu|Ruination|p2a: Ting-Lu
+|-damage|p2a: Ting-Lu|51/100
+|
+|-heal|p2a: Ting-Lu|97/100|[from] move: Wish|[wisher] Alomomola
+|-heal|p2a: Ting-Lu|100/100|[from] Grassy Terrain
+|upkeep
+|turn|7
+|
+|switch|p2a: Alomomola|Alomomola, M|96/100
+|move|p1a: Ting-Lu|Ruination|p2a: Alomomola
+|-damage|p2a: Alomomola|48/100
+|
+|-heal|p2a: Alomomola|54/100|[from] Grassy Terrain
+|-fieldend|move: Grassy Terrain
+|upkeep
+|turn|8
+|
+|switch|p2a: Weezing|Weezing-Galar, M|100/100
+|-ability|p2a: Weezing|Neutralizing Gas
+|move|p1a: Ting-Lu|Ruination|p2a: Weezing
+|-damage|p2a: Weezing|51/100
+|
+|upkeep
+|turn|9
+|
+|move|p2a: Weezing|Pain Split|p1a: Ting-Lu
+|-sethp|p1a: Ting-Lu|340/513|[from] move: Pain Split|[silent]
+|-sethp|p2a: Weezing|100/100|[from] move: Pain Split
+|move|p1a: Ting-Lu|Stealth Rock|p2a: Weezing
+|-sidestart|p2: Random|move: Stealth Rock
+|
+|-heal|p1a: Ting-Lu|372/513|[from] item: Leftovers
+|upkeep
+|turn|10
+|
+|move|p2a: Weezing|Strange Steam|p1a: Ting-Lu|[miss]
+|-miss|p2a: Weezing|p1a: Ting-Lu
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p1a: Ting-Lu|404/513|[from] item: Leftovers
+|upkeep
+|turn|11
+|
+|-end|p2a: Weezing|ability: Neutralizing Gas
+|-ability|p1a: Ting-Lu|Vessel of Ruin
+|switch|p2a: Alomomola|Alomomola, M|88/100
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p1a: Ting-Lu|436/513|[from] item: Leftovers
+|upkeep
+|turn|12
+|
+|switch|p2a: Blaziken|Blaziken, M, tera:Fighting|51/100
+|-damage|p2a: Blaziken|44/100|[from] Stealth Rock
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p1a: Ting-Lu|468/513|[from] item: Leftovers
+|upkeep
+|turn|13
+|
+|switch|p2a: Weezing|Weezing-Galar, M|100/100
+|-ability|p2a: Weezing|Neutralizing Gas
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p1a: Ting-Lu|500/513|[from] item: Leftovers
+|upkeep
+|turn|14
+|
+|move|p2a: Weezing|Will-O-Wisp|p1a: Ting-Lu|[miss]
+|-miss|p2a: Weezing|p1a: Ting-Lu
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p1a: Ting-Lu|513/513|[from] item: Leftovers
+|upkeep
+|turn|15
+|
+|move|p2a: Weezing|Pain Split|p1a: Ting-Lu
+|-sethp|p1a: Ting-Lu|423/513|[from] move: Pain Split|[silent]
+|-sethp|p2a: Weezing|100/100|[from] move: Pain Split
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p1a: Ting-Lu|455/513|[from] item: Leftovers
+|upkeep
+|turn|16
+|
+|-end|p2a: Weezing|ability: Neutralizing Gas
+|-ability|p1a: Ting-Lu|Vessel of Ruin
+|switch|p2a: Alomomola|Alomomola, M|100/100
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p1a: Ting-Lu|487/513|[from] item: Leftovers
+|upkeep
+|turn|17
+|
+|move|p2a: Alomomola|Protect|p2a: Alomomola
+|-singleturn|p2a: Alomomola|Protect
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p1a: Ting-Lu|513/513|[from] item: Leftovers
+|upkeep
+|turn|18
+|
+|switch|p2a: Ting-Lu|Ting-Lu|100/100
+|-damage|p2a: Ting-Lu|94/100|[from] Stealth Rock
+|-ability|p2a: Ting-Lu|Vessel of Ruin
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p2a: Ting-Lu|100/100|[from] item: Leftovers
+|upkeep
+|turn|19
+|
+|switch|p2a: Weezing|Weezing-Galar, M|100/100
+|-ability|p2a: Weezing|Neutralizing Gas
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|upkeep
+|turn|20
+|
+|move|p2a: Weezing|Defog|p1a: Ting-Lu
+|-unboost|p1a: Ting-Lu|evasion|1
+|-sideend|p2: Random|Stealth Rock|[from] move: Defog|[of] p2a: Weezing
+|move|p1a: Ting-Lu|Stealth Rock|p2a: Weezing
+|-sidestart|p2: Random|move: Stealth Rock
+|
+|upkeep
+|turn|21
+|
+|move|p2a: Weezing|Will-O-Wisp|p1a: Ting-Lu
+|-status|p1a: Ting-Lu|brn
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-damage|p1a: Ting-Lu|481/513 brn|[from] brn
+|upkeep
+|turn|22
+|
+|-end|p2a: Weezing|ability: Neutralizing Gas
+|-ability|p1a: Ting-Lu|Vessel of Ruin
+|switch|p2a: Blaziken|Blaziken, M, tera:Fighting|44/100
+|-damage|p2a: Blaziken|38/100|[from] Stealth Rock
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p1a: Ting-Lu|513/513 brn|[from] item: Leftovers
+|-damage|p1a: Ting-Lu|481/513 brn|[from] brn
+|upkeep
+|turn|23
+|
+|move|p2a: Blaziken|Protect|p2a: Blaziken
+|-singleturn|p2a: Blaziken|Protect
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p1a: Ting-Lu|513/513 brn|[from] item: Leftovers
+|-damage|p1a: Ting-Lu|481/513 brn|[from] brn
+|-ability|p2a: Blaziken|Speed Boost|boost
+|-boost|p2a: Blaziken|spe|1
+|upkeep
+|turn|24
+|
+|switch|p2a: Ting-Lu|Ting-Lu|100/100
+|-damage|p2a: Ting-Lu|94/100|[from] Stealth Rock
+|-ability|p2a: Ting-Lu|Vessel of Ruin
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p2a: Ting-Lu|100/100|[from] item: Leftovers
+|-heal|p1a: Ting-Lu|513/513 brn|[from] item: Leftovers
+|-damage|p1a: Ting-Lu|481/513 brn|[from] brn
+|upkeep
+|turn|25
+|
+|switch|p2a: Rillaboom|Rillaboom, F|57/100
+|-damage|p2a: Rillaboom|44/100|[from] Stealth Rock
+|-fieldstart|move: Grassy Terrain|[from] ability: Grassy Surge|[of] p2a: Rillaboom
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p2a: Rillaboom|51/100|[from] Grassy Terrain
+|-heal|p1a: Ting-Lu|513/513 brn|[from] Grassy Terrain
+|-damage|p1a: Ting-Lu|481/513 brn|[from] brn
+|upkeep
+|turn|26
+|
+|move|p2a: Rillaboom|Knock Off|p1a: Ting-Lu
+|-supereffective|p1a: Ting-Lu
+|-damage|p1a: Ting-Lu|179/513 brn
+|-enditem|p1a: Ting-Lu|Leftovers|[from] move: Knock Off|[of] p2a: Rillaboom
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p2a: Rillaboom|57/100|[from] Grassy Terrain
+|-heal|p1a: Ting-Lu|211/513 brn|[from] Grassy Terrain
+|-damage|p1a: Ting-Lu|179/513 brn|[from] brn
+|upkeep
+|turn|27
+|
+|switch|p2a: Ting-Lu|Ting-Lu|100/100
+|-damage|p2a: Ting-Lu|94/100|[from] Stealth Rock
+|-ability|p2a: Ting-Lu|Vessel of Ruin
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p2a: Ting-Lu|100/100|[from] Grassy Terrain
+|-heal|p1a: Ting-Lu|211/513 brn|[from] Grassy Terrain
+|-damage|p1a: Ting-Lu|179/513 brn|[from] brn
+|upkeep
+|turn|28
+|
+|switch|p2a: Weezing|Weezing-Galar, M|100/100
+|-ability|p2a: Weezing|Neutralizing Gas
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p1a: Ting-Lu|211/513 brn|[from] Grassy Terrain
+|-damage|p1a: Ting-Lu|179/513 brn|[from] brn
+|upkeep
+|turn|29
+|
+|-end|p2a: Weezing|ability: Neutralizing Gas
+|-ability|p1a: Ting-Lu|Vessel of Ruin
+|switch|p2a: Alomomola|Alomomola, M|100/100
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p1a: Ting-Lu|211/513 brn|[from] Grassy Terrain
+|-damage|p1a: Ting-Lu|179/513 brn|[from] brn
+|-fieldend|move: Grassy Terrain
+|upkeep
+|turn|30
+|
+|move|p2a: Alomomola|Protect|p2a: Alomomola
+|-singleturn|p2a: Alomomola|Protect
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-damage|p1a: Ting-Lu|147/513 brn|[from] brn
+|upkeep
+|turn|31
+|
+|switch|p2a: Blaziken|Blaziken, M, tera:Fighting|38/100
+|-damage|p2a: Blaziken|32/100|[from] Stealth Rock
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-damage|p1a: Ting-Lu|115/513 brn|[from] brn
+|upkeep
+|turn|32
+|
+|switch|p2a: Weezing|Weezing-Galar, M|100/100
+|-ability|p2a: Weezing|Neutralizing Gas
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-damage|p1a: Ting-Lu|83/513 brn|[from] brn
+|upkeep
+|turn|33
+|
+|-end|p2a: Weezing|ability: Neutralizing Gas
+|-ability|p1a: Ting-Lu|Vessel of Ruin
+|switch|p2a: Rillaboom|Rillaboom, F|57/100
+|-damage|p2a: Rillaboom|44/100|[from] Stealth Rock
+|-fieldstart|move: Grassy Terrain|[from] ability: Grassy Surge|[of] p2a: Rillaboom
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p2a: Rillaboom|51/100|[from] Grassy Terrain
+|-heal|p1a: Ting-Lu|115/513 brn|[from] Grassy Terrain
+|-damage|p1a: Ting-Lu|83/513 brn|[from] brn
+|upkeep
+|turn|34
+|
+|switch|p2a: Slowking|Slowking-Galar, M|100/100
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p1a: Ting-Lu|115/513 brn|[from] Grassy Terrain
+|-damage|p1a: Ting-Lu|83/513 brn|[from] brn
+|upkeep
+|turn|35
+|
+|switch|p2a: Rillaboom|Rillaboom, F|51/100
+|-damage|p2a: Rillaboom|38/100|[from] Stealth Rock
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p2a: Rillaboom|44/100|[from] Grassy Terrain
+|-heal|p1a: Ting-Lu|115/513 brn|[from] Grassy Terrain
+|-damage|p1a: Ting-Lu|83/513 brn|[from] brn
+|upkeep
+|turn|36
+|
+|switch|p2a: Slowking|Slowking-Galar, M|100/100
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p1a: Ting-Lu|115/513 brn|[from] Grassy Terrain
+|-damage|p1a: Ting-Lu|83/513 brn|[from] brn
+|upkeep
+|turn|37
+|
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|move|p2a: Slowking|Sludge Bomb|p1a: Ting-Lu
+|-resisted|p1a: Ting-Lu
+|-damage|p1a: Ting-Lu|47/513 brn
+|
+|-heal|p1a: Ting-Lu|79/513 brn|[from] Grassy Terrain
+|-damage|p1a: Ting-Lu|47/513 brn|[from] brn
+|-fieldend|move: Grassy Terrain
+|upkeep
+|turn|38
+|
+|switch|p2a: Rillaboom|Rillaboom, F|44/100
+|-damage|p2a: Rillaboom|32/100|[from] Stealth Rock
+|-fieldstart|move: Grassy Terrain|[from] ability: Grassy Surge|[of] p2a: Rillaboom
+|move|p1a: Ting-Lu|Stealth Rock||[still]
+|-fail|p1a: Ting-Lu
+|
+|-heal|p2a: Rillaboom|38/100|[from] Grassy Terrain
+|-heal|p1a: Ting-Lu|79/513 brn|[from] Grassy Terrain
+|-damage|p1a: Ting-Lu|47/513 brn|[from] brn
+|upkeep
+|turn|39
+|
+|move|p2a: Rillaboom|Wood Hammer|p1a: Ting-Lu
+|-damage|p1a: Ting-Lu|0 fnt
+|faint|p1a: Ting-Lu
+|-damage|p2a: Rillaboom|34/100|[from] Recoil
+|
+|-heal|p2a: Rillaboom|40/100|[from] Grassy Terrain
+|upkeep
+|
+|switch|p1a: Slowking|Slowking-Galar, F|393/393
+|turn|40
+|
+|switch|p2a: Ting-Lu|Ting-Lu|100/100
+|-damage|p2a: Ting-Lu|94/100|[from] Stealth Rock
+|-ability|p2a: Ting-Lu|Vessel of Ruin
+|move|p1a: Slowking|Future Sight|p2a: Ting-Lu
+|-start|p1a: Slowking|move: Future Sight
+|
+|-heal|p2a: Ting-Lu|100/100|[from] Grassy Terrain
+|upkeep
+|turn|41
+|
+|move|p1a: Slowking|Future Sight||[still]
+|-fail|p1a: Slowking
+|move|p2a: Ting-Lu|Whirlwind|p1a: Slowking
+|drag|p1a: Weezing|Weezing-Galar, M|333/333
+|-ability|p1a: Weezing|Neutralizing Gas
+|
+|upkeep
+|turn|42
+|
+|switch|p2a: Rillaboom|Rillaboom, F|40/100
+|-damage|p2a: Rillaboom|27/100|[from] Stealth Rock
+|move|p1a: Weezing|Strange Steam|p2a: Rillaboom
+|-damage|p2a: Rillaboom|0 fnt
+|faint|p2a: Rillaboom
+|
+|-hint|Future Sight did not hit because the target is fainted.
+|-fieldend|move: Grassy Terrain
+|upkeep
+|
+|switch|p2a: Weezing|Weezing-Galar, M|100/100
+|-ability|p2a: Weezing|Neutralizing Gas
+|turn|43
+|
+|switch|p2a: Alomomola|Alomomola, M|100/100
+|move|p1a: Weezing|Strange Steam|p2a: Alomomola
+|-damage|p2a: Alomomola|78/100
+|-start|p2a: Alomomola|confusion
+|
+|upkeep
+|turn|44
+|
+|switch|p2a: Ting-Lu|Ting-Lu|100/100
+|-damage|p2a: Ting-Lu|94/100|[from] Stealth Rock
+|move|p1a: Weezing|Strange Steam|p2a: Ting-Lu
+|-supereffective|p2a: Ting-Lu
+|-damage|p2a: Ting-Lu|62/100
+|
+|-heal|p2a: Ting-Lu|69/100|[from] item: Leftovers
+|upkeep
+|turn|45
+|
+|move|p1a: Weezing|Strange Steam|p2a: Ting-Lu
+|-supereffective|p2a: Ting-Lu
+|-damage|p2a: Ting-Lu|40/100
+|move|p2a: Ting-Lu|Ruination|p1a: Weezing
+|-damage|p1a: Weezing|167/333
+|
+|-heal|p2a: Ting-Lu|47/100|[from] item: Leftovers
+|upkeep
+|turn|46
+|
+|move|p1a: Weezing|Strange Steam|p2a: Ting-Lu
+|-supereffective|p2a: Ting-Lu
+|-damage|p2a: Ting-Lu|17/100
+|move|p2a: Ting-Lu|Ruination|p1a: Weezing
+|-damage|p1a: Weezing|84/333
+|
+|-heal|p2a: Ting-Lu|24/100|[from] item: Leftovers
+|upkeep
+|turn|47
+|
+|move|p1a: Weezing|Strange Steam|p2a: Ting-Lu
+|-supereffective|p2a: Ting-Lu
+|-damage|p2a: Ting-Lu|0 fnt
+|faint|p2a: Ting-Lu
+|
+|upkeep
+|
+|switch|p2a: Alomomola|Alomomola, M|78/100
+|turn|48
+|
+|switch|p2a: Weezing|Weezing-Galar, M|100/100
+|-ability|p2a: Weezing|Neutralizing Gas
+|move|p1a: Weezing|Strange Steam|p2a: Weezing
+|-resisted|p2a: Weezing
+|-damage|p2a: Weezing|82/100
+|
+|upkeep
+|turn|49
+|
+|switch|p2a: Alomomola|Alomomola, M|78/100
+|move|p1a: Weezing|Strange Steam|p2a: Alomomola
+|-damage|p2a: Alomomola|54/100
+|
+|upkeep
+|turn|50
+|
+|switch|p2a: Weezing|Weezing-Galar, M|82/100
+|-ability|p2a: Weezing|Neutralizing Gas
+|move|p1a: Weezing|Strange Steam|p2a: Weezing
+|-resisted|p2a: Weezing
+|-crit|p2a: Weezing
+|-damage|p2a: Weezing|56/100
+|
+|upkeep
+|turn|51
+|
+|move|p2a: Weezing|Defog|p1a: Weezing
+|-unboost|p1a: Weezing|evasion|1
+|-sideend|p2: Random|Stealth Rock|[from] move: Defog|[of] p2a: Weezing
+|move|p1a: Weezing|Strange Steam|p2a: Weezing
+|-resisted|p2a: Weezing
+|-damage|p2a: Weezing|38/100
+|-start|p2a: Weezing|confusion
+|
+|upkeep
+|turn|52
+|
+|move|p1a: Weezing|Strange Steam|p2a: Weezing
+|-resisted|p2a: Weezing
+|-damage|p2a: Weezing|20/100
+|-activate|p2a: Weezing|confusion
+|move|p2a: Weezing|Defog|p1a: Weezing
+|-unboost|p1a: Weezing|evasion|1
+|
+|upkeep
+|turn|53
+|
+|switch|p2a: Blaziken|Blaziken, M, tera:Fighting|32/100
+|move|p1a: Weezing|Strange Steam|p2a: Blaziken
+|-supereffective|p2a: Blaziken
+|-damage|p2a: Blaziken|0 fnt
+|faint|p2a: Blaziken
+|
+|upkeep
+|
+|switch|p2a: Alomomola|Alomomola, M|54/100
+|turn|54
+|
+|switch|p2a: Slowking|Slowking-Galar, M|100/100
+|move|p1a: Weezing|Strange Steam|p2a: Slowking
+|-resisted|p2a: Slowking
+|-damage|p2a: Slowking|92/100
+|-start|p2a: Slowking|confusion
+|
+|upkeep
+|turn|55
+|
+|move|p1a: Weezing|Strange Steam|p2a: Slowking
+|-resisted|p2a: Slowking
+|-damage|p2a: Slowking|84/100
+|-activate|p2a: Slowking|confusion
+|-damage|p2a: Slowking|79/100|[from] confusion
+|
+|upkeep
+|turn|56
+|
+|move|p1a: Weezing|Strange Steam|p2a: Slowking
+|-resisted|p2a: Slowking
+|-damage|p2a: Slowking|71/100
+|-prepare|p2a: Slowking|Chilly Reception|[premajor]
+|-activate|p2a: Slowking|confusion
+|-damage|p2a: Slowking|65/100|[from] confusion
+|
+|upkeep
+|turn|57
+|
+|move|p1a: Weezing|Strange Steam|p2a: Slowking
+|-resisted|p2a: Slowking
+|-damage|p2a: Slowking|57/100
+|-activate|p2a: Slowking|confusion
+|move|p2a: Slowking|Sludge Bomb|p1a: Weezing
+|-damage|p1a: Weezing|0 fnt
+|faint|p1a: Weezing
+|-end|p1a: Weezing|ability: Neutralizing Gas
+|
+|upkeep
+|
+|switch|p1a: Slowking|Slowking-Galar, F|393/393
+|turn|58
+|
+|switch|p2a: Weezing|Weezing-Galar, M|20/100
+|-ability|p2a: Weezing|Neutralizing Gas
+|move|p1a: Slowking|Future Sight|p2a: Weezing
+|-start|p1a: Slowking|move: Future Sight
+|
+|upkeep
+|turn|59
+|
+|-end|p2a: Weezing|ability: Neutralizing Gas
+|switch|p2a: Slowking|Slowking-Galar, M|91/100
+|move|p1a: Slowking|Future Sight||[still]
+|-fail|p1a: Slowking
+|
+|upkeep
+|turn|60
+|
+|move|p2a: Slowking|Sludge Bomb|p1a: Slowking
+|-resisted|p1a: Slowking
+|-damage|p1a: Slowking|351/393
+|move|p1a: Slowking|Future Sight||[still]
+|-fail|p1a: Slowking
+|
+|-end|p2a: Slowking|move: Future Sight
+|-damage|p2a: Slowking|65/100
+|upkeep
+|turn|61
+|
+|switch|p2a: Weezing|Weezing-Galar, M|20/100
+|-ability|p2a: Weezing|Neutralizing Gas
+|move|p1a: Slowking|Future Sight|p2a: Weezing
+|-start|p1a: Slowking|move: Future Sight
+|
+|upkeep
+|turn|62
+|
+|-end|p2a: Weezing|ability: Neutralizing Gas
+|switch|p2a: Slowking|Slowking-Galar, M|99/100
+|move|p1a: Slowking|Future Sight||[still]
+|-fail|p1a: Slowking
+|
+|upkeep
+|turn|63
+|
+|move|p1a: Slowking|Future Sight||[still]
+|-fail|p1a: Slowking
+|move|p2a: Slowking|Future Sight|p1a: Slowking
+|-start|p2a: Slowking|move: Future Sight
+|
+|-end|p2a: Slowking|move: Future Sight
+|-damage|p2a: Slowking|73/100
+|upkeep
+|turn|64
+|
+|move|p1a: Slowking|Future Sight|p2a: Slowking
+|-start|p1a: Slowking|move: Future Sight
+|-prepare|p2a: Slowking|Chilly Reception|[premajor]
+|move|p2a: Slowking|Chilly Reception|p2a: Slowking
+|-weather|Snowscape
+|
+|switch|p2a: Weezing|Weezing-Galar, M|20/100|[from] Chilly Reception
+|-ability|p2a: Weezing|Neutralizing Gas
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|65
+|
+|move|p2a: Weezing|Strange Steam|p1a: Slowking
+|-resisted|p1a: Slowking
+|-damage|p1a: Slowking|319/393
+|move|p1a: Slowking|Future Sight||[still]
+|-fail|p1a: Slowking
+|
+|-weather|Snowscape|[upkeep]
+|-end|p1a: Slowking|move: Future Sight
+|-damage|p1a: Slowking|225/393
+|upkeep
+|turn|66
+|
+|-end|p2a: Weezing|ability: Neutralizing Gas
+|switch|p2a: Slowking|Slowking-Galar, M|100/100
+|move|p1a: Slowking|Future Sight||[still]
+|-fail|p1a: Slowking
+|
+|-weather|Snowscape|[upkeep]
+|-end|p2a: Slowking|move: Future Sight
+|-damage|p2a: Slowking|75/100
+|upkeep
+|turn|67
+|
+|move|p2a: Slowking|Ice Beam|p1a: Slowking
+|-damage|p1a: Slowking|174/393
+|move|p1a: Slowking|Future Sight|p2a: Slowking
+|-start|p1a: Slowking|move: Future Sight
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|68
+|
+|move|p2a: Slowking|Future Sight|p1a: Slowking
+|-start|p2a: Slowking|move: Future Sight
+|move|p1a: Slowking|Future Sight||[still]
+|-fail|p1a: Slowking
+|
+|-weather|none
+|upkeep
+|turn|69
+|
+|move|p1a: Slowking|Future Sight||[still]
+|-fail|p1a: Slowking
+|move|p2a: Slowking|Ice Beam|p1a: Slowking
+|-damage|p1a: Slowking|122/393
+|
+|-end|p2a: Slowking|move: Future Sight
+|-damage|p2a: Slowking|46/100
+|upkeep
+|turn|70
+|
+|move|p1a: Slowking|Future Sight|p2a: Slowking
+|-start|p1a: Slowking|move: Future Sight
+|move|p2a: Slowking|Future Sight||[still]
+|-fail|p2a: Slowking
+|
+|-end|p1a: Slowking|move: Future Sight
+|-damage|p1a: Slowking|16/393
+|upkeep
+|turn|71
+|
+|move|p1a: Slowking|Future Sight||[still]
+|-fail|p1a: Slowking
+|move|p2a: Slowking|Future Sight|p1a: Slowking
+|-start|p2a: Slowking|move: Future Sight
+|
+|upkeep
+|turn|72
+|
+|move|p1a: Slowking|Ice Beam|p2a: Slowking
+|-damage|p2a: Slowking|32/100
+|move|p2a: Slowking|Sludge Bomb|p1a: Slowking
+|-resisted|p1a: Slowking
+|-damage|p1a: Slowking|0 fnt
+|faint|p1a: Slowking
+|
+|-end|p2a: Slowking|move: Future Sight
+|-damage|p2a: Slowking|7/100
+|upkeep
+|
+|switch|p1a: Alomomola|Alomomola, F|473/473
+|turn|73
+|
+|move|p1a: Alomomola|Protect|p1a: Alomomola
+|-singleturn|p1a: Alomomola|Protect
+|move|p2a: Slowking|Ice Beam|p1a: Alomomola
+|-activate|p1a: Alomomola|move: Protect
+|
+|-end|p1a: Alomomola|move: Future Sight
+|-damage|p1a: Alomomola|286/473
+|upkeep
+|turn|74
+|
+|move|p1a: Alomomola|Protect||[still]
+|-fail|p1a: Alomomola
+|move|p2a: Slowking|Sludge Bomb|p1a: Alomomola
+|-damage|p1a: Alomomola|151/473
+|-status|p1a: Alomomola|psn
+|
+|-damage|p1a: Alomomola|92/473 psn|[from] psn
+|upkeep
+|turn|75
+|
+|move|p1a: Alomomola|Protect|p1a: Alomomola
+|-singleturn|p1a: Alomomola|Protect
+|move|p2a: Slowking|Sludge Bomb|p1a: Alomomola
+|-activate|p1a: Alomomola|move: Protect
+|
+|-damage|p1a: Alomomola|33/473 psn|[from] psn
+|upkeep
+|turn|76
+|
+|move|p1a: Alomomola|Protect|p1a: Alomomola
+|-singleturn|p1a: Alomomola|Protect
+|move|p2a: Slowking|Future Sight|p1a: Alomomola
+|-start|p2a: Slowking|move: Future Sight
+|
+|-damage|p1a: Alomomola|0 fnt|[from] psn
+|faint|p1a: Alomomola
+|upkeep
+|
+|switch|p1a: Rillaboom|Rillaboom, M|341/341
+|-fieldstart|move: Grassy Terrain|[from] ability: Grassy Surge|[of] p1a: Rillaboom
+|turn|77
+|
+|switch|p2a: Alomomola|Alomomola, M|54/100
+|move|p1a: Rillaboom|U-turn|p2a: Alomomola
+|-damage|p2a: Alomomola|31/100
+|
+|switch|p1a: Blaziken|Blaziken, F|305/305|[from] U-turn
+|
+|-heal|p2a: Alomomola|37/100|[from] Grassy Terrain
+|upkeep
+|turn|78
+|
+|move|p2a: Alomomola|Protect|p2a: Alomomola
+|-singleturn|p2a: Alomomola|Protect
+|move|p1a: Blaziken|Close Combat|p2a: Alomomola
+|-activate|p2a: Alomomola|move: Protect
+|
+|-end|p1a: Blaziken|move: Future Sight
+|-supereffective|p1a: Blaziken
+|-damage|p1a: Blaziken|0 fnt
+|faint|p1a: Blaziken
+|-heal|p2a: Alomomola|44/100|[from] Grassy Terrain
+|upkeep
+|
+|switch|p1a: Rillaboom|Rillaboom, M|341/341
+|turn|79
+|
+|switch|p2a: Slowking|Slowking-Galar, M|40/100
+|move|p1a: Rillaboom|U-turn|p2a: Slowking
+|-damage|p2a: Slowking|2/100
+|
+|-heal|p2a: Slowking|8/100|[from] Grassy Terrain
+|upkeep
+|turn|80
+|
+|switch|p2a: Weezing|Weezing-Galar, M|20/100
+|-ability|p2a: Weezing|Neutralizing Gas
+|move|p1a: Rillaboom|U-turn|p2a: Weezing
+|-resisted|p2a: Weezing
+|-damage|p2a: Weezing|13/100
+|
+|-heal|p2a: Weezing|19/100|[from] Grassy Terrain
+|upkeep
+|turn|81
+|
+|move|p1a: Rillaboom|U-turn|p2a: Weezing
+|-resisted|p2a: Weezing
+|-damage|p2a: Weezing|12/100
+|move|p2a: Weezing|Defog|p1a: Rillaboom
+|-unboost|p1a: Rillaboom|evasion|1
+|-fieldend|move: Grassy Terrain
+|
+|upkeep
+|turn|82
+|
+|-end|p2a: Weezing|ability: Neutralizing Gas
+|-fieldstart|move: Grassy Terrain|[from] ability: Grassy Surge|[of] p1a: Rillaboom
+|switch|p2a: Alomomola|Alomomola, M|77/100
+|move|p1a: Rillaboom|U-turn|p2a: Alomomola
+|-damage|p2a: Alomomola|52/100
+|
+|-heal|p2a: Alomomola|58/100|[from] Grassy Terrain
+|upkeep
+|turn|83
+|
+|move|p1a: Rillaboom|U-turn|p2a: Alomomola
+|-damage|p2a: Alomomola|33/100
+|move|p2a: Alomomola|Wish|p2a: Alomomola
+|
+|-heal|p2a: Alomomola|39/100|[from] Grassy Terrain
+|upkeep
+|turn|84
+|
+|move|p2a: Alomomola|Protect|p2a: Alomomola
+|-singleturn|p2a: Alomomola|Protect
+|move|p1a: Rillaboom|U-turn|p2a: Alomomola
+|-activate|p2a: Alomomola|move: Protect
+|
+|-heal|p2a: Alomomola|89/100|[from] move: Wish|[wisher] Alomomola
+|-heal|p2a: Alomomola|95/100|[from] Grassy Terrain
+|upkeep
+|turn|85
+|
+|move|p2a: Alomomola|Protect||[still]
+|-fail|p2a: Alomomola
+|move|p1a: Rillaboom|U-turn|p2a: Alomomola
+|-damage|p2a: Alomomola|74/100
+|
+|-heal|p2a: Alomomola|80/100|[from] Grassy Terrain
+|upkeep
+|turn|86
+|
+|move|p1a: Rillaboom|U-turn|p2a: Alomomola
+|-damage|p2a: Alomomola|58/100
+|move|p2a: Alomomola|Tickle|p1a: Rillaboom
+|-unboost|p1a: Rillaboom|atk|1
+|-unboost|p1a: Rillaboom|def|1
+|
+|-heal|p2a: Alomomola|64/100|[from] Grassy Terrain
+|-fieldend|move: Grassy Terrain
+|upkeep
+|turn|87
+|
+|move|p1a: Rillaboom|U-turn|p2a: Alomomola
+|-damage|p2a: Alomomola|47/100
+|move|p2a: Alomomola|Tickle|p1a: Rillaboom
+|-unboost|p1a: Rillaboom|atk|1
+|-unboost|p1a: Rillaboom|def|1
+|
+|upkeep
+|turn|88
+|
+|switch|p2a: Weezing|Weezing-Galar, M|12/100
+|-ability|p2a: Weezing|Neutralizing Gas
+|move|p1a: Rillaboom|U-turn|p2a: Weezing
+|-resisted|p2a: Weezing
+|-damage|p2a: Weezing|8/100
+|
+|upkeep
+|turn|89
+|
+|move|p1a: Rillaboom|U-turn|p2a: Weezing
+|-resisted|p2a: Weezing
+|-damage|p2a: Weezing|4/100
+|move|p2a: Weezing|Pain Split|p1a: Rillaboom
+|-sethp|p1a: Rillaboom|177/341|[from] move: Pain Split|[silent]
+|-sethp|p2a: Weezing|54/100|[from] move: Pain Split
+|
+|upkeep
+|turn|90
+|
+|move|p1a: Rillaboom|U-turn|p2a: Weezing
+|-resisted|p2a: Weezing
+|-damage|p2a: Weezing|50/100
+|move|p2a: Weezing|Strange Steam|p1a: Rillaboom
+|-damage|p1a: Rillaboom|44/341
+|
+|upkeep
+|turn|91
+|
+|move|p1a: Rillaboom|U-turn|p2a: Weezing
+|-resisted|p2a: Weezing
+|-damage|p2a: Weezing|46/100
+|move|p2a: Weezing|Strange Steam|p1a: Rillaboom
+|-damage|p1a: Rillaboom|0 fnt
+|faint|p1a: Rillaboom
+|
+    </script>
+</div>
+
+<div class="battle-log battle-log-inline" style="display:none"></div>
+
+<script>
+    let daily = Math.floor(Date.now() / 1000 / 60 / 60 / 24); document.write('<script src="https://play.pokemonshowdown.com/js/replay-embed.js?version' + daily + '"></' + 'script>');
+</script>
+
+<p style="text-align:center"> Replay created by <a href="https://github.com/hsahovic/poke-env">poke-env</a>, with code from <a
+        href="https://github.com/smogon/pokemon-showdown"> pokemon-showdown</a>. If something goes wrong, don't hesitate
+    to open an <a href="https://github.com/hsahovic/poke-env/issues">issue!</a></p>

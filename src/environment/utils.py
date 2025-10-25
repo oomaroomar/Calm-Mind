@@ -7,6 +7,17 @@ from poke_env.battle.move import Move
 
 def action_masker(battle: Battle, action_space: Discrete = Discrete(14)) -> np.ndarray:
     mask = np.zeros(action_space.n)
+
+    # Safety check: if battle is finished or only default orders available, return all zeros
+    # This signals that no actions are valid (environment should reset)
+    if battle.finished:
+        return mask
+    if not battle.valid_orders or (
+        len(battle.valid_orders) == 1
+        and str(battle.valid_orders[0]) == "/choose default"
+    ):
+        return mask
+
     # switches
     team = list(battle.team.values())
     switch_indices = [

@@ -3,14 +3,15 @@ import numpy as np
 import numpy.typing as npt
 
 from poke_env.battle.abstract_battle import AbstractBattle
-from poke_env.environment.single_agent_wrapper import SingleAgentWrapper
 from poke_env.player.baselines import RandomPlayer
 from poke_env.player.player import Player
+from poke_env.ps_client.account_configuration import AccountConfiguration
 from stable_baselines3.common.vec_env import DummyVecEnv
 from sb3_contrib.ppo_mask import MaskablePPO
 
 from encoder import Encoder
 from environment.Gen9Env import Gen9Env
+from environment.single_agent_wrapper import MaskedSingleAgentWrapper
 from environment.utils import action_masker
 from teams import TEAMS
 
@@ -30,17 +31,27 @@ class PokemonEnv(Gen9Env):
 
     @classmethod
     def create_single_agent_env(
-        cls, opponent: Player | None = None
-    ) -> SingleAgentWrapper:
+        cls, opponent: Player | None = None, iteration: int = 0
+    ) -> MaskedSingleAgentWrapper:
+        # Add timestamp to usernames to avoid conflicts when rerunning
+        import time
+
+        timestamp = int(time.time()) % 100000
+
         env = cls(
             log_level=25,
             open_timeout=None,
             strict=False,
             team=TEAMS[0],
+            account_configuration1=AccountConfiguration(f"Agent-{timestamp}", None),
+            account_configuration2=AccountConfiguration(f"Opponent-{timestamp}", None),
         )
         # Opponent doesn't need to connect to server - it just provides move choices
-        opponent = opponent or RandomPlayer(start_listening=False)
-        return SingleAgentWrapper(env, opponent)
+        if opponent is None:
+            opponent = RandomPlayer(
+                battle_format="gen9ou", team=TEAMS[0], start_listening=False
+            )
+        return MaskedSingleAgentWrapper(env, opponent)
 
     def embed_battle(self, battle: AbstractBattle):
         return Encoder.embed_battle(battle)
@@ -53,7 +64,8 @@ class PokemonEnv(Gen9Env):
         fainted_value: float = 1.0,
         status_value: float = 0.2,
         number_of_pokemons: int = 6,
-        victory_value: float = 30.0,
+        victory_value: float = 12.0,
+        stat_multiplier: float = 0.01
     ) -> float:
         """
         reward_buffer is the total return thus far
@@ -66,9 +78,9 @@ class PokemonEnv(Gen9Env):
         active_mon = battle.active_pokemon
         stat_diff = 0
         if active_mon is not None:
-            stat_diff = 0.03 * sum(active_mon.boosts.values())
+            stat_diff = stat_multiplier * sum(active_mon.boosts.values())
         if battle.opponent_active_pokemon is not None:
-            stat_diff -= 0.03 * sum(battle.opponent_active_pokemon.boosts.values())
+            stat_diff -= stat_multiplier  * sum(battle.opponent_active_pokemon.boosts.values())
         current_value += stat_diff
 
         ### REWARD FOR TERA ###
