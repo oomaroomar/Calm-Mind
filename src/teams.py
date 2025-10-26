@@ -1,5 +1,67 @@
 TEAMS = [
     """
+Araquanid @ Custap Berry  
+Ability: Water Bubble  
+Tera Type: Ghost  
+EVs: 252 HP / 40 Def / 216 SpA  
+Quiet Nature  
+- Sticky Web  
+- Surf  
+- Endeavor  
+- Lunge  
+
+Ninetales-Alola @ Light Clay  
+Ability: Snow Warning  
+Tera Type: Water  
+EVs: 248 HP / 8 SpA / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Aurora Veil  
+- Encore  
+- Freeze-Dry  
+- Moonblast  
+
+Ceruledge @ Focus Sash  
+Ability: Weak Armor  
+Tera Type: Fighting  
+EVs: 232 HP / 252 Atk / 4 Def / 20 Spe  
+Adamant Nature  
+- Swords Dance  
+- Bitter Blade  
+- Shadow Sneak  
+- Close Combat  
+
+Moltres-Galar @ Leftovers  
+Ability: Berserk  
+Tera Type: Fairy  
+EVs: 16 HP / 252 SpA / 240 Spe  
+Timid Nature  
+- Nasty Plot  
+- Taunt  
+- Fiery Wrath  
+- Tera Blast  
+
+Serperior @ Life Orb  
+Ability: Contrary  
+Tera Type: Fire  
+EVs: 64 HP / 252 SpA / 192 Spe  
+Modest Nature  
+- Leaf Storm  
+- Giga Drain  
+- Tera Blast  
+- Synthesis  
+
+Iron Treads @ Booster Energy  
+Ability: Quark Drive  
+Tera Type: Ice  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Rapid Spin  
+- Knock Off  
+- Ice Spinner  
+- Earthquake  
+    """,
+    """
 Blaziken @ Life Orb  
 Ability: Speed Boost  
 Tera Type: Fighting  
@@ -130,5 +192,5 @@ IVs: 0 Atk
 - Taunt
 - Rain Dance
 - Tailwind
-"""
+""",
 ]

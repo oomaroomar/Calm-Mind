@@ -89,11 +89,12 @@ def create_model(opponent: Player | None = None) -> Tuple[MaskablePPO, PokemonEn
         policy="MlpPolicy",
         env=vec_env,
         learning_rate=1e-3,
-        gamma=0.99,
+        gamma=0.9,
         n_steps=2048,
         batch_size=64,
         n_epochs=10,
         verbose=1,
+        ent_coef=0.05,
     )
     return model, gym_env
 
