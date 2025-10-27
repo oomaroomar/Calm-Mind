@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<!-- version 1 -->
+<title>battle-gen9ou-202025</title>
+<style>
+    html,
+    body {
+        font-family: Verdana, sans-serif;
+        font-size: 10pt;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        padding: 12px 0;
+    }
+
+    .battle-log {
+        font-family: Verdana, sans-serif;
+        font-size: 10pt;
+    }
+
+    .battle-log-inline {
+        border: 1px solid #AAAAAA;
+        background: #EEF2F5;
+        color: black;
+        max-width: 640px;
+        margin: 0 auto 80px;
+        padding-bottom: 5px;
+    }
+
+    .battle-log .inner {
+        padding: 4px 8px 0px 8px;
+    }
+
+    .battle-log .inner-preempt {
+        padding: 0 8px 4px 8px;
+    }
+
+    .battle-log .inner-after {
+        margin-top: 0.5em;
+    }
+
+    .battle-log h2 {
+        margin: 0.5em -8px;
+        padding: 4px 8px;
+        border: 1px solid #AAAAAA;
+        background: #E0E7EA;
+        border-left: 0;
+        border-right: 0;
+        font-family: Verdana, sans-serif;
+        font-size: 13pt;
+    }
+
+    .backprop {
+        top: 0;
+    }
+
+    .battle-log .chat {
+        vertical-align: middle;
+        padding: 3px 0 3px 0;
+        font-size: 8pt;
+    }
+
+    .battle-log .chat strong {
+        color: #40576A;
+    }
+
+    .battle-log .chat em {
+        padding: 1px 4px 1px 3px;
+        color: #000000;
+        font-style: normal;
+    }
+
+    .chat.mine {
+        background: rgba(0, 0, 0, 0.05);
+        margin-left: -8px;
+        margin-right: -8px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .spoiler {
+        color: #BBBBBB;
+        background: #BBBBBB;
+        padding: 0px 3px;
+    }
+
+    .spoiler:hover,
+    .spoiler:active,
+    .spoiler-shown {
+        color: #000000;
+        background: #E2E2E2;
+        padding: 0px 3px;
+    }
+
+    .spoiler a {
+        color: #BBBBBB;
+    }
+
+    .spoiler:hover a,
+    .spoiler:active a,
+    .spoiler-shown a {
+        color: #2288CC;
+    }
+
+    .chat code,
+    .chat .spoiler:hover code,
+    .chat .spoiler:active code,
+    .chat .spoiler-shown code {
+        border: 1px solid #C0C0C0;
+        background: #EEEEEE;
+        color: black;
+        padding: 0 2px;
+    }
+
+    .chat .spoiler code {
+        border: 1px solid #CCCCCC;
+        background: #CCCCCC;
+        color: #CCCCCC;
+    }
+
+    .battle-log .rated {
+        padding: 3px 4px;
+    }
+
+    .battle-log .rated strong {
+        color: white;
+        background: #89A;
+        padding: 1px 4px;
+        border-radius: 4px;
+    }
+
+    .spacer {
+        margin-top: 0.5em;
+    }
+
+    .message-announce {
+        background: #6688AA;
+        color: white;
+        padding: 1px 4px 2px;
+    }
+
+    .message-announce a,
+    .broadcast-green a,
+    .broadcast-blue a,
+    .broadcast-red a {
+        color: #DDEEFF;
+    }
+
+    .broadcast-green {
+        background-color: #559955;
+        color: white;
+        padding: 2px 4px;
+    }
+
+    .broadcast-blue {
+        background-color: #6688AA;
+        color: white;
+        padding: 2px 4px;
+    }
+
+    .infobox {
+        border: 1px solid #6688AA;
+        padding: 2px 4px;
+    }
+
+    .infobox-limited {
+        max-height: 200px;
+        overflow: auto;
+        overflow-x: hidden;
+    }
+
+    .broadcast-red {
+        background-color: #AA5544;
+        color: white;
+        padding: 2px 4px;
+    }
+
+    .message-learn-canlearn {
+        font-weight: bold;
+        color: #228822;
+        text-decoration: underline;
+    }
+
+    .message-learn-cannotlearn {
+        font-weight: bold;
+        color: #CC2222;
+        text-decoration: underline;
+    }
+
+    .message-effect-weak {
+        font-weight: bold;
+        color: #CC2222;
+    }
+
+    .message-effect-resist {
+        font-weight: bold;
+        color: #6688AA;
+    }
+
+    .message-effect-immune {
+        font-weight: bold;
+        color: #666666;
+    }
+
+    .message-learn-list {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .message-throttle-notice,
+    .message-error {
+        color: #992222;
+    }
+
+    .message-overflow,
+    .chat small.message-overflow {
+        font-size: 0pt;
+    }
+
+    .message-overflow::before {
+        font-size: 9pt;
+        content: '...';
+    }
+
+    .subtle {
+        color: #3A4A66;
+    }
+</style>
+<div class="wrapper replay-wrapper" style="max-width:1180px;margin:0 auto">
+    <input type="hidden" name="replayid" value="unregisteredserver-gen8randombattle-320064" />
+    <div class="battle"></div>
+    <div class="battle-log"></div>
+    <div class="replay-controls"></div>
+    <div class="replay-controls-2"></div>
+    <h1 style="font-weight:normal;text-align:center"><strong>poke-env battle replay</strong><br />battle-gen9ou-202025<br /><a
+            href="http://pokemonshowdown.com/users/randomplayer1" class="subtle" target="_blank">RL-Agent-it-21</a>
+        vs. <a href="http://pokemonshowdown.com/users/randomplayer2" class="subtle"
+            target="_blank">Random</a></h1>
+    <script type="text/plain" class="battle-log-data">
+    >battle-gen9ou-202025|init|battle
+|title|RL-Agent-it-21 vs. Random
+|j|☆RL-Agent-it-21
+|j|☆Random
+|gametype|singles
+|player|p1|RL-Agent-it-21|170|
+|player|p2|Random|266|
+|gen|9
+|tier|[Gen 9] OU
+|rule|HP Percentage Mod: HP is shown in percentages
+|rule|Endless Battle Clause: Forcing endless battles is banned
+|rule|Species Clause: Limit one of each Pokémon
+|rule|OHKO Clause: OHKO moves are banned
+|rule|Evasion Items Clause: Evasion items are banned
+|rule|Evasion Moves Clause: Evasion moves are banned
+|rule|Evasion Abilities Clause: Evasion abilities are banned
+|rule|Sleep Moves Clause: Sleep-inducing moves are banned
+|clearpoke
+|poke|p1|Araquanid, M|
+|poke|p1|Ninetales-Alola, F|
+|poke|p1|Ceruledge, F|
+|poke|p1|Moltres-Galar|
+|poke|p1|Serperior, F|
+|poke|p1|Iron Treads|
+|poke|p2|Araquanid, M|
+|poke|p2|Ninetales-Alola, M|
+|poke|p2|Ceruledge, F|
+|poke|p2|Moltres-Galar|
+|poke|p2|Serperior, F|
+|poke|p2|Iron Treads|
+|teampreview
+|
+|teamsize|p1|6
+|teamsize|p2|6
+|start
+|switch|p1a: Iron Treads|Iron Treads|321/321
+|switch|p2a: Moltres|Moltres-Galar|100/100
+|-enditem|p1a: Iron Treads|Booster Energy
+|-activate|p1a: Iron Treads|ability: Quark Drive|[fromitem]
+|-start|p1a: Iron Treads|quarkdrivespe
+|turn|1
+|
+|switch|p2a: Araquanid|Araquanid, M|100/100
+|move|p1a: Iron Treads|Ice Spinner|p2a: Araquanid
+|-resisted|p2a: Araquanid
+|-damage|p2a: Araquanid|88/100
+|
+|upkeep
+|turn|2
+|
+|-end|p1a: Iron Treads|Quark Drive|[silent]
+|switch|p1a: Ninetales|Ninetales-Alola, F|349/349
+|-weather|Snowscape|[from] ability: Snow Warning|[of] p1a: Ninetales
+|move|p2a: Araquanid|Sticky Web|p1a: Ninetales
+|-sidestart|p1: RL-Agent-it-21|move: Sticky Web
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|3
+|
+|switch|p2a: Iron Treads|Iron Treads|100/100
+|-enditem|p2a: Iron Treads|Booster Energy
+|-activate|p2a: Iron Treads|ability: Quark Drive|[fromitem]
+|-start|p2a: Iron Treads|quarkdrivespe
+|-terastallize|p1a: Ninetales|Water
+|move|p1a: Ninetales|Aurora Veil|p1a: Ninetales
+|-sidestart|p1: RL-Agent-it-21|move: Aurora Veil
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|4
+|
+|-end|p2a: Iron Treads|Quark Drive|[silent]
+|switch|p2a: Ninetales|Ninetales-Alola, M|100/100
+|switch|p1a: Araquanid|Araquanid, M|340/340
+|-activate|p1a: Araquanid|move: Sticky Web
+|-unboost|p1a: Araquanid|spe|1
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|5
+|
+|move|p2a: Ninetales|Aurora Veil|p2a: Ninetales
+|-sidestart|p2: Random|move: Aurora Veil
+|move|p1a: Araquanid|Surf|p2a: Ninetales
+|-damage|p2a: Ninetales|76/100
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|6
+|
+|switch|p2a: Iron Treads|Iron Treads|100/100
+|switch|p1a: Moltres|Moltres-Galar|325/325
+|
+|-weather|none
+|upkeep
+|turn|7
+|
+|switch|p1a: Araquanid|Araquanid, M|340/340
+|-activate|p1a: Araquanid|move: Sticky Web
+|-unboost|p1a: Araquanid|spe|1
+|-terastallize|p2a: Iron Treads|Ice
+|move|p2a: Iron Treads|Knock Off|p1a: Araquanid
+|-damage|p1a: Araquanid|289/340
+|-enditem|p1a: Araquanid|Custap Berry|[from] move: Knock Off|[of] p2a: Iron Treads
+|
+|upkeep
+|turn|8
+|
+|-end|p2a: Iron Treads|Quark Drive|[silent]
+|switch|p2a: Moltres|Moltres-Galar|100/100
+|move|p1a: Araquanid|Surf|p2a: Moltres
+|-damage|p2a: Moltres|77/100
+|
+|-heal|p2a: Moltres|84/100|[from] item: Leftovers
+|upkeep
+|turn|9
+|
+|switch|p2a: Ceruledge|Ceruledge, F|100/100
+|switch|p1a: Moltres|Moltres-Galar|325/325
+|
+|upkeep
+|turn|10
+|
+|switch|p1a: Araquanid|Araquanid, M|289/340
+|-activate|p1a: Araquanid|move: Sticky Web
+|-unboost|p1a: Araquanid|spe|1
+|move|p2a: Ceruledge|Bitter Blade|p1a: Araquanid
+|-damage|p1a: Araquanid|241/340
+|
+|-sideend|p1: RL-Agent-it-21|move: Aurora Veil
+|upkeep
+|turn|11
+|
+|move|p2a: Ceruledge|Swords Dance|p2a: Ceruledge
+|-boost|p2a: Ceruledge|atk|2
+|move|p1a: Araquanid|Surf|p2a: Ceruledge
+|-supereffective|p2a: Ceruledge
+|-damage|p2a: Ceruledge|43/100
+|
+|upkeep
+|turn|12
+|
+|switch|p1a: Ninetales|Ninetales-Alola, F, tera:Water|349/349
+|-activate|p1a: Ninetales|move: Sticky Web
+|-unboost|p1a: Ninetales|spe|1
+|-weather|Snowscape|[from] ability: Snow Warning|[of] p1a: Ninetales
+|move|p2a: Ceruledge|Swords Dance|p2a: Ceruledge
+|-boost|p2a: Ceruledge|atk|2
+|
+|-weather|Snowscape|[upkeep]
+|-sideend|p2: Random|move: Aurora Veil
+|upkeep
+|turn|13
+|
+|switch|p1a: Araquanid|Araquanid, M|241/340
+|-activate|p1a: Araquanid|move: Sticky Web
+|-unboost|p1a: Araquanid|spe|1
+|move|p2a: Ceruledge|Close Combat|p1a: Araquanid
+|-resisted|p1a: Araquanid
+|-damage|p1a: Araquanid|7/340
+|-unboost|p2a: Ceruledge|def|1
+|-unboost|p2a: Ceruledge|spd|1
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|14
+|
+|switch|p2a: Araquanid|Araquanid, M|88/100
+|switch|p1a: Ninetales|Ninetales-Alola, F, tera:Water|349/349
+|-activate|p1a: Ninetales|move: Sticky Web
+|-unboost|p1a: Ninetales|spe|1
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|15
+|
+|switch|p1a: Serperior|Serperior, F|307/307
+|-activate|p1a: Serperior|move: Sticky Web
+|-boost|p1a: Serperior|spe|1
+|switch|p2a: Ninetales|Ninetales-Alola, M|76/100
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|16
+|
+|switch|p2a: Ceruledge|Ceruledge, F|43/100
+|move|p1a: Serperior|Synthesis|p1a: Serperior
+|-fail|p1a: Serperior|heal
+|
+|-weather|none
+|upkeep
+|turn|17
+|
+|switch|p1a: Ninetales|Ninetales-Alola, F, tera:Water|349/349
+|-activate|p1a: Ninetales|move: Sticky Web
+|-unboost|p1a: Ninetales|spe|1
+|-weather|Snowscape|[from] ability: Snow Warning|[of] p1a: Ninetales
+|switch|p2a: Ninetales|Ninetales-Alola, M|76/100
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|18
+|
+|switch|p1a: Araquanid|Araquanid, M|7/340
+|-activate|p1a: Araquanid|move: Sticky Web
+|-unboost|p1a: Araquanid|spe|1
+|move|p2a: Ninetales|Encore||[still]
+|-fail|p2a: Ninetales
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|19
+|
+|switch|p1a: Iron Treads|Iron Treads|321/321
+|-activate|p1a: Iron Treads|move: Sticky Web
+|-unboost|p1a: Iron Treads|spe|1
+|move|p2a: Ninetales|Aurora Veil|p2a: Ninetales
+|-sidestart|p2: Random|move: Aurora Veil
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|20
+|
+|switch|p2a: Iron Treads|Iron Treads, tera:Ice|100/100
+|move|p1a: Iron Treads|Ice Spinner|p2a: Iron Treads
+|-resisted|p2a: Iron Treads
+|-damage|p2a: Iron Treads|97/100
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|21
+|
+|-end|p2a: Iron Treads|Quark Drive|[silent]
+|switch|p2a: Ninetales|Ninetales-Alola, M|76/100
+|move|p1a: Iron Treads|Knock Off|p2a: Ninetales
+|-resisted|p2a: Ninetales
+|-damage|p2a: Ninetales|70/100
+|-enditem|p2a: Ninetales|Light Clay|[from] move: Knock Off|[of] p1a: Iron Treads
+|
+|-weather|none
+|upkeep
+|turn|22
+|
+|move|p2a: Ninetales|Encore|p1a: Iron Treads
+|-start|p1a: Iron Treads|Encore
+|move|p1a: Iron Treads|Knock Off|p2a: Ninetales
+|-resisted|p2a: Ninetales
+|-damage|p2a: Ninetales|64/100
+|
+|upkeep
+|turn|23
+|
+|-end|p1a: Iron Treads|Quark Drive|[silent]
+|switch|p1a: Araquanid|Araquanid, M|7/340
+|-activate|p1a: Araquanid|move: Sticky Web
+|-unboost|p1a: Araquanid|spe|1
+|move|p2a: Ninetales|Aurora Veil||[still]
+|-fail|p2a: Ninetales
+|
+|upkeep
+|turn|24
+|
+|move|p2a: Ninetales|Encore||[still]
+|-fail|p2a: Ninetales
+|move|p1a: Araquanid|Surf|p2a: Ninetales
+|-damage|p2a: Ninetales|37/100
+|
+|upkeep
+|turn|25
+|
+|switch|p2a: Serperior|Serperior, F|100/100
+|move|p1a: Araquanid|Surf|p2a: Serperior
+|-resisted|p2a: Serperior
+|-crit|p2a: Serperior
+|-damage|p2a: Serperior|52/100
+|
+|upkeep
+|turn|26
+|
+|move|p2a: Serperior|Giga Drain|p1a: Araquanid
+|-damage|p1a: Araquanid|0 fnt
+|-heal|p2a: Serperior|54/100|[from] drain|[of] p1a: Araquanid
+|faint|p1a: Araquanid
+|-damage|p2a: Serperior|44/100|[from] item: Life Orb
+|
+|-sideend|p2: Random|move: Aurora Veil
+|upkeep
+|
+|switch|p1a: Ninetales|Ninetales-Alola, F, tera:Water|349/349
+|-activate|p1a: Ninetales|move: Sticky Web
+|-unboost|p1a: Ninetales|spe|1
+|-weather|Snowscape|[from] ability: Snow Warning|[of] p1a: Ninetales
+|turn|27
+|
+|move|p2a: Serperior|Giga Drain|p1a: Ninetales
+|-supereffective|p1a: Ninetales
+|-damage|p1a: Ninetales|76/349
+|-heal|p2a: Serperior|88/100|[from] drain|[of] p1a: Ninetales
+|-damage|p2a: Serperior|79/100|[from] item: Life Orb
+|move|p1a: Ninetales|Aurora Veil|p1a: Ninetales
+|-sidestart|p1: RL-Agent-it-21|move: Aurora Veil
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|28
+|
+|move|p2a: Serperior|Synthesis|p2a: Serperior
+|-heal|p2a: Serperior|100/100
+|move|p1a: Ninetales|Freeze-Dry|p2a: Serperior
+|-supereffective|p2a: Serperior
+|-damage|p2a: Serperior|49/100
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|29
+|
+|move|p2a: Serperior|Synthesis|p2a: Serperior
+|-heal|p2a: Serperior|74/100
+|move|p1a: Ninetales|Aurora Veil||[still]
+|-fail|p1a: Ninetales
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|30
+|
+|switch|p1a: Moltres|Moltres-Galar|325/325
+|move|p2a: Serperior|Giga Drain|p1a: Moltres
+|-resisted|p1a: Moltres
+|-damage|p1a: Moltres|300/325
+|-heal|p2a: Serperior|78/100|[from] drain|[of] p1a: Moltres
+|-damage|p2a: Serperior|69/100|[from] item: Life Orb
+|
+|-weather|Snowscape|[upkeep]
+|-heal|p1a: Moltres|320/325|[from] item: Leftovers
+|upkeep
+|turn|31
+|
+|move|p2a: Serperior|Leaf Storm|p1a: Moltres
+|-resisted|p1a: Moltres
+|-damage|p1a: Moltres|271/325
+|-boost|p2a: Serperior|spa|2
+|-damage|p2a: Serperior|59/100|[from] item: Life Orb
+|move|p1a: Moltres|Fiery Wrath|p2a: Serperior
+|-damage|p2a: Serperior|14/100
+|
+|-weather|none
+|-heal|p1a: Moltres|291/325|[from] item: Leftovers
+|upkeep
+|turn|32
+|
+|switch|p2a: Moltres|Moltres-Galar|84/100
+|move|p1a: Moltres|Taunt|p2a: Moltres
+|-start|p2a: Moltres|move: Taunt
+|
+|-heal|p2a: Moltres|90/100|[from] item: Leftovers
+|-heal|p1a: Moltres|311/325|[from] item: Leftovers
+|upkeep
+|turn|33
+|
+|switch|p2a: Araquanid|Araquanid, M|88/100
+|move|p1a: Moltres|Tera Blast|p2a: Araquanid
+|-damage|p2a: Araquanid|71/100
+|
+|-heal|p1a: Moltres|325/325|[from] item: Leftovers
+|upkeep
+|turn|34
+|
+|move|p1a: Moltres|Fiery Wrath|p2a: Araquanid
+|-damage|p2a: Araquanid|42/100
+|move|p2a: Araquanid|Endeavor|p1a: Moltres
+|-damage|p1a: Moltres|140/325
+|-ability|p1a: Moltres|Berserk|boost
+|-boost|p1a: Moltres|spa|1
+|
+|-heal|p1a: Moltres|160/325|[from] item: Leftovers
+|-sideend|p1: RL-Agent-it-21|move: Aurora Veil
+|upkeep
+|turn|35
+|
+|switch|p2a: Iron Treads|Iron Treads, tera:Ice|97/100
+|move|p1a: Moltres|Fiery Wrath|p2a: Iron Treads
+|-damage|p2a: Iron Treads|12/100
+|
+|-heal|p1a: Moltres|180/325|[from] item: Leftovers
+|upkeep
+|turn|36
+|
+|-end|p2a: Iron Treads|Quark Drive|[silent]
+|switch|p2a: Serperior|Serperior, F|14/100
+|move|p1a: Moltres|Taunt|p2a: Serperior
+|-start|p2a: Serperior|move: Taunt
+|
+|-heal|p1a: Moltres|200/325|[from] item: Leftovers
+|upkeep
+|turn|37
+|
+|move|p2a: Serperior|Leaf Storm|p1a: Moltres
+|-resisted|p1a: Moltres
+|-crit|p1a: Moltres
+|-damage|p1a: Moltres|67/325
+|-boost|p2a: Serperior|spa|2
+|-ability|p1a: Moltres|Berserk|boost
+|-boost|p1a: Moltres|spa|1
+|-damage|p2a: Serperior|4/100|[from] item: Life Orb
+|move|p1a: Moltres|Fiery Wrath|p2a: Serperior
+|-damage|p2a: Serperior|0 fnt
+|faint|p2a: Serperior
+|
+|-heal|p1a: Moltres|87/325|[from] item: Leftovers
+|upkeep
+|
+|switch|p2a: Iron Treads|Iron Treads, tera:Ice|12/100
+|turn|38
+|
+|switch|p1a: Ninetales|Ninetales-Alola, F, tera:Water|76/349
+|-activate|p1a: Ninetales|move: Sticky Web
+|-unboost|p1a: Ninetales|spe|1
+|-weather|Snowscape|[from] ability: Snow Warning|[of] p1a: Ninetales
+|move|p2a: Iron Treads|Earthquake|p1a: Ninetales
+|-crit|p1a: Ninetales
+|-damage|p1a: Ninetales|0 fnt
+|faint|p1a: Ninetales
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|
+|switch|p1a: Moltres|Moltres-Galar|87/325
+|turn|39
+|
+|move|p2a: Iron Treads|Knock Off|p1a: Moltres
+|-resisted|p1a: Moltres
+|-damage|p1a: Moltres|28/325
+|-enditem|p1a: Moltres|Leftovers|[from] move: Knock Off|[of] p2a: Iron Treads
+|move|p1a: Moltres|Taunt|p2a: Iron Treads
+|-start|p2a: Iron Treads|move: Taunt
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|40
+|
+|-end|p2a: Iron Treads|Quark Drive|[silent]
+|switch|p2a: Araquanid|Araquanid, M|42/100
+|move|p1a: Moltres|Nasty Plot|p1a: Moltres
+|-boost|p1a: Moltres|spa|2
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|41
+|
+|move|p1a: Moltres|Taunt|p2a: Araquanid
+|-start|p2a: Araquanid|move: Taunt
+|move|p2a: Araquanid|Endeavor|p1a: Moltres
+|-immune|p1a: Moltres
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|42
+|
+|switch|p2a: Ninetales|Ninetales-Alola, M|37/100
+|move|p1a: Moltres|Nasty Plot|p1a: Moltres
+|-boost|p1a: Moltres|spa|2
+|
+|-weather|none
+|upkeep
+|turn|43
+|
+|move|p2a: Ninetales|Encore|p1a: Moltres
+|-start|p1a: Moltres|Encore
+|move|p1a: Moltres|Nasty Plot|p1a: Moltres
+|-boost|p1a: Moltres|spa|2
+|
+|upkeep
+|turn|44
+|
+|move|p2a: Ninetales|Freeze-Dry|p1a: Moltres
+|-supereffective|p1a: Moltres
+|-damage|p1a: Moltres|0 fnt
+|faint|p1a: Moltres
+|
+|upkeep
+|
+|switch|p1a: Serperior|Serperior, F|307/307
+|-activate|p1a: Serperior|move: Sticky Web
+|-boost|p1a: Serperior|spe|1
+|turn|45
+|
+|switch|p2a: Iron Treads|Iron Treads, tera:Ice|12/100
+|move|p1a: Serperior|Giga Drain|p2a: Iron Treads
+|-damage|p2a: Iron Treads|0 fnt
+|faint|p2a: Iron Treads
+|-end|p2a: Iron Treads|Quark Drive|[silent]
+|-damage|p1a: Serperior|277/307|[from] item: Life Orb
+|
+|upkeep
+|
+|switch|p2a: Moltres|Moltres-Galar|90/100
+|turn|46
+|
+|move|p1a: Serperior|Giga Drain|p2a: Moltres
+|-resisted|p2a: Moltres
+|-damage|p2a: Moltres|74/100
+|-heal|p1a: Serperior|303/307|[from] drain|[of] p2a: Moltres
+|-damage|p1a: Serperior|273/307|[from] item: Life Orb
+|move|p2a: Moltres|Fiery Wrath|p1a: Serperior
+|-damage|p1a: Serperior|144/307
+|
+|-heal|p2a: Moltres|80/100|[from] item: Leftovers
+|upkeep
+|turn|47
+|
+|switch|p2a: Araquanid|Araquanid, M|42/100
+|move|p1a: Serperior|Leaf Storm|p2a: Araquanid
+|-damage|p2a: Araquanid|0 fnt
+|-boost|p1a: Serperior|spa|2
+|faint|p2a: Araquanid
+|-damage|p1a: Serperior|114/307|[from] item: Life Orb
+|
+|upkeep
+|
+|switch|p2a: Ceruledge|Ceruledge, F|43/100
+|turn|48
+|
+|move|p1a: Serperior|Leaf Storm|p2a: Ceruledge|[miss]
+|-miss|p1a: Serperior|p2a: Ceruledge
+|move|p2a: Ceruledge|Bitter Blade|p1a: Serperior
+|-supereffective|p1a: Serperior
+|-damage|p1a: Serperior|0 fnt
+|-heal|p2a: Ceruledge|59/100|[from] drain|[of] p1a: Serperior
+|faint|p1a: Serperior
+|
+|upkeep
+|
+|switch|p1a: Iron Treads|Iron Treads|321/321
+|-activate|p1a: Iron Treads|move: Sticky Web
+|-unboost|p1a: Iron Treads|spe|1
+|turn|49
+|
+|switch|p2a: Ninetales|Ninetales-Alola, M|37/100
+|-weather|Snowscape|[from] ability: Snow Warning|[of] p2a: Ninetales
+|move|p1a: Iron Treads|Knock Off|p2a: Ninetales
+|-resisted|p2a: Ninetales
+|-damage|p2a: Ninetales|29/100
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|50
+|
+|move|p2a: Ninetales|Encore|p1a: Iron Treads
+|-start|p1a: Iron Treads|Encore
+|move|p1a: Iron Treads|Knock Off|p2a: Ninetales
+|-resisted|p2a: Ninetales
+|-damage|p2a: Ninetales|21/100
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|51
+|
+|move|p2a: Ninetales|Encore||[still]
+|-fail|p2a: Ninetales
+|move|p1a: Iron Treads|Knock Off|p2a: Ninetales
+|-resisted|p2a: Ninetales
+|-damage|p2a: Ninetales|12/100
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|52
+|
+|move|p2a: Ninetales|Encore||[still]
+|-fail|p2a: Ninetales
+|move|p1a: Iron Treads|Knock Off|p2a: Ninetales
+|-resisted|p2a: Ninetales
+|-damage|p2a: Ninetales|4/100
+|
+|-weather|Snowscape|[upkeep]
+|-end|p1a: Iron Treads|Encore
+|upkeep
+|turn|53
+|
+|switch|p2a: Moltres|Moltres-Galar|80/100
+|move|p1a: Iron Treads|Knock Off|p2a: Moltres
+|-resisted|p2a: Moltres
+|-damage|p2a: Moltres|62/100
+|-enditem|p2a: Moltres|Leftovers|[from] move: Knock Off|[of] p1a: Iron Treads
+|
+|-weather|none
+|upkeep
+|turn|54
+|
+|switch|p2a: Ninetales|Ninetales-Alola, M|4/100
+|-weather|Snowscape|[from] ability: Snow Warning|[of] p2a: Ninetales
+|move|p1a: Iron Treads|Ice Spinner|p2a: Ninetales
+|-resisted|p2a: Ninetales
+|-damage|p2a: Ninetales|0 fnt
+|faint|p2a: Ninetales
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|
+|switch|p2a: Ceruledge|Ceruledge, F|59/100
+|turn|55
+|
+|move|p1a: Iron Treads|Ice Spinner|p2a: Ceruledge
+|-resisted|p2a: Ceruledge
+|-damage|p2a: Ceruledge|45/100
+|-ability|p2a: Ceruledge|Weak Armor|boost
+|-unboost|p2a: Ceruledge|def|1
+|-boost|p2a: Ceruledge|spe|2
+|move|p2a: Ceruledge|Swords Dance|p2a: Ceruledge
+|-boost|p2a: Ceruledge|atk|2
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|56
+|
+|move|p2a: Ceruledge|Shadow Sneak|p1a: Iron Treads
+|-damage|p1a: Iron Treads|179/321
+|move|p1a: Iron Treads|Knock Off|p2a: Ceruledge
+|-supereffective|p2a: Ceruledge
+|-damage|p2a: Ceruledge|0 fnt
+|-enditem|p2a: Ceruledge|Focus Sash|[from] move: Knock Off|[of] p1a: Iron Treads
+|faint|p2a: Ceruledge
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|
+|switch|p2a: Moltres|Moltres-Galar|62/100
+|turn|57
+|
+|move|p2a: Moltres|Taunt|p1a: Iron Treads
+|-start|p1a: Iron Treads|move: Taunt
+|move|p1a: Iron Treads|Rapid Spin|p2a: Moltres
+|-damage|p2a: Moltres|43/100
+|-boost|p1a: Iron Treads|spe|1
+|-sideend|p1: RL-Agent-it-21|Sticky Web|[from] move: Rapid Spin|[of] p1a: Iron Treads
+|-ability|p2a: Moltres|Berserk|boost
+|-boost|p2a: Moltres|spa|1
+|
+|-weather|Snowscape|[upkeep]
+|upkeep
+|turn|58
+|
+|move|p1a: Iron Treads|Knock Off|p2a: Moltres
+|-resisted|p2a: Moltres
+|-damage|p2a: Moltres|32/100
+|move|p2a: Moltres|Nasty Plot|p2a: Moltres
+|-boost|p2a: Moltres|spa|2
+|
+|-weather|none
+|upkeep
+|turn|59
+|
+|move|p1a: Iron Treads|Knock Off|p2a: Moltres
+|-resisted|p2a: Moltres
+|-damage|p2a: Moltres|20/100
+|move|p2a: Moltres|Fiery Wrath|p1a: Iron Treads
+|-damage|p1a: Iron Treads|0 fnt
+|faint|p1a: Iron Treads
+|-end|p1a: Iron Treads|Quark Drive|[silent]
+|
+|upkeep
+|
+|switch|p1a: Ceruledge|Ceruledge, F|349/349
+|turn|60
+|
+|move|p2a: Moltres|Nasty Plot|p2a: Moltres
+|-boost|p2a: Moltres|spa|2
+|move|p1a: Ceruledge|Bitter Blade|p2a: Moltres
+|-damage|p2a: Moltres|0 fnt
+|faint|p2a: Moltres
+|
+    </script>
+</div>
+
+<div class="battle-log battle-log-inline" style="display:none"></div>
+
+<script>
+    let daily = Math.floor(Date.now() / 1000 / 60 / 60 / 24); document.write('<script src="https://play.pokemonshowdown.com/js/replay-embed.js?version' + daily + '"></' + 'script>');
+</script>
+
+<p style="text-align:center"> Replay created by <a href="https://github.com/hsahovic/poke-env">poke-env</a>, with code from <a
+        href="https://github.com/smogon/pokemon-showdown"> pokemon-showdown</a>. If something goes wrong, don't hesitate
+    to open an <a href="https://github.com/hsahovic/poke-env/issues">issue!</a></p>

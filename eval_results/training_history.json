@@ -1,0 +1,272 @@
+[
+  {
+    "iteration": 1,
+    "timesteps": 100000,
+    "timestamp": "2025-10-27T12:52:50.930766",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.6,
+      "SimpleHeuristics": 0.5
+    }
+  },
+  {
+    "iteration": 2,
+    "timesteps": 200000,
+    "timestamp": "2025-10-27T12:59:49.774002",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.9,
+      "SimpleHeuristics": 0.2
+    }
+  },
+  {
+    "iteration": 3,
+    "timesteps": 300000,
+    "timestamp": "2025-10-27T13:06:50.357185",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.8,
+      "SimpleHeuristics": 0.3
+    }
+  },
+  {
+    "iteration": 4,
+    "timesteps": 400000,
+    "timestamp": "2025-10-27T13:13:52.221388",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.7,
+      "SimpleHeuristics": 0.6
+    }
+  },
+  {
+    "iteration": 5,
+    "timesteps": 500000,
+    "timestamp": "2025-10-27T13:20:51.225659",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.9,
+      "SimpleHeuristics": 0.6
+    }
+  },
+  {
+    "iteration": 6,
+    "timesteps": 600000,
+    "timestamp": "2025-10-27T13:27:52.836833",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 1.0,
+      "SimpleHeuristics": 0.5
+    }
+  },
+  {
+    "iteration": 7,
+    "timesteps": 700000,
+    "timestamp": "2025-10-27T13:35:04.976351",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.8,
+      "SimpleHeuristics": 0.8
+    }
+  },
+  {
+    "iteration": 8,
+    "timesteps": 800000,
+    "timestamp": "2025-10-27T15:01:38.225037",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.6,
+      "SimpleHeuristics": 0.4
+    }
+  },
+  {
+    "iteration": 9,
+    "timesteps": 900000,
+    "timestamp": "2025-10-27T15:10:00.282353",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.7,
+      "SimpleHeuristics": 0.4
+    }
+  },
+  {
+    "iteration": 10,
+    "timesteps": 1000000,
+    "timestamp": "2025-10-27T15:18:24.993557",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.3,
+      "SimpleHeuristics": 0.2
+    }
+  },
+  {
+    "iteration": 11,
+    "timesteps": 1100000,
+    "timestamp": "2025-10-27T15:26:54.113083",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.5,
+      "SimpleHeuristics": 0.2
+    }
+  },
+  {
+    "iteration": 12,
+    "timesteps": 1200000,
+    "timestamp": "2025-10-27T15:35:12.866228",
+    "winrates": {
+      "Random": 0.9,
+      "MaxBasePower": 0.6,
+      "SimpleHeuristics": 0.3
+    }
+  },
+  {
+    "iteration": 13,
+    "timesteps": 1300000,
+    "timestamp": "2025-10-27T15:43:15.531923",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.4,
+      "SimpleHeuristics": 0.1
+    }
+  },
+  {
+    "iteration": 14,
+    "timesteps": 1400000,
+    "timestamp": "2025-10-27T15:51:40.517099",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.3,
+      "SimpleHeuristics": 0.2
+    }
+  },
+  {
+    "iteration": 15,
+    "timesteps": 1500000,
+    "timestamp": "2025-10-27T16:28:58.128898",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.4,
+      "SimpleHeuristics": 0.1
+    }
+  },
+  {
+    "iteration": 16,
+    "timesteps": 1600000,
+    "timestamp": "2025-10-27T16:37:35.405597",
+    "winrates": {
+      "Random": 0.9,
+      "MaxBasePower": 0.1,
+      "SimpleHeuristics": 0.0
+    }
+  },
+  {
+    "iteration": 17,
+    "timesteps": 1700000,
+    "timestamp": "2025-10-27T16:45:53.317769",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.1,
+      "SimpleHeuristics": 0.0
+    }
+  },
+  {
+    "iteration": 18,
+    "timesteps": 1800000,
+    "timestamp": "2025-10-27T16:54:27.888639",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.5,
+      "SimpleHeuristics": 0.0
+    }
+  },
+  {
+    "iteration": 19,
+    "timesteps": 1900000,
+    "timestamp": "2025-10-27T17:02:52.761365",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.6,
+      "SimpleHeuristics": 0.2
+    }
+  },
+  {
+    "iteration": 20,
+    "timesteps": 2000000,
+    "timestamp": "2025-10-27T17:11:21.942872",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.4,
+      "SimpleHeuristics": 0.1
+    }
+  },
+  {
+    "iteration": 21,
+    "timesteps": 2100000,
+    "timestamp": "2025-10-27T18:13:36.038792",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.2,
+      "SimpleHeuristics": 0.1
+    }
+  },
+  {
+    "iteration": 22,
+    "timesteps": 2200000,
+    "timestamp": "2025-10-27T18:22:17.642539",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.0,
+      "SimpleHeuristics": 0.1
+    }
+  },
+  {
+    "iteration": 23,
+    "timesteps": 2300000,
+    "timestamp": "2025-10-27T18:30:38.349981",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.6,
+      "SimpleHeuristics": 0.0
+    }
+  },
+  {
+    "iteration": 24,
+    "timesteps": 2400000,
+    "timestamp": "2025-10-27T18:39:11.209779",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.5,
+      "SimpleHeuristics": 0.0
+    }
+  },
+  {
+    "iteration": 25,
+    "timesteps": 2500000,
+    "timestamp": "2025-10-27T18:47:36.991444",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.2,
+      "SimpleHeuristics": 0.3
+    }
+  },
+  {
+    "iteration": 26,
+    "timesteps": 2600000,
+    "timestamp": "2025-10-27T18:56:05.792641",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.3,
+      "SimpleHeuristics": 0.0
+    }
+  },
+  {
+    "iteration": 27,
+    "timesteps": 2700000,
+    "timestamp": "2025-10-27T19:04:14.166721",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.4,
+      "SimpleHeuristics": 0.0
+    }
+  }
+]

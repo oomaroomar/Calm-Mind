@@ -27,8 +27,8 @@ class PokemonEncoder:
         len(STANDARD_TYPES)
         + len(STATS)
         + len(STATUSES)
-        + len(ITEMS)
-        + len(ABILITIES)
+        # + len(ITEMS)
+        # + len(ABILITIES)
         + len(HP_FEATURES)
         + 1  # protect counter
     )
@@ -149,8 +149,8 @@ class PokemonEncoder:
                 cls._encode_base_stats(pkmn),
                 cls._hp_encoder(pkmn),
                 cls._status_encoder(pkmn),
-                cls._item_encoder(pkmn),
-                cls._ability_encoder(pkmn),
+                # cls._item_encoder(pkmn),
+                # cls._ability_encoder(pkmn),
                 cls._protect_counter_encoder(pkmn),
             ]
         )
@@ -172,8 +172,8 @@ class PokemonEncoder:
                 cls._encode_base_stats(pkmn),
                 cls._hp_encoder(pkmn),
                 cls._status_encoder(pkmn),
-                cls._item_encoder(pkmn),
-                cls._ability_encoder(pkmn),
+                # cls._item_encoder(pkmn),
+                # cls._ability_encoder(pkmn),
                 cls._protect_counter_encoder(pkmn),
                 cls.moves_encoder(pkmn, battle),
             ]

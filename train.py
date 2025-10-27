@@ -4,7 +4,7 @@ import random
 from typing import Tuple
 import numpy as np
 import json
-import time
+import os.path as osp
 from datetime import datetime
 from pathlib import Path
 from poke_env.ps_client.account_configuration import AccountConfiguration
@@ -21,7 +21,7 @@ from poke_env.player import cross_evaluate
 from poke_env.player.player import Player
 from sb3_contrib.common.wrappers import ActionMasker
 from sb3_contrib.ppo_mask import MaskablePPO
-from stable_baselines3.common.vec_env import DummyVecEnv
+from stable_baselines3.common.vec_env import DummyVecEnv, SubprocVecEnv
 from encoder import Encoder
 from environment import PokemonEnv
 from environment.utils import action_masker
@@ -31,8 +31,10 @@ from teams import TEAMS
 ### Parameters
 
 STEPS_PER_ITER = 10**5
-TOTAL_TIMESTEPS = STEPS_PER_ITER * 47
-AGENT_CHECKPOINT = "sb3_showdown_ppo_single_agent"
+TOTAL_TIMESTEPS = (
+    STEPS_PER_ITER * 6
+)  # While running on my computer, over 6 iterations causes the computer to freeze
+AGENT_CHECKPOINT = "ppo_with_entropy_coef.zip"
 
 
 class ModelPlayer(Player):
@@ -59,31 +61,35 @@ class ModelPlayer(Player):
 
         obs = Encoder.embed_battle(battle)
         action_masks = action_masker(battle)
-        action, _ = self.model.predict(
-            obs, deterministic=True, action_masks=action_masks
-        )
+        action, _ = self.model.predict(obs, action_masks=action_masks)
         try:
             return PokemonEnv.action_to_order(action, battle)
         except ValueError as e:
             print(f"Invalid action {action}: {e}. Trying next best move.")
             action_masks[action] = 0
             try:
-                action, _ = self.model.predict(
-                    obs, deterministic=True, action_masks=action_masks
-                )
+                action, _ = self.model.predict(obs, action_masks=action_masks)
                 return PokemonEnv.action_to_order(action, battle)
             except ValueError as e:
                 print(f"Invalid action {action}: {e}. Defaulting to random move.")
                 return self.choose_random_move(battle)
 
 
-def create_model(opponent: Player | None = None) -> Tuple[MaskablePPO, PokemonEnv]:
-    """Create a model and a gym environment.
+def create_model(
+    opponent: Player | None = None, parallel: bool = False
+) -> Tuple[MaskablePPO, SubprocVecEnv]:
+    """Create a model and a vectorized environment.
     :param opponent: The opponent player. If None, a random player is used.
-    :return: A tuple containing the model and the gym environment.
+    :return: A tuple containing the model and the vectorized environment.
     """
-    gym_env = PokemonEnv.create_single_agent_env(opponent)
-    vec_env = DummyVecEnv([lambda: gym_env])
+
+    def make_env():
+        return PokemonEnv.create_single_agent_env(opponent)
+
+    if parallel:
+        vec_env = SubprocVecEnv([make_env for _ in range(6)])
+    else:
+        vec_env = DummyVecEnv([make_env])
 
     model = MaskablePPO(
         policy="MlpPolicy",
@@ -96,7 +102,7 @@ def create_model(opponent: Player | None = None) -> Tuple[MaskablePPO, PokemonEn
         verbose=1,
         ent_coef=0.05,
     )
-    return model, gym_env
+    return model, vec_env
 
 
 def save_eval_results(x_eval: dict, iteration: int):
@@ -148,17 +154,17 @@ def single_agent_train(total_timesteps: int = 100000):
 random_player = RandomPlayer(
     battle_format="gen9ou",
     team=TEAMS[0],
-    account_configuration=AccountConfiguration("Random", None),
+    # account_configuration=AccountConfiguration("Random", None),
 )
 max_base_power_player = MaxBasePowerPlayer(
     battle_format="gen9ou",
     team=TEAMS[0],
-    account_configuration=AccountConfiguration("MaxBasePower", None),
+    # account_configuration=AccountConfiguration("MaxBasePower", None),
 )
 simple_heuristics_player = SimpleHeuristicsPlayer(
     battle_format="gen9ou",
     team=TEAMS[0],
-    account_configuration=AccountConfiguration("SimpleHeuristics", None),
+    # account_configuration=AccountConfiguration("SimpleHeuristics", None),
 )
 heuristic_non_listening_player = SimpleHeuristicsPlayer(
     battle_format="gen9ou",
@@ -178,12 +184,17 @@ async def evaluate_agent(model_path: str, iteration: int = None, timesteps: int 
         model_path=model_path,
         account_configuration=AccountConfiguration(f"RL-Agent-it-{iteration}", None),
     )
+    rl_agent2 = ModelPlayer(
+        model_path=model_path,
+        account_configuration=AccountConfiguration(f"RL-Agent-2-it-{iteration}", None),
+    )
     players = [rl_agent, random_player, max_base_power_player, simple_heuristics_player]
     x_eval = await cross_evaluate(players, n_challenges=10)
     rl_agent._save_replays = f"eval_results/replays/it-{iteration}"
     await rl_agent.battle_against(random_player, n_battles=1)
     await rl_agent.battle_against(max_base_power_player, n_battles=1)
     await rl_agent.battle_against(simple_heuristics_player, n_battles=1)
+    await rl_agent.battle_against(rl_agent2, n_battles=1)
     rl_agent._save_replays = False
     table = [["-"] + [p.username for p in players]]
     for p_1, results in x_eval.items():
@@ -193,7 +204,7 @@ async def evaluate_agent(model_path: str, iteration: int = None, timesteps: int 
     # Save evaluation results
     if iteration is not None or timesteps is not None:
         save_eval_results(x_eval, iteration)
-    del rl_agent
+    del rl_agent, rl_agent2
     return x_eval
 
 
@@ -202,10 +213,17 @@ async def train_selfplay(total_timesteps: int = TOTAL_TIMESTEPS):
     # initial opponent: a simple random player or a saved baseline
     initial_opponent = heuristic_non_listening_player  # poke-env default opponent (or create a scripted Player)
     # create main model
-    model, gym_env = create_model(initial_opponent)
-    model.load(AGENT_CHECKPOINT)
+    model, vec_env = create_model(initial_opponent, parallel=True)
+    if osp.exists(AGENT_CHECKPOINT):
+        model.load(AGENT_CHECKPOINT)
+    else:
+        print(f"Model {AGENT_CHECKPOINT} not found, starting from scratch")
     total = 0
     iter_no = 0
+    if osp.exists(f"eval_results/training_history.json"):
+        with open(f"eval_results/training_history.json", "r") as f:
+            history = json.load(f)
+        iter_no = len(history)
     total_iterations = total_timesteps / STEPS_PER_ITER
     print(f"Training for {total_timesteps} steps...")
     while total < total_timesteps:
@@ -218,18 +236,24 @@ async def train_selfplay(total_timesteps: int = TOTAL_TIMESTEPS):
 
         model.save(AGENT_CHECKPOINT)
 
-        r = random.random()
-        opponent_player = None
-        if iter_no > 10**2 and r < 0.33:
-            opponent_player = ModelPlayer(
-                model_path=AGENT_CHECKPOINT,
-                start_listening=False,
-            )
-        elif r < 0.66:
-            opponent_player = mbp_non_listening_player
-        else:
-            opponent_player = heuristic_non_listening_player
-        gym_env.update_opponent(opponent_player)
+        # r = random.random()
+        # opponent_player = None
+        # if iter_no > 10**2 and r < 0.33:
+        #     opponent_player = ModelPlayer(
+        #         model_path=AGENT_CHECKPOINT,
+        #         start_listening=False,
+        #     )
+        # elif r < 0.66:
+        #     opponent_player = mbp_non_listening_player
+        # else:
+        #     opponent_player = heuristic_non_listening_player
+
+        opponent_player = ModelPlayer(
+            model_path=AGENT_CHECKPOINT,
+            start_listening=False,
+        )
+
+        model.get_env().env_method("update_opponent", opponent_player)
         # Evaluate current agent against a suite of opponents
         x_eval = await evaluate_agent(
             AGENT_CHECKPOINT, iteration=iter_no, timesteps=total

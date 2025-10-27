@@ -1,6 +1,0 @@
-## TODO
-
-[] Refactor 
-
-[] Add monitoring
-
