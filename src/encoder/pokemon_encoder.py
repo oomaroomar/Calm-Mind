@@ -1,11 +1,12 @@
 from numpy.typing import NDArray
+from poke_env.battle import Battle
 from poke_env.battle.pokemon import Pokemon
 import numpy as np
 from poke_env.battle.stat import STATS
 from poke_env.battle.pokemon_type import STANDARD_TYPES
 from poke_env.battle.status import STATUSES
 from encoder.move_encoder import MoveEncoder, ENCODED_MOVE_DIM
-from encoder.utils import type_one_hot, type_effectiveness
+from encoder.utils import type_one_hot
 
 
 class PokemonEncoder:
@@ -23,7 +24,7 @@ class PokemonEncoder:
     ENCODED_MOVES_DIM = ENCODED_MOVE_DIM * 4
 
     OP_POKEMON_FEATURES_DIM = (
-        len(STANDARD_TYPES) * 4
+        len(STANDARD_TYPES)
         + len(STATS)
         + len(STATUSES)
         + len(ITEMS)
@@ -111,14 +112,16 @@ class PokemonEncoder:
         )
 
     @staticmethod
-    def moves_encoder(pkmn: Pokemon) -> NDArray[np.float32]:
+    def moves_encoder(pkmn: Pokemon, battle: Battle) -> NDArray[np.float32]:
         """
         Encodes the moves of a pokemon.
 
         :param pkmn: The pokemon to encode.
         :return: A numpy array of shape (ENCODED_MOVES_DIM) containing the encoded features.
         """
-        encoded_moves = [MoveEncoder.encode_move(move) for move in pkmn.moves.values()]
+        encoded_moves = [
+            MoveEncoder.encode_move(move, pkmn, battle) for move in pkmn.moves.values()
+        ]
         # Pad to exactly 4 moves with zeros to ensure fixed length
         num_missing = 4 - len(encoded_moves)
         if num_missing > 0:
@@ -139,10 +142,10 @@ class PokemonEncoder:
         """
         return np.concatenate(
             [
-                type_one_hot(pkmn.original_types),
-                type_effectiveness(pkmn.original_types),
-                type_one_hot([pkmn.tera_type] if pkmn.tera_type else None),
-                type_effectiveness([pkmn.tera_type] if pkmn.tera_type else None),
+                type_one_hot(pkmn.types),
+                # type_effectiveness(pkmn.original_types),
+                # type_one_hot([pkmn.tera_type] if pkmn.tera_type else None),
+                # type_effectiveness([pkmn.tera_type] if pkmn.tera_type else None),
                 cls._encode_base_stats(pkmn),
                 cls._hp_encoder(pkmn),
                 cls._status_encoder(pkmn),
@@ -153,7 +156,7 @@ class PokemonEncoder:
         )
 
     @classmethod
-    def my_pokemon_encoder(cls, pkmn: Pokemon) -> NDArray[np.float32]:
+    def my_pokemon_encoder(cls, pkmn: Pokemon, battle: Battle) -> NDArray[np.float32]:
         """
         Encodes a pokemon.
 
@@ -162,17 +165,17 @@ class PokemonEncoder:
         """
         return np.concatenate(
             [
-                type_one_hot(pkmn.original_types),
-                type_effectiveness(pkmn.original_types),
-                type_one_hot([pkmn.tera_type] if pkmn.tera_type else None),
-                type_effectiveness([pkmn.tera_type] if pkmn.tera_type else None),
+                type_one_hot(pkmn.types),
+                # type_effectiveness(pkmn.original_types),
+                # type_one_hot([pkmn.tera_type] if pkmn.tera_type else None),
+                # type_effectiveness([pkmn.tera_type] if pkmn.tera_type else None),
                 cls._encode_base_stats(pkmn),
                 cls._hp_encoder(pkmn),
                 cls._status_encoder(pkmn),
                 cls._item_encoder(pkmn),
                 cls._ability_encoder(pkmn),
                 cls._protect_counter_encoder(pkmn),
-                cls.moves_encoder(pkmn),
+                cls.moves_encoder(pkmn, battle),
             ]
         )
 

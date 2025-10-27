@@ -3,10 +3,12 @@ from typing import Union
 
 import numpy as np
 from numpy.typing import NDArray
+from poke_env.battle import Battle, Pokemon
 from poke_env.battle.pokemon_type import STANDARD_TYPES
 from poke_env.battle.stat import MOVABLE_STATS
+from poke_env.data import GenData
 
-from encoder.utils import type_one_hot, type_effectiveness
+from encoder.utils import pad_to_length, MAX_TEAM_SIZE
 from poke_env.battle.effect import Effect
 from poke_env.battle.status import STATUS_STRINGS, STATUSES, Status
 from poke_env.battle.move_category import MoveCategory
@@ -21,6 +23,7 @@ MOVE_CATEGORIES = (
 VOLATILE_STATUSES = (Effect.CONFUSION,)
 
 BASE_FEATURES = ("BASE_POWER", "ACCURACY", "TARGET", "CURRENT_PP", "0_PP")
+STAB_FEATURES = ("STAB_ORIGINAL", "STAB_TERA")
 
 # Curated sets for effects not cleanly tagged in Showdown data
 HAZARD_REMOVERS = ("rapidspin", "defog", "mortalspin", "tidyup")
@@ -39,9 +42,11 @@ SPECIAL_CASES: list[Union[str, frozenset[str]]] = [
     "grassyglide",
 ]
 
-MAX_BASE_POWER = 120
+MAX_BASE_POWER = 130
 
-CORE_FEATURES_DIM = len(BASE_FEATURES) + len(MOVE_CATEGORIES) + len(STANDARD_TYPES) * 2
+CORE_FEATURES_DIM = (
+    len(BASE_FEATURES) + len(MOVE_CATEGORIES) + MAX_TEAM_SIZE + len(STAB_FEATURES)
+)
 SPECIAL_CASES_DIM = len(SPECIAL_CASES)
 SECONDARY_EFFECTS_DIM = len(MOVABLE_STATS) * 2 + 6
 ENCODED_MOVE_DIM = (
@@ -119,7 +124,7 @@ class MoveEncoder:
     def _encode_category(move: Move) -> NDArray[np.float32]:
         """
         Encodes the category of a move.
-
+        typestypestypes
         :param move: The move to encode.
         :return: A numpy array of shape (len(MOVE_CATEGORIES),) containing the encoded features.
         """
@@ -129,9 +134,28 @@ class MoveEncoder:
             dtype=np.float32,
         )
 
+    @staticmethod
+    def _encode_stab(move: Move, pkmn: Pokemon) -> NDArray[np.float32]:
+        """
+        Encodes whether the move gains STAB from the pokemon's original or tera type.
+
+        :param move: The move to encode.
+        :param pkmn: The pokemon to encode.
+        :return: A numpy array of shape (len(STAB_FEATURES),) containing the encoded features.
+        """
+        return np.array(
+            [
+                1.0 if move.type in pkmn.original_types else 0.0,
+                1.0 if move.type == pkmn.tera_type else 0.0,
+            ],
+            dtype=np.float32,
+        )
+
     # +1's come from: base power, accuracy, target
     @staticmethod
-    def _encode_core_features(move: Move) -> NDArray[np.float32]:
+    def _encode_core_features(
+        move: Move, pkmn: Pokemon, battle: Battle
+    ) -> NDArray[np.float32]:
         """
         Encodes the base features of a move:
         base power (1 dim), accuracy (1 dim), current pp (1 dim), 0 pp (1 dim), category (3 dim), target (1 dim), type (19*2 dim)
@@ -147,8 +171,10 @@ class MoveEncoder:
                 0.0 if move.current_pp == 0 else 1.0,
                 0.0 if move.target == "self" else 1.0,
                 *MoveEncoder._encode_category(move),
-                *type_one_hot([move.type]),
-                *type_effectiveness([move.type]),
+                *MoveEncoder._encode_type_multipliers(move, battle),
+                *MoveEncoder._encode_stab(move, pkmn),
+                # *type_one_hot([move.type]),
+                # *type_effectiveness([move.type]),
             ],
             dtype=np.float32,
         )
@@ -168,6 +194,27 @@ class MoveEncoder:
             )
             / 2.0
         )
+
+    @staticmethod
+    def _encode_type_multipliers(move: Move, battle: Battle) -> NDArray[np.float32]:
+        """
+        Encodes the type multipliers of a move vs each enemy pokemon.
+
+        :param move: The move to encode.
+        :return: a numpy array of shape (MAX_TEAM_SIZE,) containing the encoded features.
+        """
+
+        type_multipliers = np.array(
+            [
+                move.type.damage_multiplier(
+                    foe.type_1, foe.type_2, type_chart=GenData.from_gen(9).type_chart
+                )
+                / 4.0  # Normalize to [0, 1]
+                for foe in battle.opponent_team.values()
+            ],
+            dtype=np.float32,
+        )
+        return pad_to_length(type_multipliers)
 
     @staticmethod
     def _encode_foe_stat_change(move: Move) -> NDArray[np.float32]:
@@ -234,7 +281,9 @@ class MoveEncoder:
         )
 
     @classmethod
-    def encode_move(cls, move: Move) -> NDArray[np.float32]:
+    def encode_move(
+        cls, move: Move, pkmn: Pokemon, battle: Battle
+    ) -> NDArray[np.float32]:
         """
         Encodes a move into a one-hotish probability vector.
 
@@ -243,7 +292,7 @@ class MoveEncoder:
         """
         return np.concatenate(
             [
-                cls._encode_core_features(move),
+                cls._encode_core_features(move, pkmn, battle),
                 cls._status_prob(move),
                 cls._volatile_status_prob(move),
                 cls._protect_counter_encoder(move),

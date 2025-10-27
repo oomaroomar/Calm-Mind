@@ -1,14 +1,15 @@
 import numpy as np
 from typing import Dict, List
 
-from poke_env.battle import PokemonType
+from poke_env.battle import Pokemon, PokemonType
 from poke_env.battle.pokemon_type import ALL_TYPES, STANDARD_TYPES
 from poke_env.data import GenData
 
+MAX_TEAM_SIZE = 6
+
 
 def type_one_hot(
-    types: List[PokemonType] | None = None,
-    include_special: bool = False
+    types: List[PokemonType] | None = None, include_special: bool = False
 ) -> np.ndarray:
     """
     Returns a one-hot encoding for one or more Pokemon types.
@@ -28,6 +29,7 @@ def type_one_hot(
     type_vector = np.array([1 if t in types else 0 for t in type_list], dtype=np.int8)
 
     return type_vector
+
 
 def type_effectiveness(
     user_types: List[PokemonType] | None = None,
@@ -51,9 +53,34 @@ def type_effectiveness(
     if user_types is None:
         return np.ones(len(type_list), dtype=np.float32)
 
-    te_vector = np.array([t.damage_multiplier(user_types[0], user_types[1] if len(user_types) > 1 else None, type_chart=type_chart) for t in type_list], dtype=np.float32)
+    te_vector = np.array(
+        [
+            t.damage_multiplier(
+                user_types[0],
+                user_types[1] if len(user_types) > 1 else None,
+                type_chart=type_chart,
+            )
+            for t in type_list
+        ],
+        dtype=np.float32,
+    )
 
     if normalize:
         te_vector /= 4.0
 
     return te_vector
+
+
+def pad_to_length(array: np.ndarray, length: int = MAX_TEAM_SIZE) -> np.ndarray:
+    """
+    Pads an array to the given length with zeros.
+
+    :param array: The array to pad.
+    :param length: The length to pad to.
+    :return: The padded array.
+    """
+    if len(array) < length:
+        return np.concatenate([array, np.zeros(length - len(array), dtype=np.float32)])
+    elif len(array) > length:
+        return array[:length]
+    return array

@@ -20,6 +20,7 @@ from poke_env.battle.move import Move
 from poke_env.battle.field import Field
 
 from encoder.pokemon_encoder import PokemonEncoder
+from utils import create_battle
 
 ##############################
 ### TESTS FOR MOVE ENCODER ###
@@ -27,53 +28,61 @@ from encoder.pokemon_encoder import PokemonEncoder
 
 
 def test_status_prob_dim():
-    assert MoveEncoder._status_prob(Move("tackle", gen=9)).shape == (len(STATUSES),)
+    battle, active_mon = create_battle()
+    move = list(active_mon.moves.values())[1]
+    assert MoveEncoder._status_prob(move).shape == (len(STATUSES),)
 
 
 def test_volatile_status_prob_dim():
-    assert MoveEncoder._volatile_status_prob(Move("tackle", gen=9)).shape == (
-        len(VOLATILE_STATUSES),
-    )
+    battle, active_mon = create_battle()
+    move = list(active_mon.moves.values())[1]
+    assert MoveEncoder._volatile_status_prob(move).shape == (len(VOLATILE_STATUSES),)
 
 
 def test_encode_category_dim():
-    assert MoveEncoder._encode_category(Move("tackle", gen=9)).shape == (
-        len(MOVE_CATEGORIES),
-    )
+    battle, active_mon = create_battle()
+    move = list(active_mon.moves.values())[1]
+    assert MoveEncoder._encode_category(move).shape == (len(MOVE_CATEGORIES),)
 
 
 def test_encode_core_features():
-    assert MoveEncoder._encode_core_features(Move("tackle", gen=9)).shape == (
+    battle, active_mon = create_battle()
+    move = list(active_mon.moves.values())[1]
+    assert MoveEncoder._encode_core_features(move, active_mon, battle).shape == (
         CORE_FEATURES_DIM,
     )
 
 
 def test_encode_self_stat_change_dim():
-    assert MoveEncoder._encode_self_stat_change(Move("tackle", gen=9)).shape == (
-        len(MOVABLE_STATS),
-    )
+    battle, active_mon = create_battle()
+    move = list(active_mon.moves.values())[1]
+    assert MoveEncoder._encode_self_stat_change(move).shape == (len(MOVABLE_STATS),)
 
 
 def test_encode_foe_stat_change_dim():
-    assert MoveEncoder._encode_foe_stat_change(Move("tackle", gen=9)).shape == (
-        len(MOVABLE_STATS),
-    )
+    battle, active_mon = create_battle()
+    move = list(active_mon.moves.values())[1]
+    assert MoveEncoder._encode_foe_stat_change(move).shape == (len(MOVABLE_STATS),)
 
 
 def test_encode_secondary_effects_dim():
-    assert MoveEncoder._encode_secondary_effects(Move("tackle", gen=9)).shape == (
-        SECONDARY_EFFECTS_DIM,
-    )
+    battle, active_mon = create_battle()
+    move = list(active_mon.moves.values())[1]
+    assert MoveEncoder._encode_secondary_effects(move).shape == (SECONDARY_EFFECTS_DIM,)
 
 
 def test_encode_special_cases_dim():
-    assert MoveEncoder._encode_special_cases(Move("tackle", gen=9)).shape == (
-        SPECIAL_CASES_DIM,
-    )
+    battle, active_mon = create_battle()
+    move = list(active_mon.moves.values())[1]
+    assert MoveEncoder._encode_special_cases(move).shape == (SPECIAL_CASES_DIM,)
 
 
 def test_encode_move_dim():
-    assert MoveEncoder.encode_move(Move("tackle", gen=9)).shape == (ENCODED_MOVE_DIM,)
+    battle, active_mon = create_battle()
+    move = list(active_mon.moves.values())[1]
+    assert MoveEncoder.encode_move(move, active_mon, battle).shape == (
+        ENCODED_MOVE_DIM,
+    )
 
 
 ##############################
@@ -97,12 +106,11 @@ def test_encode_field():
 
 
 def test_encode_pokemon():
-    tb_mons = Teambuilder.parse_showdown_team(TEAMS[0])
-    mon = Pokemon(9, teambuilder=tb_mons[0])
-    assert PokemonEncoder.opponent_pokemon_encoder(mon).shape == (
+    battle, active_mon = create_battle()
+    assert PokemonEncoder.opponent_pokemon_encoder(active_mon).shape == (
         PokemonEncoder.OP_POKEMON_FEATURES_DIM,
     )
-    assert PokemonEncoder.my_pokemon_encoder(mon).shape == (
+    assert PokemonEncoder.my_pokemon_encoder(active_mon, battle).shape == (
         PokemonEncoder.MY_POKEMON_FEATURES_DIM,
     )
 

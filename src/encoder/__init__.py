@@ -65,7 +65,8 @@ class Encoder:
         """
         assert isinstance(battle, Battle)
         encs = [
-            PokemonEncoder.my_pokemon_encoder(pkmn) for pkmn in battle.team.values()
+            PokemonEncoder.my_pokemon_encoder(pkmn, battle)
+            for pkmn in battle.team.values()
         ]
         # Pad to exactly 6 team members
         if len(encs) < 6:
