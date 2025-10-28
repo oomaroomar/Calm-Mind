@@ -3,9 +3,7 @@ import numpy as np
 import numpy.typing as npt
 
 from poke_env.battle.abstract_battle import AbstractBattle
-from poke_env.player.baselines import RandomPlayer
 from poke_env.player.player import Player
-from poke_env.ps_client.account_configuration import AccountConfiguration
 from stable_baselines3.common.vec_env import DummyVecEnv
 from sb3_contrib.ppo_mask import MaskablePPO
 
@@ -43,15 +41,11 @@ class PokemonEnv(Gen9Env):
             open_timeout=None,
             strict=False,
             team=TEAMS[0],
-            account_configuration1=AccountConfiguration(f"Agent-{timestamp}", None),
-            account_configuration2=AccountConfiguration(f"Opponent-{timestamp}", None),
+            # account_configuration1=AccountConfiguration(f"Agent-{timestamp}", None),
+            # account_configuration2=AccountConfiguration(f"Opponent-{timestamp}", None),
         )
-        # Opponent doesn't need to connect to server - it just provides move choices
-        if opponent is None:
-            opponent = RandomPlayer(
-                battle_format="gen9ou", team=TEAMS[0], start_listening=False
-            )
-        return MaskedSingleAgentWrapper(env, opponent)
+
+        return MaskedSingleAgentWrapper(env)
 
     def embed_battle(self, battle: AbstractBattle):
         return Encoder.embed_battle(battle)
@@ -65,7 +59,7 @@ class PokemonEnv(Gen9Env):
         status_value: float = 0.2,
         number_of_pokemons: int = 6,
         victory_value: float = 12.0,
-        stat_multiplier: float = 0.01
+        stat_multiplier: float = 0.01,
     ) -> float:
         """
         reward_buffer is the total return thus far
@@ -80,7 +74,9 @@ class PokemonEnv(Gen9Env):
         if active_mon is not None:
             stat_diff = stat_multiplier * sum(active_mon.boosts.values())
         if battle.opponent_active_pokemon is not None:
-            stat_diff -= stat_multiplier  * sum(battle.opponent_active_pokemon.boosts.values())
+            stat_diff -= stat_multiplier * sum(
+                battle.opponent_active_pokemon.boosts.values()
+            )
         current_value += stat_diff
 
         ### REWARD FOR TERA ###

@@ -1,18 +1,39 @@
-from typing import Any, Awaitable, Dict, Tuple
+import random
+from typing import Any, Awaitable, Dict, Literal, Tuple
 from poke_env.environment.single_agent_wrapper import SingleAgentWrapper
+from poke_env.player.baselines import MaxBasePowerPlayer, SimpleHeuristicsPlayer
 from poke_env.player.battle_order import DefaultBattleOrder
 import numpy as np
-from poke_env.player.player import Player
-import asyncio
-from poke_env.concurrency import POKE_LOOP
 
 from environment.Gen9Env import Gen9Env
+from player import ModelPlayer
+from teams import TEAMS
 
 
 class MaskedSingleAgentWrapper(SingleAgentWrapper):
-    def __init__(self, env: Gen9Env, opponent: Player):
-        super().__init__(env, opponent)
+    def __init__(
+        self, env: Gen9Env, model_path: str | None = "ppo_with_entropy_coef.zip"
+    ):
+        super().__init__(env)
         self.env = env
+
+        self.heuristic_non_listening_player = SimpleHeuristicsPlayer(
+            battle_format="gen9ou",
+            team=TEAMS[0],
+            start_listening=False,
+        )
+        self.mbp_non_listening_player = MaxBasePowerPlayer(
+            battle_format="gen9ou",
+            team=TEAMS[0],
+            start_listening=False,
+        )
+        try:
+            self.selfplay_opponent = ModelPlayer(
+                model_path=model_path, start_listening=False
+            )
+        except:
+            self.selfplay_opponent = None
+        self.opponent = self.heuristic_non_listening_player
 
     def action_masks(self) -> np.ndarray:
         return self.env.action_masks()
@@ -48,12 +69,28 @@ class MaskedSingleAgentWrapper(SingleAgentWrapper):
             infos[self.env.agent1.username],
         )
 
-    def update_opponent(self, opponent: Player):
-        """Update the opponent player for the next set of battles.
+    def update_selfplay_opponent(
+        self, model_path: str | None = "ppo_with_entropy_coef.zip"
+    ):
+        self.selfplay_opponent = ModelPlayer(
+            model_path=model_path, start_listening=False
+        )
 
-        This should be called between training iterations to update
-        the opponent with a new model checkpoint.
-        """
-        self.opponent = opponent
-        # Note: The actual battle reset happens in reset(), so new battles
-        # will be created for the new opponent
+    def change_opponent(
+        self, policy: Literal["model", "mbp", "heuristics"] | None = None
+    ):
+        match policy:
+            case "model":
+                self.opponent = self.selfplay_opponent
+            case "mbp":
+                self.opponent = self.mbp_non_listening_player
+            case "heuristics":
+                self.opponent = self.heuristic_non_listening_player
+            case _:
+                r = random.random()
+                if r < 0.33:
+                    self.opponent = self.selfplay_opponent
+                elif r < 0.66:
+                    self.opponent = self.mbp_non_listening_player
+                else:
+                    self.opponent = self.heuristic_non_listening_player

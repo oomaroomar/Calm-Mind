@@ -268,5 +268,65 @@
       "MaxBasePower": 0.4,
       "SimpleHeuristics": 0.0
     }
+  },
+  {
+    "iteration": 28,
+    "timesteps": 2800000,
+    "timestamp": "2025-10-27T23:11:51.406412",
+    "winrates": {
+      "Random": 0.9,
+      "MaxBasePower": 0.3,
+      "SimpleHeuristics": 0.0
+    }
+  },
+  {
+    "iteration": 29,
+    "timesteps": 2900000,
+    "timestamp": "2025-10-28T08:24:59.257092",
+    "winrates": {
+      "Random": 0.8,
+      "MaxBasePower": 0.1,
+      "SimpleHeuristics": 0.0
+    }
+  },
+  {
+    "iteration": 30,
+    "timesteps": 3000000,
+    "timestamp": "2025-10-28T08:28:43.722085",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.4,
+      "SimpleHeuristics": 0.2
+    }
+  },
+  {
+    "iteration": 31,
+    "timesteps": 3100000,
+    "timestamp": "2025-10-28T08:32:32.357425",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.3,
+      "SimpleHeuristics": 0.1
+    }
+  },
+  {
+    "iteration": 32,
+    "timesteps": 3200000,
+    "timestamp": "2025-10-28T08:36:12.513840",
+    "winrates": {
+      "Random": 1.0,
+      "MaxBasePower": 0.3,
+      "SimpleHeuristics": 0.1
+    }
+  },
+  {
+    "iteration": 33,
+    "timesteps": 3300000,
+    "timestamp": "2025-10-28T08:39:57.449969",
+    "winrates": {
+      "Random": 0.9,
+      "MaxBasePower": 0.7,
+      "SimpleHeuristics": 0.2
+    }
   }
 ]
