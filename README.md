@@ -1,15 +1,21 @@
 # Calm Mind
 Ongoing project to create a strong Pokemon player by Reinforcement Learning.
 
-Training is done by simulating Pokemon battles against 3 different policies: one that selects the highest base power move all the time, one that plays on simple heuristics (details can be seen from poke-env/src/player/baselines), and self-play. Periodically during training the model is evaluated by simulating 10 games versus each of the following 3 strategies: random move selection, max base power move selection, and simple heuristics. 
+Training is done by simulating Pokemon battles where the agent plays against itself. Periodically during training the model is evaluated by simulating 10 games versus each of the following 3 strategies: random move selection, max base power move selection, and simple heuristics. (Details of these policies can be found in poke-env/src/player/baselines)
 
-Using proximal policy optimization with learning rate $= 10^{-3}$ and $\gamma = 0.99$ the model has not converged to a policy that consistently outperforms all 3 strategies within $4.7 * 10^6$ timesteps.
-<img src="./eval_results/winrate_vs_random.png" alt="Image failed to show" width=800>
-<img src="./eval_results/winrate_vs_maxbasepower.png" alt="Image failed to show" width=800>
-<img src="./eval_results/winrate_vs_simpleheuristics.png" alt="Image failed to show" width=800>
+Using proximal policy optimization with learning rate $= 10^{-3}$, $\gamma = 0.9$, and entropy coefficient = $0.05$ the model has started to outperform the max base power strategy at around $5 * 10^7$ training timesteps.
 
-Results may improve with further training, however at this point (25.10.2025) I will inspect if tuning the hyperparameters could yield to faster convergence.
+<img src="./eval_results/winrate_vs_random.png" alt="Image failed to show" width=560>
+<img src="./eval_results/winrate_vs_maxbasepower.png" alt="Image failed to show" width=560>
+<img src="./eval_results/winrate_vs_simpleheuristics.png" alt="Image failed to show" width=560>
 
-Inspecting some of the replays in eval_results/repalys one can clearly see that the model is having a hard time learning how to use the moves Wish and Protect. By nature of how gradient updates are made (either all actions in an episode were good, or they were all bad) it is very hard to learn that a move cannot be effectively used 2 turns in a row. 
+From the below video of the agents play, one can see that move and switch selection is quite good. The agent understand that Aurora veil cannot effectively be used twice, when super effective moves are possible the agent chooses to use them and not very effective moves are seldom used. 
+
+<video width="800" controls>
+  <source src="vsmbp.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video> 
+
+These qualities seem to be sufficient to beating the strategy of simply clicking the strongest move every time. However, the model's winrate versus the policy relying on heuristics is still poor and it would be unreasonable to expect the model to perform well versus real human players yet. From the replays one can also gleam that the model hasn't yet learned how to fully utilize the terrastalization mechanic. 
 
 Note on limitations: to save on compute, early testing is done with 1 fixed team of pokemon. Having success with a randomly generated team is the ultimate goal.

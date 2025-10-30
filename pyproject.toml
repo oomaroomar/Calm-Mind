@@ -5,7 +5,10 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "calmmind"
 version = "0.1.0"
-dependencies = []
+dependencies = [
+    "psutil>=5.9.0",
+    "gputil>=1.4.0"
+]
 
 [tool.setuptools]
 package-dir = {"" = "src"}

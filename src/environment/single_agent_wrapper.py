@@ -72,6 +72,17 @@ class MaskedSingleAgentWrapper(SingleAgentWrapper):
     def update_selfplay_opponent(
         self, model_path: str | None = "ppo_with_entropy_coef.zip"
     ):
+        # Clean up old selfplay opponent before creating new one
+        if self.selfplay_opponent is not None:
+            try:
+                # Clear the model to free memory
+                if hasattr(self.selfplay_opponent, "model"):
+                    del self.selfplay_opponent.model
+                # Delete the player object
+                del self.selfplay_opponent
+            except Exception as e:
+                print(f"Warning: Error cleaning up old selfplay opponent: {e}")
+
         self.selfplay_opponent = ModelPlayer(
             model_path=model_path, start_listening=False
         )
