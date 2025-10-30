@@ -11,10 +11,7 @@ Using proximal policy optimization with learning rate $= 10^{-3}$, $\gamma = 0.9
 
 From the below video of the agents play, one can see that move and switch selection is quite good. The agent understand that Aurora veil cannot effectively be used twice, when super effective moves are possible the agent chooses to use them and not very effective moves are seldom used. 
 
-<video width="800" controls>
-  <source src="vsmbp.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video> 
+![Agent gameplay](vsmbp.gif)
 
 These qualities seem to be sufficient to beating the strategy of simply clicking the strongest move every time. However, the model's winrate versus the policy relying on heuristics is still poor and it would be unreasonable to expect the model to perform well versus real human players yet. From the replays one can also gleam that the model hasn't yet learned how to fully utilize the terrastalization mechanic. 
 
