@@ -22518,5 +22518,3445 @@
       "percent": 9.707911116230791
     },
     "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T09:43:57.940657",
+    "cpu_percent": 1.0,
+    "memory": {
+      "rss_mb": 867.98046875,
+      "vms_mb": 5070.66796875,
+      "percent": 2.782206718495081
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T09:44:26.449733",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 868.04296875,
+      "vms_mb": 5070.67578125,
+      "percent": 2.7824070538063084
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T09:45:27.466309",
+    "cpu_percent": 130.0,
+    "memory": {
+      "rss_mb": 3032.83203125,
+      "vms_mb": 12628.3359375,
+      "percent": 9.72133358208301
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T09:46:28.478562",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 2944.83984375,
+      "vms_mb": 12628.3359375,
+      "percent": 9.439286505789065
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T09:47:29.491888",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 2960.85546875,
+      "vms_mb": 12628.3359375,
+      "percent": 9.490622429291026
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T09:48:30.504128",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T09:49:31.519229",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T09:50:32.535986",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T09:51:33.553032",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T09:52:34.569747",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T09:53:35.586209",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T09:54:36.603376",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T09:55:37.641021",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T09:56:38.658243",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T09:57:39.674236",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T09:58:40.690725",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T09:59:41.708154",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:00:42.725229",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:01:43.742156",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:02:44.759073",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:03:45.775685",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:04:46.792854",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:05:47.810048",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:06:48.826800",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:07:49.844014",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:08:50.861853",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:09:51.878911",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:10:52.895384",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:11:53.912717",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:12:54.929992",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:13:55.946814",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:14:56.963612",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:15:57.981430",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:16:58.998303",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:18:00.016786",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:19:01.034746",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:20:02.052723",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:21:03.069623",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76171875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807653059308016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:22:04.086566",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:23:05.104614",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:24:06.122391",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:25:07.139282",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:26:08.156431",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:27:09.173615",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:28:10.190679",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:29:11.207545",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:30:12.225345",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:31:13.242678",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:32:14.259554",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:33:15.276222",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:34:16.293139",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:35:17.310410",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:36:18.327773",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:37:19.345274",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:38:20.362255",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:39:21.379694",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:40:22.397266",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:41:23.414934",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:42:24.432277",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:43:25.450099",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:44:26.467451",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:45:27.486168",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:46:28.502389",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:47:29.519246",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:48:30.536817",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:49:31.553939",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:50:32.571692",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.765625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807665580264969
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:51:33.589530",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:52:34.606581",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:53:35.624340",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:54:36.642267",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:55:37.659900",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:56:38.678444",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:57:39.695861",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:58:40.712695",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T10:59:41.730222",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:00:42.747807",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:01:43.764452",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:02:44.782004",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:03:45.799606",
+    "cpu_percent": 1.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:04:46.816489",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:05:47.833612",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:06:48.851148",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:07:49.868751",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:08:50.886400",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:09:51.903756",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:10:52.920582",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:11:53.937893",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:12:54.955029",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:13:55.972134",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.76953125,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80767810122192
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:14:56.989280",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:15:58.006455",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:16:59.023024",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:18:00.039998",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:19:01.057423",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:20:02.074457",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:21:03.091903",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:22:04.110101",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:23:05.127612",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:24:06.145653",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:25:07.162403",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:26:08.180359",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:27:09.198473",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:28:10.215461",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:29:11.232878",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:30:12.250352",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:31:13.267956",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:32:14.285809",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:33:15.303108",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:34:16.320594",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:35:17.338267",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:36:18.356161",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:37:19.373790",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:38:20.391871",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:39:21.409331",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:40:22.427220",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:41:23.445127",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:42:24.464284",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:43:25.482183",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:44:26.499759",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:45:27.517164",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:46:28.533734",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:47:29.550793",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:48:30.568594",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:49:31.585687",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:50:32.603244",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:51:33.622704",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:52:34.639832",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:53:35.658148",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:54:36.676362",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:55:37.694274",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:56:38.711862",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:57:39.729110",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:58:40.746748",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T11:59:41.764015",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:00:42.781964",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:01:43.799870",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:02:44.817937",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:03:45.835123",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:04:46.852692",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:05:47.870844",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:06:48.888555",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:07:49.906292",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:08:50.925442",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:09:51.943208",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:10:52.961707",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:11:53.979203",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:12:54.996976",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.7734375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.807690622178871
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:13:56.014520",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.83984375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.80790347844705
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:14:57.032410",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3060.24609375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.809205657970027
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:15:58.049596",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3061.859375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.814376813191078
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:16:59.066983",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3061.859375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.814376813191078
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:18:00.084735",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3061.859375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.814376813191078
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:19:01.102479",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3061.859375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.814376813191078
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:20:02.120119",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3061.859375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.814376813191078
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:21:03.138445",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3061.859375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.814376813191078
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:22:04.156340",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3061.859375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.814376813191078
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:23:05.173807",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3061.859375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.814376813191078
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:24:06.191291",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3061.859375,
+      "vms_mb": 12840.6171875,
+      "percent": 9.814376813191078
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:25:07.209366",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3063.85546875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.820775022193397
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:26:08.228725",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3063.85546875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.820775022193397
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:27:09.247165",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3063.85546875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.820775022193397
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:28:10.266196",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3063.85546875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.820775022193397
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:29:11.284482",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3063.85546875,
+      "vms_mb": 12840.6171875,
+      "percent": 9.820775022193397
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:30:12.301748",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3064.7265625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.823567195593624
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:31:13.319745",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3064.7265625,
+      "vms_mb": 12840.6171875,
+      "percent": 9.823567195593624
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:32:38.548429",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 868.16015625,
+      "vms_mb": 5070.80078125,
+      "percent": 2.7827701615579077
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:33:39.568551",
+    "cpu_percent": 114.0,
+    "memory": {
+      "rss_mb": 2935.953125,
+      "vms_mb": 12628.3359375,
+      "percent": 9.410801328723952
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:34:40.582836",
+    "cpu_percent": 2.0,
+    "memory": {
+      "rss_mb": 2952.82421875,
+      "vms_mb": 12628.3359375,
+      "percent": 9.464879341798335
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:35:41.597340",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 2982.83984375,
+      "vms_mb": 12628.3359375,
+      "percent": 9.561090375015182
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:36:42.609698",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 2995.5859375,
+      "vms_mb": 12643.6015625,
+      "percent": 9.60194625754857
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:37:43.622855",
+    "cpu_percent": 18.0,
+    "memory": {
+      "rss_mb": 2995.5859375,
+      "vms_mb": 12643.6015625,
+      "percent": 9.60194625754857
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:38:44.635830",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 2991.5859375,
+      "vms_mb": 12643.6015625,
+      "percent": 9.589124797630033
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:39:45.650339",
+    "cpu_percent": 7.0,
+    "memory": {
+      "rss_mb": 2963.37109375,
+      "vms_mb": 12741.20703125,
+      "percent": 9.49868592556792
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:40:46.664373",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 2973.37109375,
+      "vms_mb": 12741.20703125,
+      "percent": 9.530739575364267
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:41:47.678683",
+    "cpu_percent": 4.0,
+    "memory": {
+      "rss_mb": 2977.37109375,
+      "vms_mb": 12741.20703125,
+      "percent": 9.543561035282805
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:42:48.692836",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 2989.37109375,
+      "vms_mb": 12741.20703125,
+      "percent": 9.58202541503842
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:43:49.706981",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 2970.79296875,
+      "vms_mb": 12742.59375,
+      "percent": 9.522475743776146
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:44:50.720119",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 2974.79296875,
+      "vms_mb": 12742.59375,
+      "percent": 9.535297203694684
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:45:51.733060",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3004.79296875,
+      "vms_mb": 12742.59375,
+      "percent": 9.631458153083724
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:46:52.753643",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3059.453125,
+      "vms_mb": 12742.59375,
+      "percent": 9.806663903708833
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:47:53.775067",
+    "cpu_percent": 128.0,
+    "memory": {
+      "rss_mb": 3059.453125,
+      "vms_mb": 12742.59375,
+      "percent": 9.806663903708833
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:48:54.787548",
+    "cpu_percent": 128.0,
+    "memory": {
+      "rss_mb": 3059.45703125,
+      "vms_mb": 12742.59375,
+      "percent": 9.806676424665785
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:49:55.800566",
+    "cpu_percent": 129.0,
+    "memory": {
+      "rss_mb": 3059.45703125,
+      "vms_mb": 12742.59375,
+      "percent": 9.806676424665785
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:50:56.813280",
+    "cpu_percent": 130.0,
+    "memory": {
+      "rss_mb": 3059.609375,
+      "vms_mb": 12742.59375,
+      "percent": 9.8071647419869
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:51:57.826392",
+    "cpu_percent": 4.0,
+    "memory": {
+      "rss_mb": 2967.94921875,
+      "vms_mb": 12742.59375,
+      "percent": 9.513360487115309
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:52:58.839532",
+    "cpu_percent": 22.0,
+    "memory": {
+      "rss_mb": 2979.56640625,
+      "vms_mb": 12742.59375,
+      "percent": 9.55059781308966
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:53:59.860267",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3061.56640625,
+      "vms_mb": 12742.59375,
+      "percent": 9.813437741419701
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:55:00.917055",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3049.03125,
+      "vms_mb": 12742.59375,
+      "percent": 9.773257990561703
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:56:01.930415",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3061.03125,
+      "vms_mb": 12742.59375,
+      "percent": 9.81172237031732
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:57:02.944097",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3059.03125,
+      "vms_mb": 12742.59375,
+      "percent": 9.805311640358049
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:58:03.958614",
+    "cpu_percent": 12.0,
+    "memory": {
+      "rss_mb": 3041.16015625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.748028262304032
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T12:59:04.973177",
+    "cpu_percent": 101.0,
+    "memory": {
+      "rss_mb": 3061.78125,
+      "vms_mb": 12742.7578125,
+      "percent": 9.814126394052044
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:00:05.985973",
+    "cpu_percent": 128.0,
+    "memory": {
+      "rss_mb": 3061.78125,
+      "vms_mb": 12742.7578125,
+      "percent": 9.814126394052044
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:01:06.999643",
+    "cpu_percent": 22.0,
+    "memory": {
+      "rss_mb": 3061.78125,
+      "vms_mb": 12742.7578125,
+      "percent": 9.814126394052044
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:02:08.013022",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3019.8125,
+      "vms_mb": 12742.7578125,
+      "percent": 9.679601232563002
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:03:09.026869",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3029.8125,
+      "vms_mb": 12742.7578125,
+      "percent": 9.71165488235935
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:04:10.040919",
+    "cpu_percent": 7.0,
+    "memory": {
+      "rss_mb": 3041.8125,
+      "vms_mb": 12742.7578125,
+      "percent": 9.750119262114964
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:05:11.054964",
+    "cpu_percent": 7.0,
+    "memory": {
+      "rss_mb": 3028.41796875,
+      "vms_mb": 12742.7578125,
+      "percent": 9.707184900727594
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:06:12.069304",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3044.5390625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.75885889006725
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:07:13.084639",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3046.5390625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.765269620026519
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:08:14.098348",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3038.5390625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.739626700189442
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:09:15.112176",
+    "cpu_percent": 4.0,
+    "memory": {
+      "rss_mb": 3001.94921875,
+      "vms_mb": 12742.7578125,
+      "percent": 9.622342896422888
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:10:16.126365",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3013.94921875,
+      "vms_mb": 12742.7578125,
+      "percent": 9.660807276178504
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:11:17.140369",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3031.94921875,
+      "vms_mb": 12742.7578125,
+      "percent": 9.718503845811927
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:12:18.153794",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3023.96484375,
+      "vms_mb": 12742.7578125,
+      "percent": 9.692911009802657
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:13:19.167629",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3033.96484375,
+      "vms_mb": 12742.7578125,
+      "percent": 9.724964659599005
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:14:20.182103",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3035.96484375,
+      "vms_mb": 12742.7578125,
+      "percent": 9.731375389558274
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:15:21.196776",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3029.96484375,
+      "vms_mb": 12742.7578125,
+      "percent": 9.712143199680465
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:16:22.209837",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 2988.60546875,
+      "vms_mb": 12742.7578125,
+      "percent": 9.579571307475888
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:17:23.223823",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 2992.60546875,
+      "vms_mb": 12742.7578125,
+      "percent": 9.592392767394427
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:18:24.236605",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3008.60546875,
+      "vms_mb": 12742.7578125,
+      "percent": 9.643678607068582
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:19:25.250811",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 2998.625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.611687562056993
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:20:26.264215",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3004.625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.630919751934801
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:21:27.278607",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3010.625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.650151941812608
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:22:28.294262",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3002.625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.624509021975532
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:23:29.308052",
+    "cpu_percent": 118.0,
+    "memory": {
+      "rss_mb": 2965.71875,
+      "vms_mb": 12742.7578125,
+      "percent": 9.50621102069589
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:24:30.321929",
+    "cpu_percent": 5.0,
+    "memory": {
+      "rss_mb": 2976.046875,
+      "vms_mb": 12742.7578125,
+      "percent": 9.53931643087618
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:25:31.336866",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 2994.046875,
+      "vms_mb": 12742.7578125,
+      "percent": 9.597013000509603
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:26:32.351541",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 2984.0625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.565009434541064
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:27:33.365434",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 2994.0625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.59706308433741
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:28:34.379996",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 2996.0625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.60347381429668
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:29:35.393682",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 2992.0625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.59065235437814
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:30:36.406707",
+    "cpu_percent": 130.0,
+    "memory": {
+      "rss_mb": 3062.7109375,
+      "vms_mb": 12742.7578125,
+      "percent": 9.81710638180655
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:31:37.419464",
+    "cpu_percent": 2.0,
+    "memory": {
+      "rss_mb": 2972.7109375,
+      "vms_mb": 12742.7578125,
+      "percent": 9.52862353363943
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:32:38.435086",
+    "cpu_percent": 22.0,
+    "memory": {
+      "rss_mb": 2984.7109375,
+      "vms_mb": 12742.7578125,
+      "percent": 9.567087913395046
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:33:39.449050",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 2976.7265625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.541495077385774
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:34:40.462226",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 2984.7265625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.567137997222853
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:35:41.476161",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 2986.7265625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.573548727182121
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:36:42.490243",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 2982.7265625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.560727267263584
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:37:43.504989",
+    "cpu_percent": 131.0,
+    "memory": {
+      "rss_mb": 3062.76171875,
+      "vms_mb": 12742.7578125,
+      "percent": 9.81726915424692
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:38:44.518130",
+    "cpu_percent": 130.0,
+    "memory": {
+      "rss_mb": 3062.76171875,
+      "vms_mb": 12742.7578125,
+      "percent": 9.81726915424692
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:39:45.531889",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 2972.140625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.52679547392448
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:40:46.544985",
+    "cpu_percent": 70.0,
+    "memory": {
+      "rss_mb": 3062.76953125,
+      "vms_mb": 12937.515625,
+      "percent": 9.817294196160823
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:41:47.563590",
+    "cpu_percent": 72.0,
+    "memory": {
+      "rss_mb": 2968.1640625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.514049139747653
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:42:48.577536",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 2972.1640625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.526870599666191
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:43:49.592044",
+    "cpu_percent": 130.0,
+    "memory": {
+      "rss_mb": 3062.78515625,
+      "vms_mb": 12742.7578125,
+      "percent": 9.817344279988632
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:44:50.604938",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3051.51171875,
+      "vms_mb": 12743.45703125,
+      "percent": 9.78120879822603
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:45:51.618638",
+    "cpu_percent": 101.0,
+    "memory": {
+      "rss_mb": 3063.51171875,
+      "vms_mb": 12743.45703125,
+      "percent": 9.819673177981647
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:46:52.631789",
+    "cpu_percent": 130.0,
+    "memory": {
+      "rss_mb": 3063.51171875,
+      "vms_mb": 12743.45703125,
+      "percent": 9.819673177981647
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:47:53.645758",
+    "cpu_percent": 129.0,
+    "memory": {
+      "rss_mb": 3063.51171875,
+      "vms_mb": 12743.45703125,
+      "percent": 9.819673177981647
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:48:54.659218",
+    "cpu_percent": 130.0,
+    "memory": {
+      "rss_mb": 3063.5546875,
+      "vms_mb": 12743.45703125,
+      "percent": 9.819810908508115
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:49:55.672074",
+    "cpu_percent": 130.0,
+    "memory": {
+      "rss_mb": 3063.5546875,
+      "vms_mb": 12743.45703125,
+      "percent": 9.819810908508115
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:50:56.686471",
+    "cpu_percent": 129.0,
+    "memory": {
+      "rss_mb": 3063.5546875,
+      "vms_mb": 12743.45703125,
+      "percent": 9.819810908508115
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:51:57.700150",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 3036.96875,
+      "vms_mb": 12743.45703125,
+      "percent": 9.73459327549486
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:52:58.714704",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 3038.96875,
+      "vms_mb": 12743.45703125,
+      "percent": 9.74100400545413
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:53:59.729124",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 3030.96875,
+      "vms_mb": 12743.45703125,
+      "percent": 9.715361085617051
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:55:00.743227",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 3042.96875,
+      "vms_mb": 12743.45703125,
+      "percent": 9.753825465372667
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:56:01.756961",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3024.99609375,
+      "vms_mb": 12743.45703125,
+      "percent": 9.696216542437904
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:57:02.770695",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3022.99609375,
+      "vms_mb": 12743.45703125,
+      "percent": 9.689805812478635
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:58:03.785073",
+    "cpu_percent": 4.0,
+    "memory": {
+      "rss_mb": 3034.99609375,
+      "vms_mb": 12743.45703125,
+      "percent": 9.728270192234252
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T13:59:04.798744",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 2997.6328125,
+      "vms_mb": 12743.45703125,
+      "percent": 9.608507238991262
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:00:05.812654",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3009.6328125,
+      "vms_mb": 12743.45703125,
+      "percent": 9.646971618746877
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:01:06.828971",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3015.6328125,
+      "vms_mb": 12743.45703125,
+      "percent": 9.666203808624687
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:02:07.842053",
+    "cpu_percent": 22.0,
+    "memory": {
+      "rss_mb": 3029.6328125,
+      "vms_mb": 12743.45703125,
+      "percent": 9.71107891833957
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:03:08.855239",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3013.66015625,
+      "vms_mb": 12743.45703125,
+      "percent": 9.65988072536408
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:04:09.869288",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 3013.66015625,
+      "vms_mb": 12743.45703125,
+      "percent": 9.65988072536408
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:05:10.883925",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3037.66015625,
+      "vms_mb": 12743.45703125,
+      "percent": 9.73680948487531
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:06:11.899522",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 2977.44140625,
+      "vms_mb": 12743.8359375,
+      "percent": 9.543786412507934
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:07:12.914392",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 2971.44140625,
+      "vms_mb": 12743.8359375,
+      "percent": 9.524554222630128
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:08:13.929095",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 2977.44140625,
+      "vms_mb": 12743.8359375,
+      "percent": 9.543786412507934
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:09:14.944357",
+    "cpu_percent": 127.0,
+    "memory": {
+      "rss_mb": 3064.0625,
+      "vms_mb": 12743.8359375,
+      "percent": 9.821438632911835
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:10:15.957673",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3053.86328125,
+      "vms_mb": 12744.21484375,
+      "percent": 9.788746414310953
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:11:16.973607",
+    "cpu_percent": 4.0,
+    "memory": {
+      "rss_mb": 3061.86328125,
+      "vms_mb": 12744.21484375,
+      "percent": 9.81438933414803
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:12:17.987174",
+    "cpu_percent": 128.0,
+    "memory": {
+      "rss_mb": 3064.484375,
+      "vms_mb": 12744.21484375,
+      "percent": 9.82279089626262
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:13:19.000101",
+    "cpu_percent": 129.0,
+    "memory": {
+      "rss_mb": 3064.484375,
+      "vms_mb": 12744.21484375,
+      "percent": 9.82279089626262
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:14:20.014045",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3026.69140625,
+      "vms_mb": 12745.21484375,
+      "percent": 9.701650637754943
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:15:21.027476",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3038.69140625,
+      "vms_mb": 12745.21484375,
+      "percent": 9.74011501751056
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:16:22.041135",
+    "cpu_percent": 3.0,
+    "memory": {
+      "rss_mb": 3046.69140625,
+      "vms_mb": 12745.21484375,
+      "percent": 9.765757937347635
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:17:23.057083",
+    "cpu_percent": 5.0,
+    "memory": {
+      "rss_mb": 3030.73046875,
+      "vms_mb": 12745.21484375,
+      "percent": 9.714597307242997
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:18:24.071690",
+    "cpu_percent": 14.0,
+    "memory": {
+      "rss_mb": 3058.73046875,
+      "vms_mb": 12745.21484375,
+      "percent": 9.80434752667277
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:19:25.086913",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3062.73046875,
+      "vms_mb": 12745.21484375,
+      "percent": 9.817168986591307
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:20:26.100378",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3054.73046875,
+      "vms_mb": 12745.21484375,
+      "percent": 9.79152606675423
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:21:27.115047",
+    "cpu_percent": 22.0,
+    "memory": {
+      "rss_mb": 3014.4140625,
+      "vms_mb": 12745.21484375,
+      "percent": 9.662297270055756
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:22:28.130053",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3028.4140625,
+      "vms_mb": 12745.21484375,
+      "percent": 9.707172379770642
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:23:29.144511",
+    "cpu_percent": 4.0,
+    "memory": {
+      "rss_mb": 3042.4140625,
+      "vms_mb": 12745.21484375,
+      "percent": 9.752047489485527
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:24:30.159356",
+    "cpu_percent": 13.0,
+    "memory": {
+      "rss_mb": 3030.42578125,
+      "vms_mb": 12745.21484375,
+      "percent": 9.713620672600767
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:25:31.173211",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3046.42578125,
+      "vms_mb": 12745.21484375,
+      "percent": 9.764906512274921
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:26:32.186782",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3048.42578125,
+      "vms_mb": 12745.21484375,
+      "percent": 9.77131724223419
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:27:33.201195",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3044.42578125,
+      "vms_mb": 12745.21484375,
+      "percent": 9.758495782315652
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:28:34.215820",
+    "cpu_percent": 13.0,
+    "memory": {
+      "rss_mb": 3001.06640625,
+      "vms_mb": 12745.21484375,
+      "percent": 9.619513160151804
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:29:35.230780",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 3005.06640625,
+      "vms_mb": 12745.21484375,
+      "percent": 9.632334620070344
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:30:36.246341",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 3021.06640625,
+      "vms_mb": 12745.21484375,
+      "percent": 9.683620459744498
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:31:37.259878",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3005.078125,
+      "vms_mb": 12745.21484375,
+      "percent": 9.632372182941198
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:32:38.274666",
+    "cpu_percent": 18.0,
+    "memory": {
+      "rss_mb": 3011.078125,
+      "vms_mb": 12745.21484375,
+      "percent": 9.651604372819007
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:33:39.290243",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3011.078125,
+      "vms_mb": 12745.21484375,
+      "percent": 9.651604372819007
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:34:40.305968",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3005.078125,
+      "vms_mb": 12745.21484375,
+      "percent": 9.632372182941198
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:35:41.320589",
+    "cpu_percent": 129.0,
+    "memory": {
+      "rss_mb": 3065.09375,
+      "vms_mb": 12745.21484375,
+      "percent": 9.824744165547084
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:36:42.337329",
+    "cpu_percent": 3.0,
+    "memory": {
+      "rss_mb": 2970.47265625,
+      "vms_mb": 12745.21484375,
+      "percent": 9.521449025306106
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:37:43.352194",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 2978.47265625,
+      "vms_mb": 12745.21484375,
+      "percent": 9.547091945143183
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:38:44.367486",
+    "cpu_percent": 70.0,
+    "memory": {
+      "rss_mb": 3065.21484375,
+      "vms_mb": 12939.97265625,
+      "percent": 9.825132315212587
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:39:45.386544",
+    "cpu_percent": 128.0,
+    "memory": {
+      "rss_mb": 3065.2265625,
+      "vms_mb": 12745.21484375,
+      "percent": 9.825169878083443
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:40:46.399789",
+    "cpu_percent": 128.0,
+    "memory": {
+      "rss_mb": 3065.2265625,
+      "vms_mb": 12745.21484375,
+      "percent": 9.825169878083443
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:41:47.413686",
+    "cpu_percent": 18.0,
+    "memory": {
+      "rss_mb": 3060.60546875,
+      "vms_mb": 12745.21484375,
+      "percent": 9.810357586009584
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:42:48.428256",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 3009.25,
+      "vms_mb": 12745.21484375,
+      "percent": 9.64574456496561
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:43:49.443679",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 3011.25,
+      "vms_mb": 12745.21484375,
+      "percent": 9.65215529492488
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:44:50.458731",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 3007.25,
+      "vms_mb": 12745.21484375,
+      "percent": 9.639333835006342
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:45:51.474227",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 3009.25,
+      "vms_mb": 12745.21484375,
+      "percent": 9.64574456496561
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:46:52.489328",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 2982.05859375,
+      "vms_mb": 12746.08984375,
+      "percent": 9.558586183624843
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:47:53.504161",
+    "cpu_percent": 71.0,
+    "memory": {
+      "rss_mb": 2972.05859375,
+      "vms_mb": 12746.08984375,
+      "percent": 9.526532533828496
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:48:54.519159",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 2990.05859375,
+      "vms_mb": 12746.08984375,
+      "percent": 9.584229103461919
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:49:55.539562",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3066.05859375,
+      "vms_mb": 12746.08984375,
+      "percent": 9.827836841914154
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:50:56.590033",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3050.5234375,
+      "vms_mb": 12747.08984375,
+      "percent": 9.778040996117252
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:51:57.603299",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3062.5234375,
+      "vms_mb": 12747.08984375,
+      "percent": 9.816505375872866
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:52:58.617887",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3060.5234375,
+      "vms_mb": 12747.08984375,
+      "percent": 9.810094645913598
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:53:59.632880",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3042.5703125,
+      "vms_mb": 12747.08984375,
+      "percent": 9.752548327763593
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:55:00.648551",
+    "cpu_percent": 7.0,
+    "memory": {
+      "rss_mb": 3058.5703125,
+      "vms_mb": 12747.08984375,
+      "percent": 9.80383416743775
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:56:01.663210",
+    "cpu_percent": 130.0,
+    "memory": {
+      "rss_mb": 3067.19140625,
+      "vms_mb": 12747.08984375,
+      "percent": 9.831467919430146
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:57:02.677023",
+    "cpu_percent": 70.0,
+    "memory": {
+      "rss_mb": 3067.19140625,
+      "vms_mb": 12747.08984375,
+      "percent": 9.831467919430146
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:58:03.690855",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3029.20703125,
+      "vms_mb": 12747.08984375,
+      "percent": 9.709714134031836
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T14:59:04.705928",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3041.20703125,
+      "vms_mb": 12747.08984375,
+      "percent": 9.748178513787451
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:00:05.721200",
+    "cpu_percent": 2.0,
+    "memory": {
+      "rss_mb": 3045.20703125,
+      "vms_mb": 12747.08984375,
+      "percent": 9.76099997370599
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:01:06.736052",
+    "cpu_percent": 3.0,
+    "memory": {
+      "rss_mb": 3029.2734375,
+      "vms_mb": 12747.08984375,
+      "percent": 9.709926990300016
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:02:07.750735",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3055.2734375,
+      "vms_mb": 12747.08984375,
+      "percent": 9.793266479770516
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:03:08.764555",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3059.2734375,
+      "vms_mb": 12747.08984375,
+      "percent": 9.806087939689055
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:04:09.779211",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3053.2734375,
+      "vms_mb": 12747.08984375,
+      "percent": 9.786855749811247
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:05:10.792769",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 3010.71875,
+      "vms_mb": 12747.08984375,
+      "percent": 9.650452444779448
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:06:11.807684",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3020.71875,
+      "vms_mb": 12747.08984375,
+      "percent": 9.682506094575796
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:07:12.822974",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3036.71875,
+      "vms_mb": 12747.08984375,
+      "percent": 9.73379193424995
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:08:13.838154",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3026.7421875,
+      "vms_mb": 12747.08984375,
+      "percent": 9.701813410195314
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:09:14.853299",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3036.7421875,
+      "vms_mb": 12747.08984375,
+      "percent": 9.73386705999166
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:10:15.867148",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 3038.7421875,
+      "vms_mb": 12747.08984375,
+      "percent": 9.74027778995093
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:11:16.881847",
+    "cpu_percent": 18.0,
+    "memory": {
+      "rss_mb": 3024.7421875,
+      "vms_mb": 12747.08984375,
+      "percent": 9.695402680236045
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:12:17.896584",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 2991.3828125,
+      "vms_mb": 12747.08984375,
+      "percent": 9.588473707868545
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:13:18.910748",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 2995.3828125,
+      "vms_mb": 12747.08984375,
+      "percent": 9.601295167787084
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:14:19.924732",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3009.38671875,
+      "vms_mb": 12747.08984375,
+      "percent": 9.64618279845892
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:15:20.940252",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 2996.09375,
+      "vms_mb": 12747.47265625,
+      "percent": 9.603573981952293
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:16:21.954868",
+    "cpu_percent": 19.0,
+    "memory": {
+      "rss_mb": 3002.09375,
+      "vms_mb": 12747.47265625,
+      "percent": 9.622806171830101
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:17:22.969201",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3006.09375,
+      "vms_mb": 12747.47265625,
+      "percent": 9.635627631748639
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:18:23.983673",
+    "cpu_percent": 21.0,
+    "memory": {
+      "rss_mb": 3000.09375,
+      "vms_mb": 12747.47265625,
+      "percent": 9.616395441870832
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:19:24.999826",
+    "cpu_percent": 130.0,
+    "memory": {
+      "rss_mb": 3068.5,
+      "vms_mb": 12747.8515625,
+      "percent": 9.835662440008965
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:20:26.013201",
+    "cpu_percent": 128.0,
+    "memory": {
+      "rss_mb": 3068.5,
+      "vms_mb": 12747.8515625,
+      "percent": 9.835662440008965
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:21:27.026543",
+    "cpu_percent": 117.0,
+    "memory": {
+      "rss_mb": 2971.64453125,
+      "vms_mb": 12747.8515625,
+      "percent": 9.525205312391616
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:22:28.052692",
+    "cpu_percent": 0.0,
+    "memory": {
+      "rss_mb": 3068.50390625,
+      "vms_mb": 12747.8515625,
+      "percent": 9.835674960965916
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:23:29.109511",
+    "cpu_percent": 129.0,
+    "memory": {
+      "rss_mb": 3068.53125,
+      "vms_mb": 12747.8515625,
+      "percent": 9.835762607664579
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:24:30.123281",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 2975.91015625,
+      "vms_mb": 12747.8515625,
+      "percent": 9.53887819738287
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:25:31.138234",
+    "cpu_percent": 126.0,
+    "memory": {
+      "rss_mb": 2971.296875,
+      "vms_mb": 12747.8515625,
+      "percent": 9.524090947222914
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:26:32.159019",
+    "cpu_percent": 20.0,
+    "memory": {
+      "rss_mb": 3052.55859375,
+      "vms_mb": 12747.8515625,
+      "percent": 9.784564414689086
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:27:33.173344",
+    "cpu_percent": 33.0,
+    "memory": {
+      "rss_mb": 3068.55859375,
+      "vms_mb": 12747.8515625,
+      "percent": 9.83585025436324
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:28:34.186934",
+    "cpu_percent": 129.0,
+    "memory": {
+      "rss_mb": 3068.55859375,
+      "vms_mb": 12747.8515625,
+      "percent": 9.83585025436324
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:29:35.200393",
+    "cpu_percent": 131.0,
+    "memory": {
+      "rss_mb": 3068.55859375,
+      "vms_mb": 12747.8515625,
+      "percent": 9.83585025436324
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:30:36.215561",
+    "cpu_percent": 129.0,
+    "memory": {
+      "rss_mb": 3068.5703125,
+      "vms_mb": 12747.8515625,
+      "percent": 9.835887817234095
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:31:37.229627",
+    "cpu_percent": 129.0,
+    "memory": {
+      "rss_mb": 3068.5703125,
+      "vms_mb": 12747.8515625,
+      "percent": 9.835887817234095
+    },
+    "gpu": null
+  },
+  {
+    "timestamp": "2025-10-30T15:32:38.243811",
+    "cpu_percent": 70.0,
+    "memory": {
+      "rss_mb": 3068.5703125,
+      "vms_mb": 12747.8515625,
+      "percent": 9.835887817234095
+    },
+    "gpu": null
   }
 ]
