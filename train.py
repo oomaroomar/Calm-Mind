@@ -1,6 +1,7 @@
 import argparse
 import asyncio
 import gc
+import multiprocessing
 import random
 from typing import Tuple
 import numpy as np
@@ -10,6 +11,14 @@ from datetime import datetime
 from pathlib import Path
 from poke_env.ps_client.account_configuration import AccountConfiguration
 from tabulate import tabulate
+
+# Set multiprocessing start method to 'spawn' to avoid file descriptor issues
+# with forkserver (default in Python 3.13)
+try:
+    multiprocessing.set_start_method("spawn")
+except RuntimeError:
+    # Already set, ignore
+    pass
 
 from poke_env.battle.abstract_battle import AbstractBattle
 from poke_env.environment.single_agent_wrapper import SingleAgentWrapper
@@ -34,7 +43,7 @@ from resource_monitor import ResourceMonitor
 ### Parameters
 
 STEPS_PER_ITER = 10**5
-TOTAL_TIMESTEPS = 2 * 10**7
+TOTAL_TIMESTEPS = 5 * 10**7
 AGENT_CHECKPOINT = "ppo_with_entropy_coef.zip"
 
 
@@ -54,7 +63,7 @@ def create_model(parallel: bool = False) -> Tuple[MaskablePPO, SubprocVecEnv]:
         return PokemonEnv.create_single_agent_env()
 
     if parallel:
-        vec_env = SubprocVecEnv([make_env for _ in range(6)])
+        vec_env = SubprocVecEnv([make_env for _ in range(4)])
     else:
         vec_env = DummyVecEnv([make_env])
 
